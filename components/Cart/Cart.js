@@ -55,7 +55,7 @@ export default function Cart({
     useEffect(() => { isMobile ? setShowIsMobile(true) : setShowIsMobile(false) }, [isMobile])
 
     const addedOrderProduct = (data) => {
-        fetch("http://localhost:3001/api/orders", {
+        fetch("https://testback-production-353f.up.railway.app/api/orders", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {

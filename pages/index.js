@@ -39,7 +39,7 @@ export default function Home({ products }) {
   );
 }
 export async function getServerSideProps() {
-  const response = await fetch("http://localhost:3001/api/products");
+  const response = await fetch("https://testback-production-353f.up.railway.app/api/products");
   const products = await response.json();
 
   return {
