@@ -22,7 +22,7 @@ export default function ProductItemBlankets({ arr, text, set, items }) {
         { id: 2, width: 175, size: "175x210" },
         { id: 3, width: 200, size: "200x220" },
     ];
-    const findProduct = arr.filter(
+    const findProduct = arr?.filter(
         (el) => el.model === text && +el.size === +currentSize
     );
 
@@ -66,11 +66,11 @@ export default function ProductItemBlankets({ arr, text, set, items }) {
             setCartText("У кошик");
             setDisabled(false);
         }
-    });
+    }, [items, findProduct]);
 
     return (
         <>
-            {findProduct.map((el, i) => (
+            {findProduct?.map((el, i) => (
                 <motion.li
                     initial="hidden"
                     whileInView="visible"

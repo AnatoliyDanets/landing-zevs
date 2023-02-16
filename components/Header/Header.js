@@ -5,10 +5,10 @@ import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
 import Container from "../Container";
 import Navigation from "../Navigation";
-import logo from "../../image/Hero/Zevs.PNG"
+import logo from "../../image/Hero/Zevs.png"
 import Burger from "../svgs/burger.svg"
 import s from "./Header.module.css";
-// const logo = dynamic(() => import('../svgs/zevs.svg'))
+
 const HeaderMobile = dynamic(() => import('./HeaderMobile'));
 
 export default function Header() {

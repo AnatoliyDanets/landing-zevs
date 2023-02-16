@@ -1,6 +1,6 @@
 import { Link } from "react-scroll/modules";
 import Image from "next/image";
-import logo from "../../image/Hero/Zevs.PNG"
+import logo from "../../image/Hero/Zevs.png"
 import s from "./Navigation.module.css"
 
 export default function Navigation() {

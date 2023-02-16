@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import ProductBlankets from "../components/ProductBlankets";
 import ProductPillows from "../components/ProductPillows/ProductPillows";
 import Cart from "../components/Cart/Cart";
-import DisplayCart from "@/components/DisplayCart";
-import SuccessOrder from "@/components/SuccessOrder";
+import DisplayCart from "../components/DisplayCart";
+import SuccessOrder from "../components/SuccessOrder";
 
 const Modal = dynamic(() => import("../components/Modal"));
 
@@ -73,7 +73,7 @@ export default function Products({ products }) {
     };
 
     const handleRemoveProduct = (id) => {
-        const findItems = items.filter((el) => el._id !== id);
+        const findItems = items?.filter((el) => el._id !== id);
         setItems([...findItems]);
     };
 
@@ -99,7 +99,7 @@ export default function Products({ products }) {
         if (cartItem?.length === 0) {
             setShowCart(false);
         }
-    }, [items]);
+    }, [items, showSuccess, cartItem?.length]);
 
     return (
         <>

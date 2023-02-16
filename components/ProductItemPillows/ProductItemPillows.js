@@ -18,7 +18,7 @@ export default function ProductItemPillows({ arr, text, set, items }) {
     const [cartText, setCartText] = useState("У кошик");
     const [currentSize, setCurrentSize] = useState(50);
 
-    const findProduct = arr.filter(
+    const findProduct = arr?.filter(
         (el) => el.model === text && +el.size === +currentSize
     );
     const sizes = [
@@ -65,11 +65,11 @@ export default function ProductItemPillows({ arr, text, set, items }) {
             setCartText("У кошик");
             setDisabled(false);
         }
-    });
+    }, [items, findProduct]);
 
     return (
         <>
-            {findProduct.map((el, i) => (
+            {findProduct?.map((el, i) => (
                 <motion.li
                     initial="hidden"
                     whileInView="visible"
