@@ -1,14 +1,14 @@
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import ProductBlankets from "../components/ProductBlankets";
 import ProductPillows from "../components/ProductPillows/ProductPillows";
-
 import Cart from "../components/Cart/Cart";
 import DisplayCart from "@/components/DisplayCart";
 import SuccessOrder from "@/components/SuccessOrder";
-const Modal = dynamic(() => import('../components/Modal'));
-export default function Products({ products }) {
 
+const Modal = dynamic(() => import("../components/Modal"));
+
+export default function Products({ products }) {
     const [showCart, setShowCart] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [items, setItems] = useState(() => {
@@ -18,19 +18,20 @@ export default function Products({ products }) {
             return parsedItem || [];
         }
     });
-    const [cartItem, setCartItem] = useState([])
+    const [cartItem, setCartItem] = useState([]);
 
-    const quantityInCart = items?.reduce(
-        (acc, el) => (acc.find(({ _id }) => el._id === _id) || acc.push(el), acc),
-        []
-    ).reduce((acc, el) => acc + el.count, 0);
+    const quantityInCart = items
+        ?.reduce(
+            (acc, el) => (acc.find(({ _id }) => el._id === _id) || acc.push(el), acc),
+            []
+        )
+        .reduce((acc, el) => acc + el.count, 0);
     const handleShowCart = () => {
         setShowCart((prev) => !prev);
-
     };
     const handleShowSuccess = () => {
         setShowSuccess((prev) => !prev);
-        setShowCart(false)
+        setShowCart(false);
     };
     const handleIncrement = (e) => {
         const findItems = items.find((el) => el._id === e.target.id);
@@ -40,7 +41,12 @@ export default function Products({ products }) {
                 ...findItems,
                 ...(findItems.count += 1),
                 ...(findItems.totalPrice =
-                    Number(+findItems.discount > 0 ? (+findItems.price - (+findItems.discount / 100) * +findItems.price) : +findItems.price) * Number(findItems.count)),
+                    Number(
+                        +findItems.discount > 0
+                            ? +findItems.price -
+                            (+findItems.discount / 100) * +findItems.price
+                            : +findItems.price
+                    ) * Number(findItems.count)),
             },
         ];
         setItems([...newItems]);
@@ -55,7 +61,12 @@ export default function Products({ products }) {
                     ? (findItems.count = 1)
                     : (findItems.count -= 1)),
                 ...(findItems.totalPrice =
-                    Number(+findItems.discount > 0 ? (+findItems.price - (+findItems.discount / 100) * +findItems.price) : +findItems.price) * Number(findItems.count)),
+                    Number(
+                        +findItems.discount > 0
+                            ? +findItems.price -
+                            (+findItems.discount / 100) * +findItems.price
+                            : +findItems.price
+                    ) * Number(findItems.count)),
             },
         ];
         setItems([...newItems]);
@@ -64,7 +75,6 @@ export default function Products({ products }) {
     const handleRemoveProduct = (id) => {
         const findItems = items.filter((el) => el._id !== id);
         setItems([...findItems]);
-
     };
 
     useEffect(() => {
@@ -78,34 +88,42 @@ export default function Products({ products }) {
     }, [items]);
     useEffect(() => {
         if (items?.length > 0) {
-            setCartItem(items)
-        }
-        else {
-
+            setCartItem(items);
+        } else {
             if (!showSuccess) {
-                setShowCart(false)
+                setShowCart(false);
             }
-            setCartItem([])
-
+            setCartItem([]);
         }
 
-        if (cartItem?.length === 0) { setShowCart(false) }
+        if (cartItem?.length === 0) {
+            setShowCart(false);
+        }
     }, [items]);
 
     return (
         <>
             <ProductBlankets products={products} set={setItems} items={items} />
             <ProductPillows products={products} set={setItems} items={items} />
-            {(cartItem?.length > 0 && !showCart) &&
+            {cartItem?.length > 0 && !showCart && (
+                <DisplayCart
+                    handleShowCart={handleShowCart}
+                    quantityInCart={quantityInCart}
+                />
+            )}
 
-                <DisplayCart handleShowCart={handleShowCart} quantityInCart={quantityInCart} />
-            }
-
-            <Modal show={showCart} style={showSuccess && { height: "150px" }} onClose={showSuccess ? handleShowSuccess : handleShowCart}>
-                {showSuccess ?
-                    <SuccessOrder onClick={() => { setShowCart(false), setShowSuccess(false) }} />
-
-                    :
+            <Modal
+                show={showCart}
+                style={showSuccess && { height: "150px" }}
+                onClose={showSuccess ? handleShowSuccess : handleShowCart}
+            >
+                {showSuccess ? (
+                    <SuccessOrder
+                        onClick={() => {
+                            setShowCart(false), setShowSuccess(false);
+                        }}
+                    />
+                ) : (
                     <Cart
                         cartProduct={items}
                         increment={handleIncrement}
@@ -113,11 +131,9 @@ export default function Products({ products }) {
                         removeClick={handleRemoveProduct}
                         set={setItems}
                         handleShowIsSuccess={setShowSuccess}
-
-                    />}
+                    />
+                )}
             </Modal>
-
-
         </>
     );
 }
