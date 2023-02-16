@@ -1,0 +1,30 @@
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+/* .header__item {
+  color: #ffffff;
+} */
+
+.nav__item {
+  position: relative;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+  cursor: pointer;
+  color: #ffffff;
+}
+.nav__link {
+  text-shadow: 2px 0 2px #333333, 0 2px 2px #333333, -2px 0 2px #333333,
+    0 -2px 2px #333333;
+}
+@media screen and (min-width: 1200px) {
+  .nav__item {
+    font-size: 20px;
+  }
+}

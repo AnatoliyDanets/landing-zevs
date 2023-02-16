@@ -1,0 +1,68 @@
+.modal__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+}
+
+.modal {
+  padding: 40px 20px;
+  position: absolute;
+  width: calc(100vw - 40px);
+  height: calc(100vh - 80px);
+  /* width: auto; */
+  /* height: 90%;
+  min-height: 100px;
+  max-height: 400px; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url(../../image/bcg2.jpg);
+  background-repeat: repeat;
+  border-radius: 3px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  fill: #d2ba40;
+}
+
+.modal__close_icon {
+  pointer-events: fill;
+  transform: rotate(180deg);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal__close_icon:hover {
+  fill: #fff;
+  transform: rotate(0deg);
+}
+
+@media screen and (min-width: 480px) {
+  .modal {
+    width: calc(480px - 40px);
+    min-height: 100px;
+    max-height: 600px;
+    /* width: auto;
+    height: 90%; */
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+  }
+}

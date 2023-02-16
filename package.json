@@ -1,0 +1,36 @@
+{
+  "name": "landing-zevs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.8",
+    "@next/font": "13.0.7",
+    "classnames": "^2.3.2",
+    "eslint": "8.29.0",
+    "eslint-config-next": "13.0.7",
+    "framer-motion": "^9.0.2",
+    "next": "13.0.7",
+    "normalize.css": "^8.0.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.0",
+    "react-phone-number-input": "^3.2.18",
+    "react-photoswipe-gallery": "^2.2.2",
+    "react-responsive": "^9.0.2",
+    "react-scroll": "^1.8.9",
+    "react-slick": "^0.29.0",
+    "react-vertical-timeline-component": "^3.6.0",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^6.5.1"
+  }
+}

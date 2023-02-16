@@ -1,0 +1,45 @@
+.header {
+  padding: 22px 0px;
+  width: 100%;
+  z-index: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 16px 0px;
+  }
+}
+
+@media screen and (min-width: 1360px) {
+  .header {
+    padding: 32px 0px;
+  }
+}
+
+.header__list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+/* .header__item {
+  color: #ffffff;
+} */
+
+.header__item {
+  position: relative;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+  /* identical to box height */
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.card__back {
+  background-color: transparent;
+  color: #d2ba40;
+  border: none;
+}
