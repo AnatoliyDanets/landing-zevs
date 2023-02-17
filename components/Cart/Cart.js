@@ -23,7 +23,6 @@ export default function Cart({
     removeClick,
     set,
     handleShowIsSuccess,
-
 }) {
     const [loading, setLoading] = useState(false);
     const [value, setValue] = useState();
@@ -47,12 +46,18 @@ export default function Cart({
     );
 
     const price = uniqueCartProducts?.reduce(
-        (acc, el) => acc + Number(el.discount > 0
-            ? el.price - (el.discount / 100) * el.price : el.price) * el.count,
+        (acc, el) =>
+            acc +
+            Number(
+                el.discount > 0 ? el.price - (el.discount / 100) * el.price : el.price
+            ) *
+            el.count,
         0
     );
 
-    useEffect(() => { isMobile ? setShowIsMobile(true) : setShowIsMobile(false) }, [isMobile])
+    useEffect(() => {
+        isMobile ? setShowIsMobile(true) : setShowIsMobile(false);
+    }, [isMobile]);
 
     const addedOrderProduct = (data) => {
         fetch("https://testback-production-353f.up.railway.app/api/orders", {
@@ -63,15 +68,15 @@ export default function Cart({
             },
         })
             .then((res) => {
-                setLoading(true)
+                setLoading(true);
                 if (res.status === 201) {
-                    setLoading(false)
-                    handleShowIsSuccess(true)
+                    setLoading(false);
+                    handleShowIsSuccess(true);
                     resetForm();
                 }
             })
             .catch((error) => {
-                setLoading(false)
+                setLoading(false);
                 console.log(error);
             });
     };
@@ -83,12 +88,16 @@ export default function Cart({
                 acc.model = val.model;
                 acc.size = `${val.size}x${val.height}`;
                 acc.count = val.count;
-                acc.discount = val.discount
-                acc.price = val.discount > 0
-                    ? `Знижка ${val.discount}, ціна - ${val.price - (val.discount / 100) * val.price}`
-                    : val.price;
-                acc.totalPrice = val.totalPrice = val.discount > 0
-                    ? (+val.price - (val.discount / 100) * +val.price) * val.count : +val.totalPrice;
+                acc.discount = val.discount;
+                acc.price =
+                    val.discount > 0
+                        ? `Знижка ${val.discount}, ціна - ${val.price - (val.discount / 100) * val.price
+                        }`
+                        : val.price;
+                acc.totalPrice = val.totalPrice =
+                    val.discount > 0
+                        ? (+val.price - (val.discount / 100) * +val.price) * val.count
+                        : +val.totalPrice;
                 return acc;
             }, {})
         );
@@ -100,7 +109,6 @@ export default function Cart({
         };
         console.log(order);
         addedOrderProduct(order);
-
     };
 
     const resetForm = () => {
@@ -118,15 +126,15 @@ export default function Cart({
         set([]);
     };
 
-    return (
-        loading ?
-            (<div className={s.spinner__wrap}>
-                <div className={s.spinner}></div>
-            </div>)
-            :
-            <div className={s.basket__container}>
-                <h2 className={s.basket__title}>ВАШІ ЗАМОВЛЕННЯ</h2>
-                {showIsMobile ? <ul className={s.mobile__cart}>
+    return loading ? (
+        <div className={s.spinner__wrap}>
+            <div className={s.spinner}></div>
+        </div>
+    ) : (
+        <div className={s.basket__container}>
+            <h2 className={s.basket__title}>ВАШІ ЗАМОВЛЕННЯ</h2>
+            {showIsMobile ? (
+                <ul className={s.mobile__cart}>
                     {uniqueCartProducts.map((el, i) => (
                         <li key={i} className={s.mobile__cartItem}>
                             <div className={s.mobile__cartWrap}>
@@ -138,7 +146,10 @@ export default function Cart({
                                     priority
                                 />
 
-                                <p className={s.mobile__name}> {`${el.model} ${el.size}x${el.height}`}</p>
+                                <p className={s.mobile__name}>
+                                    {" "}
+                                    {`${el.model} ${el.size}x${el.height}`}
+                                </p>
                             </div>
 
                             <div className={s.mobile__cartWrapCount}>
@@ -152,12 +163,7 @@ export default function Cart({
                                         <Minus className={s.basket__minus} />
                                     </button>
 
-                                    <span
-                                        className={s.mobile__cartValue}
-
-                                    >
-                                        {+el.count}
-                                    </span>
+                                    <span className={s.mobile__cartValue}>{+el.count}</span>
                                     <button
                                         className={s.basket__increment}
                                         onClick={increment}
@@ -168,7 +174,12 @@ export default function Cart({
                                 </div>
                                 <span className={s.mobile__cartPrice}>
                                     {el.discount > 0
-                                        ? (+el.price - (el.discount / 100) * +el.price) * el.count : +el.totalPrice}грн
+                                        ? (
+                                            (+el.price - (el.discount / 100) * +el.price) *
+                                            el.count
+                                        ).toFixed(2)
+                                        : +el.totalPrice.toFixed(2)}
+                                    грн
                                 </span>
                                 <button
                                     id={el._id}
@@ -181,167 +192,170 @@ export default function Cart({
                             </div>
                         </li>
                     ))}
-                </ul> :
-                    <table className={s.tableCart}>
-                        <thead className={s.tableCart__head}>
-                            <tr className={s.tableCart__head_row}>
-                                <th
-                                    className={s.tableCart__head_sel}
-                                    style={{ emptyCells: "hide" }}
-                                ></th>
-                                <th className={s.tableCart__head_sel}>Модель</th>
-                                <th className={s.tableCart__head_sel}>Кількість</th>
-                                <th className={s.tableCart__head_sel}>Ціна</th>
-                                <th className={s.tableCart__head_sel}></th>
-                            </tr>
-                        </thead>
-                        <tbody className={s.tableCart__body}>
-                            {uniqueCartProducts.map((el, i) => (
-                                <tr className={s.tableCart__body_row} key={i}>
-                                    <>
-                                        <td className={s.tableCart__body_sel}>
-                                            {
-                                                <Image
-                                                    src={el.cards}
-                                                    alt={el.model}
-                                                    width={70}
-                                                    height={70}
-                                                    priority
-                                                />
-                                            }
-                                        </td>
-                                        <td className={s.tableCart__body_sel}>
-                                            <p className={s.basket__name}>
-                                                {el.model} {`${el.size}x${el.height}`}
-                                            </p>
-                                            {/* <p className={s.basket__name}> </p> */}
-                                        </td>
-                                        <td className={s.tableCart__body_sel}>
-                                            {" "}
-                                            <div className={s.basket__count}>
-                                                <button
-                                                    className={s.basket__decrement}
-                                                    onClick={decrement}
-                                                    id={el._id}
-                                                >
-                                                    {" "}
-                                                    <Minus className={s.basket__minus} />
-                                                </button>
-
-                                                <span
-                                                    className={s.basket__value}
-                                                    style={{ width: "20px" }}
-                                                >
-                                                    {+el.count}
-                                                </span>
-                                                <button
-                                                    className={s.basket__increment}
-                                                    onClick={increment}
-                                                    id={el._id}
-                                                >
-                                                    <Plus className={s.basket__plus} />
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td className={s.tableCart__body_sel}>
-                                            <span className={s.basket__price}>
-                                                {el.discount > 0
-                                                    ? ((+el.price - (el.discount / 100) * +el.price) * el.count).toFixed(2) : +el.totalPrice.toFixed(2)}грн
-                                            </span>
-                                        </td>
-
-                                        <td className={s.tableCart__body_sel}>
+                </ul>
+            ) : (
+                <table className={s.tableCart}>
+                    <thead className={s.tableCart__head}>
+                        <tr className={s.tableCart__head_row}>
+                            <th
+                                className={s.tableCart__head_sel}
+                                style={{ emptyCells: "hide" }}
+                            ></th>
+                            <th className={s.tableCart__head_sel}>Модель</th>
+                            <th className={s.tableCart__head_sel}>Кількість</th>
+                            <th className={s.tableCart__head_sel}>Ціна</th>
+                            <th className={s.tableCart__head_sel}></th>
+                        </tr>
+                    </thead>
+                    <tbody className={s.tableCart__body}>
+                        {uniqueCartProducts.map((el, i) => (
+                            <tr className={s.tableCart__body_row} key={i}>
+                                <>
+                                    <td className={s.tableCart__body_sel}>
+                                        {
+                                            <Image
+                                                src={el.cards}
+                                                alt={el.model}
+                                                width={70}
+                                                height={70}
+                                                priority
+                                            />
+                                        }
+                                    </td>
+                                    <td className={s.tableCart__body_sel}>
+                                        <p className={s.basket__name}>
+                                            {el.model} {`${el.size}x${el.height}`}
+                                        </p>
+                                    </td>
+                                    <td className={s.tableCart__body_sel}>
+                                        {" "}
+                                        <div className={s.basket__count}>
                                             <button
+                                                className={s.basket__decrement}
+                                                onClick={decrement}
                                                 id={el._id}
-                                                className={s.basket__delete}
-                                                type="button"
-                                                onClick={() => removeClick(el._id)}
                                             >
-                                                <Del className={s.basket__plus} />
+                                                {" "}
+                                                <Minus className={s.basket__minus} />
                                             </button>
-                                        </td>
-                                    </>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                }
 
+                                            <span
+                                                className={s.basket__value}
+                                                style={{ width: "20px" }}
+                                            >
+                                                {+el.count}
+                                            </span>
+                                            <button
+                                                className={s.basket__increment}
+                                                onClick={increment}
+                                                id={el._id}
+                                            >
+                                                <Plus className={s.basket__plus} />
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td className={s.tableCart__body_sel}>
+                                        <span className={s.basket__price}>
+                                            {el.discount > 0
+                                                ? (
+                                                    (+el.price - (el.discount / 100) * +el.price) *
+                                                    el.count
+                                                ).toFixed(2)
+                                                : +el.totalPrice.toFixed(2)}
+                                            грн
+                                        </span>
+                                    </td>
 
-                <div className={s.basket__order}>
-                    <p className={s.basket__total}>{price.toFixed(2)}грн</p>
-                </div>
-                <div>
-                    <h3 className={s.basket__orderTitle}>ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h3>
+                                    <td className={s.tableCart__body_sel}>
+                                        <button
+                                            id={el._id}
+                                            className={s.basket__delete}
+                                            type="button"
+                                            onClick={() => removeClick(el._id)}
+                                        >
+                                            <Del className={s.basket__plus} />
+                                        </button>
+                                    </td>
+                                </>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
 
-                    <form onSubmit={handleSubmit(onSubmit)} className={s.basket__form}>
-                        <label className={s.basket__form_label} htmlFor="value">
-                            Им`я *
-                        </label>
-                        <div className={s.basket__form_inputWrap}>
-                            <input
-                                className={s.basket__form_input}
-                                placeholder="Им`я"
-                                {...register("name", {
-                                    required: true,
-                                    minLength: 3,
-                                    maxLength: 40,
-                                    min: 3,
-                                    max: 40,
-                                })}
-                            />
-                        </div>
-                        <label className={s.basket__form_label} htmlFor="phone">
-                            Телефон *
-                        </label>
-                        <PhoneInputWithCountry
-                            className={s.phone}
-                            labels={ua}
-                            name="phone"
-                            id="phone"
-                            international
-                            defaultCountry="UA"
-                            value={value}
-                            maxLength={16}
-                            onChange={setValue}
-                            control={control}
-                            countryCallingCodeEditable={false}
-                            rules={{
-                                required: true,
-                            }}
-                            error={
-                                value
-                                    ? isValidPhoneNumber(value)
-                                        ? undefined
-                                        : "Invalid phone number"
-                                    : "Phone number required"
-                            }
-                        />
-                        <Button
-                            style={{
-                                margin: "auto"
-                            }}
-                            type={"submit"}
-                            disabled={
-                                (!(value && isPossiblePhoneNumber(value)) &&
-                                    !(value && isValidPhoneNumber(value))) ||
-                                value?.length > 13 ||
-                                !isDirty ||
-                                !isValid
-                            }
-                        >
-                            Замовити
-                        </Button>
-                        {!(
-                            value &&
-                            isPossiblePhoneNumber(value) &&
-                            value &&
-                            isValidPhoneNumber(value)
-                        ) &&
-                            value?.length > 13 && <p>Невірно набраний номер</p>}
-                    </form>
-                </div>
+            <div className={s.basket__order}>
+                <p className={s.basket__total}>{price.toFixed(2)}грн</p>
             </div>
+            <div>
+                <h3 className={s.basket__orderTitle}>ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h3>
 
+                <form onSubmit={handleSubmit(onSubmit)} className={s.basket__form}>
+                    <label className={s.basket__form_label} htmlFor="value">
+                        Им`я *
+                    </label>
+                    <div className={s.basket__form_inputWrap}>
+                        <input
+                            className={s.basket__form_input}
+                            placeholder="Им`я"
+                            {...register("name", {
+                                required: true,
+                                minLength: 3,
+                                maxLength: 40,
+                                min: 3,
+                                max: 40,
+                            })}
+                        />
+                    </div>
+                    <label className={s.basket__form_label} htmlFor="phone">
+                        Телефон *
+                    </label>
+                    <PhoneInputWithCountry
+                        className={s.phone}
+                        labels={ua}
+                        name="phone"
+                        id="phone"
+                        international
+                        defaultCountry="UA"
+                        value={value}
+                        maxLength={16}
+                        onChange={setValue}
+                        control={control}
+                        countryCallingCodeEditable={false}
+                        rules={{
+                            required: true,
+                        }}
+                        error={
+                            value
+                                ? isValidPhoneNumber(value)
+                                    ? undefined
+                                    : "Invalid phone number"
+                                : "Phone number required"
+                        }
+                    />
+                    <Button
+                        style={{
+                            margin: "auto",
+                        }}
+                        type={"submit"}
+                        disabled={
+                            (!(value && isPossiblePhoneNumber(value)) &&
+                                !(value && isValidPhoneNumber(value))) ||
+                            value?.length > 13 ||
+                            !isDirty ||
+                            !isValid
+                        }
+                    >
+                        Замовити
+                    </Button>
+                    {!(
+                        value &&
+                        isPossiblePhoneNumber(value) &&
+                        value &&
+                        isValidPhoneNumber(value)
+                    ) &&
+                        value?.length > 13 && <p>Невірно набраний номер</p>}
+                </form>
+            </div>
+        </div>
     );
 }
