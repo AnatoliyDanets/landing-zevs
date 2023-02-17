@@ -66,7 +66,6 @@ export default function Cart({
                 setLoading(true)
                 if (res.status === 201) {
                     setLoading(false)
-                    console.log(res);
                     handleShowIsSuccess(true)
                     resetForm();
                 }
@@ -121,9 +120,9 @@ export default function Cart({
 
     return (
         loading ?
-            <div className={s.spinner__wrap}>
+            (<div className={s.spinner__wrap}>
                 <div className={s.spinner}></div>
-            </div>
+            </div>)
             :
             <div className={s.basket__container}>
                 <h2 className={s.basket__title}>ВАШІ ЗАМОВЛЕННЯ</h2>
@@ -247,7 +246,7 @@ export default function Cart({
                                         <td className={s.tableCart__body_sel}>
                                             <span className={s.basket__price}>
                                                 {el.discount > 0
-                                                    ? (+el.price - (el.discount / 100) * +el.price) * el.count : +el.totalPrice}грн
+                                                    ? ((+el.price - (el.discount / 100) * +el.price) * el.count).toFixed(2) : +el.totalPrice.toFixed(2)}грн
                                             </span>
                                         </td>
 
@@ -270,7 +269,7 @@ export default function Cart({
 
 
                 <div className={s.basket__order}>
-                    <p className={s.basket__total}>{price}грн</p>
+                    <p className={s.basket__total}>{price.toFixed(2)}грн</p>
                 </div>
                 <div>
                     <h3 className={s.basket__orderTitle}>ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h3>

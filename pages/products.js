@@ -99,7 +99,7 @@ export default function Products({ products }) {
         if (cartItem?.length === 0) {
             setShowCart(false);
         }
-    }, [items, showSuccess, cartItem?.length]);
+    }, [items, showSuccess]);
 
     return (
         <>
