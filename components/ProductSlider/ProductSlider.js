@@ -34,7 +34,7 @@ export default class CenterMode extends Component {
                 return (
                     <a>
                         <Image
-                            src={cardImg[0 + i]}
+                            src={cardImg[0 + i].url}
                             alt="Picture of the author"
                             width={50}
                             height={50}
@@ -64,12 +64,12 @@ export default class CenterMode extends Component {
                 <Slider {...settings} >
                     {cardImg.length > 0 &&
                         cardImg.map((img, i) => (
-                            <div key={i} className={s.slider__wr}>
+                            <div key={img.public_id} className={s.slider__wr}>
 
 
 
                                 <Image
-                                    src={img}
+                                    src={img.url}
                                     alt="Picture of the author"
                                     sizes="100vw"
 

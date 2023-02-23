@@ -95,17 +95,3 @@ export default function ProductItemBlankets({ arr, text, set, items }) {
     );
 }
 
-// https://i.ibb.co/BTPF2K2/blanket-mobile1-2x.jpg
-// https://i.ibb.co/TPMs4tZ/blanket-mobile1-1x.webp
-// https://i.ibb.co/hZk8dVc/blanket-mobile1-2x.webp
-// https://i.ibb.co/pXCHPrC/blanket-mobile2-1x.jpg
-// https://i.ibb.co/TTHYkg5/blanket-mobile2-2x.jpg
-// https://i.ibb.co/2PNh3Lc/blanket-mobile2-1x.webp
-// https://i.ibb.co/5vNGQjP/blanket-mobile2-2x.webp
-// https://i.ibb.co/jHF7gJs/blanket-mobile1-1x.jpg
-
-// "cardImg": [
-//     "https://i.ibb.co/chbM5G4/Swan.jpg",
-//     "https://i.ibb.co/QrVHfKk/swan2.jpg",
-//     "https://i.ibb.co/9g2y2v1/swan4.jpg"
-// ],

@@ -91,13 +91,13 @@ export default function Cart({
                 acc.discount = val.discount;
                 acc.price =
                     val.discount > 0
-                        ? `Знижка ${val.discount}, ціна - ${val.price - (val.discount / 100) * val.price
+                        ? `Звичайна ціна - ${val.price}, знижка ${val.discount}, ціна зі знижкою - ${val.price - (val.discount / 100) * val.price
                         }`
                         : val.price;
                 acc.totalPrice = val.totalPrice =
                     val.discount > 0
-                        ? (+val.price - (val.discount / 100) * +val.price) * val.count
-                        : +val.totalPrice;
+                        ? ((+val.price - (val.discount / 100) * +val.price) * val.count).toFixed(2)
+                        : +val.totalPrice.toFixed(2);
                 return acc;
             }, {})
         );
@@ -136,10 +136,11 @@ export default function Cart({
             {showIsMobile ? (
                 <ul className={s.mobile__cart}>
                     {uniqueCartProducts.map((el, i) => (
-                        <li key={i} className={s.mobile__cartItem}>
+                        <li key={el.cards.public_id} className={s.mobile__cartItem}>
                             <div className={s.mobile__cartWrap}>
+
                                 <Image
-                                    src={el.cards}
+                                    src={el.cards.url}
                                     alt={el.model}
                                     width={70}
                                     height={70}
@@ -209,12 +210,12 @@ export default function Cart({
                     </thead>
                     <tbody className={s.tableCart__body}>
                         {uniqueCartProducts.map((el, i) => (
-                            <tr className={s.tableCart__body_row} key={i}>
+                            <tr className={s.tableCart__body_row} key={el.cards.public_id}>
                                 <>
                                     <td className={s.tableCart__body_sel}>
                                         {
                                             <Image
-                                                src={el.cards}
+                                                src={el.cards.url}
                                                 alt={el.model}
                                                 width={70}
                                                 height={70}

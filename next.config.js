@@ -7,10 +7,11 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: "i.ibb.co",
+        hostname: "res.cloudinary.com",
       },
     ],
     domains: [
+      "res.cloudinary.com",
       "localhost",
       "i.ibb.co",
       "2.gravatar.com",
