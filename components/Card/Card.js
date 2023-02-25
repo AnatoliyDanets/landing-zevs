@@ -8,6 +8,7 @@ import Select from "@mui/material/Select";
 import s from "./Card.module.css";
 
 export default function Card({
+    id,
     card,
     onClick,
     disabled,
@@ -17,83 +18,88 @@ export default function Card({
     sizes,
 }) {
     return (
-        <>
-            <article className={s.card__article}>
-                <h3
-                    style={{
-                        color: "#d2ba40",
-                        textAlign: "center",
-                        fontSize: "24px",
-                        marginBottom: "20px",
-                    }}
-                >
-                    {" "}
-                    {card.model}
-                </h3>
-                <div className={s.card__wrapper}>
-                    <div className={s.card__left}>
-                        {card.cardImg.length > 0 && <CenterMode cardImg={card.cardImg} />}
-                    </div>
-                    <div className={s.card__right}>
-                        <p className={s.card__discription}>{card.discription}</p>
-
-                        <div className={s.card__showPrice}>
-                            <div className={s.blanket__size}>
-                                <span className={s.blanket__sizeText}>
-                                    Оберіть розмір (ШхД) :
-                                </span>
-
-                                <FormControl sx={{ minWidth: 120 }}>
-                                    <Select
-                                        value={+currentSize}
-                                        onChange={handleChange}
-                                        name="size"
-                                        displayEmpty
-                                        inputProps={{ MenuProps: { disableScrollLock: true } }}
-                                        className={s.card__select}
-                                    >
-                                        {sizes.map(({ id, width, size }) => (
-                                            <MenuItem key={id} value={+width}>
-                                                {size}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                </FormControl>
+        <article className={s.card__article} key={id}>
+            <h3
+                style={{
+                    color: "#d2ba40",
+                    textAlign: "center",
+                    fontSize: "24px",
+                    marginBottom: "20px",
+                }}
+            >
+                {" "}
+                {card.model}
+            </h3>
+            <div className={s.card__wrapper}>
+                <div className={s.card__left}>
+                    {card.discount > 0 && (
+                        <>
+                            <div className={s.card__discount}>
+                                -{card.discount} <span style={{ fontSize: "12px" }}>%</span>
                             </div>
-                            <p className={s.card__price}>
-                                {card.discount > 0
-                                    ? card.price - (card.discount / 100) * card.price
-                                    : card.price}{" "}
-                                грн
-                            </p>
-
-                            {card.discount > 0 && (
-                                <p
-                                    className={s.card__price_discount}
-                                    style={
-                                        card.discount > 0
-                                            ? { textDecoration: "line-through" }
-                                            : { textDecoration: "none" }
-                                    }
-                                >
-                                    {card.price} грн
-                                </p>
-                            )}
-                        </div>
-
-                        <Button id={card._id} onClick={onClick} disabled={disabled}>
-                            {text}
-                        </Button>
-                    </div>
+                        </>
+                    )}
+                    {card.cardImg.length > 0 && <CenterMode cardImg={card.cardImg} />}
                 </div>
+                <div className={s.card__right}>
+                    <p className={s.card__discription}>{card.discription}</p>
 
-                <h3 className={s.card__character}>Характеристики {card.model}</h3>
+                    <div className={s.card__showPrice}>
+                        <div className={s.blanket__size}>
+                            <span className={s.blanket__sizeText}>
+                                Оберіть розмір (ШхД) :
+                            </span>
 
-                <Characteristics
-                    type={card.category}
-                    property={Object.values(card.characteristics)}
-                />
-            </article>
-        </>
+                            <FormControl sx={{ minWidth: 120 }}>
+                                <Select
+                                    value={+currentSize}
+                                    onChange={handleChange}
+                                    name={card.category === "Ковдри" ? "blanket" : "pillow"}
+                                    displayEmpty
+                                    inputProps={{ MenuProps: { disableScrollLock: true } }}
+                                    className={s.card__select}
+                                >
+                                    {sizes.map(({ id, width, size }) => (
+                                        <MenuItem key={id} value={+width}>
+                                            {size}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <p className={s.card__price}>
+                            {card.discount > 0
+                                ? card.price - (card.discount / 100) * card.price
+                                : card.price}{" "}
+                            грн
+                        </p>
+
+                        {card.discount > 0 && (
+                            <p
+                                className={s.card__price_discount}
+                                style={
+                                    card.discount > 0
+                                        ? { textDecoration: "line-through" }
+                                        : { textDecoration: "none" }
+                                }
+                            >
+                                {card.price} грн
+                            </p>
+                        )}
+                    </div>
+
+                    <Button id={card._id} onClick={onClick} disabled={disabled}>
+                        {text}
+                    </Button>
+                </div>
+            </div>
+
+            <h3 className={s.card__character}>Характеристики {card.model}</h3>
+
+            <Characteristics
+                type={card.category}
+                property={Object.values(card.characteristics)}
+            />
+        </article>
     );
 }

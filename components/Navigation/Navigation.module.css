@@ -6,16 +6,12 @@
   margin: 0;
   padding: 0;
 }
-/* .header__item {
-  color: #ffffff;
-} */
 
 .nav__item {
   position: relative;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  /* identical to box height */
   cursor: pointer;
   color: #ffffff;
 }

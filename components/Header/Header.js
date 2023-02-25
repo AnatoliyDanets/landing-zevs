@@ -1,15 +1,15 @@
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Link } from "react-scroll/modules";
 import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
 import Container from "../Container";
 import Navigation from "../Navigation";
-import logo from "../../image/Hero/Zevs.png"
-import Burger from "../svgs/burger.svg"
+import logo from "../../image/Hero/Zevs.png";
+import Burger from "../svgs/burger.svg";
 import s from "./Header.module.css";
 
-const HeaderMobile = dynamic(() => import('./HeaderMobile'));
+const HeaderMobile = dynamic(() => import("./HeaderMobile"));
 
 export default function Header() {
     const [scrollY, setScrollY] = useState(0);
@@ -20,13 +20,13 @@ export default function Header() {
     const isTablet = useMediaQuery({ query: "(min-width: 768px)" });
     const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
-
     const handleShowMenu = () => {
-        setShowMobileMenu(prev => !prev)
-    }
+        setShowMobileMenu((prev) => !prev);
+    };
 
-    useEffect(() => { isDesktop ? setShowshowIsDesktop(true) : setShowshowIsDesktop(false) }, [isDesktop])
-
+    useEffect(() => {
+        isDesktop ? setShowshowIsDesktop(true) : setShowshowIsDesktop(false);
+    }, [isDesktop]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -53,46 +53,52 @@ export default function Header() {
             }
         >
             <Container style={{ backgroundColor: "transparent" }}>
-                {showIsDesktop ?
-                    <Navigation /> :
+                {showIsDesktop ? (
+                    <Navigation />
+                ) : (
                     <nav>
-                        {<ul className={s.header__list} style={
-                            showMobileMenu
-                                ? { transform: "translateX(-101%) translateX(0%)" }
-                                : { transform: null }
-                        }>
-                            <li className={s.header__item}>
-                                <Link
-                                    activeClass="active"
-                                    to="Hero"
-                                    spy={true}
-                                    smooth={true}
-                                    offset={-100}
-                                    duration={500}
-
-                                >
-                                    <Image src={logo}
-                                        alt="Logo"
-                                        width={120} height={40} priority="true" />
-                                </Link>
-                            </li>
-                            <li className={s.header__item}>
-                                <button type="button" className={s.header__burger} onClick={handleShowMenu}>
-                                    <Burger className={s.header__burgerIcon} />
-                                </button>
-
-                            </li>
-                        </ul>}
+                        {
+                            <ul
+                                className={s.header__list}
+                                style={
+                                    showMobileMenu
+                                        ? { transform: "translateX(-101%) translateX(0%)" }
+                                        : { transform: null }
+                                }
+                            >
+                                <li className={s.header__item}>
+                                    <Link
+                                        activeClass="active"
+                                        to="Hero"
+                                        spy={true}
+                                        smooth={true}
+                                        offset={-100}
+                                        duration={500}
+                                    >
+                                        <Image
+                                            src={logo}
+                                            alt="Logo"
+                                            width={120}
+                                            height={40}
+                                            priority="true"
+                                        />
+                                    </Link>
+                                </li>
+                                <li className={s.header__item}>
+                                    <button
+                                        type="button"
+                                        className={s.header__burger}
+                                        onClick={handleShowMenu}
+                                    >
+                                        <Burger className={s.header__burgerIcon} />
+                                    </button>
+                                </li>
+                            </ul>
+                        }
                         <HeaderMobile show={showMobileMenu} onClick={handleShowMenu} />
-
                     </nav>
-
-
-
-                }
+                )}
             </Container>
-
-
         </header>
     );
 }

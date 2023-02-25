@@ -49,23 +49,10 @@ export default function HeaderMobile({ show, onClick }) {
                                     duration={500}
                                     onClick={onClick}
                                 >
-                                    Ковдри
+                                    Каталог
                                 </Link>
                             </li>
-                            <li className={s.nav__item}>
-                                {" "}
-                                <Link
-                                    activeClass="active"
-                                    to="Pillows"
-                                    spy={true}
-                                    smooth={true}
-                                    offset={-30}
-                                    duration={500}
-                                    onClick={onClick}
-                                >
-                                    Подушки
-                                </Link>
-                            </li>
+
                             <li className={s.nav__item}>
                                 <Link
                                     activeClass="active"

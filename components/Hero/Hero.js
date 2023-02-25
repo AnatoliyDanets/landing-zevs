@@ -43,7 +43,7 @@ export default function Hero() {
                     <>
                         <motion.p
                             viewport={{ amount: 0.2, once: true }}
-                            custom={2}
+                            custom={1}
                             variants={textAnmation}
                             className={s.hero__text}
                         >
@@ -51,7 +51,7 @@ export default function Hero() {
                         </motion.p>
                         <motion.ul
                             viewport={{ amount: 0.2, once: true }}
-                            custom={3}
+                            custom={2}
                             variants={textAnmation}
                             className={s.hero__list}
                         >
@@ -82,7 +82,6 @@ export default function Hero() {
                         </motion.ul>
                     </>
                 )}
-                {/* <button className={s.btn}> */}
                 <motion.div
                     viewport={{ amount: 0.2, once: true }}
                     custom={4}
@@ -100,8 +99,6 @@ export default function Hero() {
                         Каталог
                     </Link>
                 </motion.div>
-
-                {/* </button> */}
             </Container>
         </motion.section>
     );

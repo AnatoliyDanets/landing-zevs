@@ -14,8 +14,8 @@ const textAnmation = {
 export default function SectionTitle({ style, name }) {
     return (
         <motion.h2
-            initial='hidden'
-            whileInView='visible'
+            initial="hidden"
+            whileInView="visible"
             viewport={{ amount: 0.2, once: true }}
             custom={1}
             style={style}

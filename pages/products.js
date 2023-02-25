@@ -1,8 +1,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import ProductBlankets from "../components/ProductBlankets";
-import ProductPillows from "../components/ProductPillows/ProductPillows";
-import Cart from "../components/Cart/Cart";
+import Cart from "../components/Cart";
 import DisplayCart from "../components/DisplayCart";
 import SuccessOrder from "../components/SuccessOrder";
 
@@ -104,7 +103,6 @@ export default function Products({ products }) {
     return (
         <>
             <ProductBlankets products={products} set={setItems} items={items} />
-            <ProductPillows products={products} set={setItems} items={items} />
             {cartItem?.length > 0 && !showCart && (
                 <DisplayCart
                     handleShowCart={handleShowCart}

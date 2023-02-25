@@ -129,8 +129,6 @@ h6 {
 }
 .slick-slider {
   position: relative;
-  /* width: 450px;
-  height: 500px; */
 }
 
 .slick-track {
@@ -149,6 +147,7 @@ h6 {
   display: flex;
 }
 .slick-dots li {
+  display: inline-flex;
   width: 50px;
   height: 100%;
   opacity: 0.7;
@@ -177,11 +176,6 @@ h6 {
 
   background-color: transparent;
 }
-/* .slick-prev:hover,
-.slick-next:hover {
-  color: #d2ba40;
-  background-color: #d2ba40;
-} */
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

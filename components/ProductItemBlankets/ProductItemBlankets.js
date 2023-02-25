@@ -1,38 +1,38 @@
 import * as React from "react";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Card from "../Card/Card";
-import s from "./ProductItemBlankets.module.css";
-
-const textAnmation = {
-    hidden: { x: -100, opacity: 0 },
-    visible: (custom) => ({
-        x: 0,
-        opacity: 1,
-        transition: { delay: custom * 0.2 },
-    }),
-};
 
 export default function ProductItemBlankets({ arr, text, set, items }) {
     const [disabled, setDisabled] = useState(false);
     const [cartText, setCartText] = useState("У кошик");
-    const [currentSize, setCurrentSize] = useState(150);
-    const sizes = [
+    const [currentSizeBlanket, setCurrentSizeBlanket] = useState(150);
+    const [currentSizePillow, setCurrentSizePillow] = useState(50);
+    const sizesBlanket = [
         { id: 1, width: 150, size: "150x210" },
         { id: 2, width: 175, size: "175x210" },
         { id: 3, width: 200, size: "200x220" },
     ];
+
+    const sizesPillow = [
+        { id: 1, width: 50, size: "70x50" },
+        { id: 2, width: 70, size: "70x70" },
+    ];
+
     const findProduct = arr?.filter(
-        (el) => el.model === text && +el.size === +currentSize
+        (el) =>
+            el.model === text &&
+            (+el.size === +currentSizeBlanket || el.size === +currentSizePillow)
     );
 
     const handleChange = (e) => {
         const { value, name } = e.target;
         switch (name) {
-            case "size":
-                setCurrentSize(+value);
+            case "blanket":
+                setCurrentSizeBlanket(+value);
                 break;
-
+            case "pillow":
+                setCurrentSizePillow(+value);
+                break;
             default:
                 break;
         }
@@ -68,30 +68,19 @@ export default function ProductItemBlankets({ arr, text, set, items }) {
         }
     }, [items, findProduct]);
 
-    return (
-        <>
-            {findProduct?.map((el, i) => (
-                <motion.li
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ amount: 0.2, once: true }}
-                    custom={1}
-                    variants={textAnmation}
-                    key={el._id}
-                    className={s.blanket__item}
-                >
-                    <Card
-                        card={el}
-                        onClick={addToCart}
-                        disabled={disabled}
-                        text={cartText}
-                        handleChange={handleChange}
-                        currentSize={currentSize}
-                        sizes={sizes}
-                    />
-                </motion.li>
-            ))}
-        </>
-    );
+    return findProduct?.map((el, i) => (
+        <Card
+            id={el._id}
+            key={el._id}
+            card={el}
+            onClick={addToCart}
+            disabled={disabled}
+            text={cartText}
+            handleChange={handleChange}
+            currentSize={
+                el.category === "Ковдри" ? currentSizeBlanket : currentSizePillow
+            }
+            sizes={el.category === "Ковдри" ? sizesBlanket : sizesPillow}
+        />
+    ));
 }
-

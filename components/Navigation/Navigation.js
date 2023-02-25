@@ -45,23 +45,10 @@ export default function Navigation() {
                         duration={500}
                         className={s.nav__link}
                     >
-                        Ковдри
+                        Каталог
                     </Link>
                 </li>
-                <li className={s.nav__item}>
-                    {" "}
-                    <Link
-                        activeClass="active"
-                        to="Pillows"
-                        spy={true}
-                        smooth={true}
-                        offset={-50}
-                        duration={500}
-                        className={s.nav__link}
-                    >
-                        Подушки
-                    </Link>
-                </li>
+
                 <li className={s.nav__item}>
                     <Link
                         activeClass="active"

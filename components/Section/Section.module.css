@@ -6,8 +6,3 @@
   border-bottom-width: 5px;
   border-image: linear-gradient(45deg, #333, rgb(250, 224, 66)) 0 0 5 0 round;
 }
-/* .section:nth-child(2n + 3) {
-  padding: 60px 0px;
-  background-image: url(../../image/Product/bcg2.jpg);
-  background-repeat: repeat;
-} */
