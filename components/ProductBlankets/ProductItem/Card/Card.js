@@ -61,7 +61,8 @@ export default function Card({
         } else {
             return (
                 <p className={s.discount_time}>
-                    Знижка<span className={s.discount__percent}>
+                    Знижка{" "}
+                    <span className={s.discount__percent}>
                         -{card.discount}%{" "}
                     </span>{" "}
                     діятиме:{" "}
