@@ -16,16 +16,26 @@ function Loading() {
         setLoading(false);
       }, 2000);
 
+    const handleRouteChangeError = (err, url) => {
+      if (err.cancelled) {
+        console.log(`Route to ${url} was cancelled!`)
+
+      }
+      else {
+        console.log(`Route fuck!`)
+      }
+    }
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
-    router.events.on("routeChangeError", handleComplete);
+    router.events.on("routeChangeError", handleRouteChangeError);
 
     return () => {
       router.events.off("routeChangeStart", handleStart);
       router.events.off("routeChangeComplete", handleComplete);
-      router.events.off("routeChangeError", handleComplete);
+      router.events.off("routeChangeError", handleRouteChangeError);
     };
-  });
+  }, [router.events]);
+
 
   return (
     loading && (

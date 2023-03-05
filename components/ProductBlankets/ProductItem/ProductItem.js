@@ -1,28 +1,11 @@
-import * as React from "react";
 import { useEffect, useState } from "react";
-import Card from "../Card/Card";
+import Card from "./Card/Card";
 
-export default function ProductItemBlankets({ arr, text, set, items }) {
+export default function ProductItem({ id, arr, text, set, items }) {
     const [disabled, setDisabled] = useState(false);
     const [cartText, setCartText] = useState("У кошик");
     const [currentSizeBlanket, setCurrentSizeBlanket] = useState(150);
     const [currentSizePillow, setCurrentSizePillow] = useState(50);
-    const sizesBlanket = [
-        { id: 1, width: 150, size: "150x210" },
-        { id: 2, width: 175, size: "175x210" },
-        { id: 3, width: 200, size: "200x220" },
-    ];
-
-    const sizesPillow = [
-        { id: 1, width: 50, size: "70x50" },
-        { id: 2, width: 70, size: "70x70" },
-    ];
-
-    const findProduct = arr?.filter(
-        (el) =>
-            el.model === text &&
-            (+el.size === +currentSizeBlanket || el.size === +currentSizePillow)
-    );
 
     const handleChange = (e) => {
         const { value, name } = e.target;
@@ -37,6 +20,11 @@ export default function ProductItemBlankets({ arr, text, set, items }) {
                 break;
         }
     };
+    const findProduct = arr?.filter(
+        (el) =>
+            el.model === text &&
+            (+el.size === currentSizeBlanket || el.size === +currentSizePillow)
+    );
 
     const addToCart = () => {
         set((prev) => [
@@ -54,11 +42,10 @@ export default function ProductItemBlankets({ arr, text, set, items }) {
             },
         ]);
     };
-
     useEffect(() => {
         if (
-            items?.find((el) => findProduct[0]._id === el._id)?._id ===
-            findProduct[0]._id
+            items?.find((el) => findProduct[0]?._id === el._id)?._id ===
+            findProduct[0]?._id
         ) {
             setCartText("Додано");
             setDisabled(true);
@@ -66,21 +53,39 @@ export default function ProductItemBlankets({ arr, text, set, items }) {
             setCartText("У кошик");
             setDisabled(false);
         }
-    }, [items, findProduct]);
+    }, [findProduct, arr]);
+    useEffect(() => {
+        const findNewProduct = arr
+            ?.filter(
+                (el) =>
+                    el.model === text &&
+                    ((+el.size === +currentSizeBlanket
+                        ? currentSizeBlanket
+                        : 175 || 200) ||
+                        (el.size === +currentSizePillow ? +currentSizePillow : 70))
+            )
+            .sort((a, b) => a.size - b.size);
+        if (findNewProduct[0]?.category === "Ковдри") {
+            setCurrentSizeBlanket(findNewProduct[0]?.size);
+        } else {
+            setCurrentSizePillow(findNewProduct[0]?.size);
+        }
+    }, []);
 
     return findProduct?.map((el, i) => (
         <Card
             id={el._id}
             key={el._id}
             card={el}
+            arr={arr}
             onClick={addToCart}
             disabled={disabled}
             text={cartText}
+            model={text}
             handleChange={handleChange}
             currentSize={
                 el.category === "Ковдри" ? currentSizeBlanket : currentSizePillow
             }
-            sizes={el.category === "Ковдри" ? sizesBlanket : sizesPillow}
         />
     ));
 }

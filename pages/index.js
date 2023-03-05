@@ -1,18 +1,20 @@
-import * as React from "react";
 import Script from "next/script";
 import Head from "next/head";
 import Header from "../components/Header";
-import Products from "./products";
+import Hero from "../components/Hero";
+import Products from "../components/Products";
 import HowOrder from "../components/HowOrder";
 import Contacts from "../components/Contacts";
 import Footer from "../components/Footer";
 import Features from "../components/Features";
 import Feedback from "../components/Feedback";
-import dynamic from "next/dynamic";
 
-const Hero = dynamic(() => import("../components/Hero"));
+
+
+
 
 export default function Home({ products }) {
+
   return (
     <>
       <Head>
@@ -27,9 +29,7 @@ export default function Home({ products }) {
       <Header />
       <Hero />
       <Features />
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <Products products={products} />
-      </React.Suspense>
+      <Products products={products} />
       <Feedback />
       <HowOrder />
       <Contacts />
@@ -41,13 +41,19 @@ export default function Home({ products }) {
     </>
   );
 }
-export async function getServerSideProps() {
-  const response = await fetch(
-    "https://testback-production-353f.up.railway.app/api/products"
-  );
-  const products = await response.json();
 
-  return {
-    props: { products },
-  };
+export async function getServerSideProps() {
+  try {
+    const res = await fetch("https://testback-production-353f.up.railway.app/api/products");
+    if (res.errors) {
+      return { notFound: true };
+    }
+    const products = await res.json()
+
+    return { props: { products } };
+  } catch (e) {
+    console.log(e)
+    return { notFound: true };
+  }
+
 }

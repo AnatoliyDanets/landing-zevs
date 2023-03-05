@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import ProductBlankets from "../components/ProductBlankets";
-import Cart from "../components/Cart";
-import DisplayCart from "../components/DisplayCart";
-import SuccessOrder from "../components/SuccessOrder";
+import ProductBlankets from "../ProductBlankets/ProductList";
+import Cart from "../Cart";
+import DisplayCart from "../DisplayCart";
+import SuccessOrder from "../SuccessOrder";
 
-const Modal = dynamic(() => import("../components/Modal"));
+const Modal = dynamic(() => import("../Modal"));
 
 export default function Products({ products }) {
     const [showCart, setShowCart] = useState(false);
@@ -18,7 +18,10 @@ export default function Products({ products }) {
         }
     });
     const [cartItem, setCartItem] = useState([]);
-
+    useEffect(() => {
+        const updateCart = items.map(el => products.find(val => val._id === el._id))
+        setItems(updateCart)
+    }, [products, items])
     const quantityInCart = items
         ?.reduce(
             (acc, el) => (acc.find(({ _id }) => el._id === _id) || acc.push(el), acc),

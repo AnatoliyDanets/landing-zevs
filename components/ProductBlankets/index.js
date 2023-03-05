@@ -1,1 +1,1 @@
-export { default } from "./ProductBlankets"
+export { default } from "./ProductList"

@@ -1,7 +1,26 @@
+.discount_time {
+  color: #ffffff;
+  padding: 4px 6px;
+  margin-bottom: 15px;
+  display: inline-block;
+  border: 1px solid #d2ba40;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.discount__percent {
+  color: #d2ba40;
+}
 .card__article {
   background-color: transparent;
   height: 100%;
   padding: 20px 0px;
+}
+
+.card__title {
+  color: #d2ba40;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .card__wrapper {

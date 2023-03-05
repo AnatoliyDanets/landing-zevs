@@ -1,10 +1,13 @@
-import * as React from "react";
-import Button from "../Button/Button";
-import Characteristics from "../Characteristics";
-import CenterMode from "../ProductSlider/ProductSlider";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
+import Button from "../../../Button/Button";
+import Characteristics from "../../../Characteristics";
+import CenterMode from "../../../ProductSlider/ProductSlider";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Countdown, { zeroPad } from "react-countdown";
 import s from "./Card.module.css";
 
 export default function Card({
@@ -15,21 +18,65 @@ export default function Card({
     text,
     handleChange,
     currentSize,
-    sizes,
+    model,
+    arr,
 }) {
+    const [discount, setDiscount] = useState(0);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        setDiscount(card.discount);
+    }, [card.discount]);
+    const changeDiscountProduct = async (data, id) => {
+        try {
+            const res = await axios.patch(
+                `https://testback-production-353f.up.railway.app/api/products/${id}`,
+                data
+            );
+            if (res.status === 200) {
+                router
+                    .replace(router.asPath, undefined, { scroll: false })
+                    .catch((e) => {
+                        console.log("error", e);
+                    });
+                setDiscount(res.data.discount);
+            }
+        } catch (error) {
+            console.log(error.response.message);
+        }
+    };
+
+    const renderer = ({ days, hours, minutes, seconds, completed }) => {
+        if (completed) {
+            const dataDiscount = {
+                discount: 0,
+                discount_time: 0,
+            };
+            if (discount === 0) {
+                return;
+            } else {
+                changeDiscountProduct(dataDiscount, id);
+            }
+        } else {
+            return (
+                <p className={s.discount_time}>
+                    Знижка<span className={s.discount__percent}>
+                        -{card.discount}%{" "}
+                    </span>{" "}
+                    діятиме:
+                    <span className={s.discount__percent}>
+                        {zeroPad(days)}д {zeroPad(hours)}:{zeroPad(minutes)}:
+                        {zeroPad(seconds)}
+                    </span>
+                </p>
+            );
+        }
+    };
+
     return (
         <article className={s.card__article} key={id}>
-            <h3
-                style={{
-                    color: "#d2ba40",
-                    textAlign: "center",
-                    fontSize: "24px",
-                    marginBottom: "20px",
-                }}
-            >
-                {" "}
-                {card.model}
-            </h3>
+            <h3 className={s.card__title}>{card.model}</h3>
             <div className={s.card__wrapper}>
                 <div className={s.card__left}>
                     {card.discount > 0 && (
@@ -59,14 +106,31 @@ export default function Card({
                                     inputProps={{ MenuProps: { disableScrollLock: true } }}
                                     className={s.card__select}
                                 >
-                                    {sizes.map(({ id, width, size }) => (
-                                        <MenuItem key={id} value={+width}>
-                                            {size}
-                                        </MenuItem>
-                                    ))}
+                                    {arr
+                                        .filter((el) => el.model === model)
+                                        .sort((a, b) => a.size - b.size)
+                                        .map(({ _id, size, height }) => (
+                                            <MenuItem key={_id} value={+size}>
+                                                {size}x{height}
+                                            </MenuItem>
+                                        ))}
                                 </Select>
                             </FormControl>
                         </div>
+                        {card.discount > 0 && (
+                            <>
+                                <Countdown
+                                    date={
+                                        Date.now() +
+                                        (new Date(card.discount_time).getTime() -
+                                            Date.now() -
+                                            7200000)
+                                    }
+                                    renderer={renderer}
+                                />
+                            </>
+                        )}
+
                         <p className={s.card__price}>
                             {card.discount > 0
                                 ? card.price - (card.discount / 100) * card.price

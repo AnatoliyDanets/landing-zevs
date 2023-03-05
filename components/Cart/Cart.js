@@ -8,12 +8,11 @@ import {
 } from "react-phone-number-input";
 import ua from "react-phone-number-input/locale/ua";
 import "react-phone-number-input/style.css";
-import { CircularProgress } from "@mui/material";
-import Backdrop from "@mui/material/Backdrop";
 import Image from "next/image";
 import Plus from "../svgs/plus.svg";
 import Minus from "../svgs/minus.svg";
 import Del from "../svgs/del.svg";
+import Loader from "../Loader";
 import Button from "../Button";
 import s from "./Cart.module.css";
 
@@ -60,6 +59,7 @@ export default function Cart({
         isMobile ? setShowIsMobile(true) : setShowIsMobile(false);
     }, [isMobile]);
 
+    // "https://testback-production-353f.up.railway.app/api/orders"
     const addedOrderProduct = (data) => {
         fetch("https://testback-production-353f.up.railway.app/api/orders", {
             method: "POST",
@@ -79,6 +79,24 @@ export default function Cart({
                 setLoading(false);
                 console.log(error);
             });
+    };
+
+    const currentDate = () => {
+        let result = "";
+        let d = new Date();
+        result +=
+            d.getFullYear() +
+            "-" +
+            (d.getMonth() + 1) +
+            "-" +
+            d.getDate() +
+            " " +
+            d.getHours() +
+            ":" +
+            d.getMinutes() +
+            ":" +
+            d.getSeconds();
+        return result;
     };
 
     const onSubmit = (data, e) => {
@@ -109,6 +127,7 @@ export default function Cart({
 
         const order = {
             ...data,
+            date: currentDate(),
             order: orderCart,
             totalPrice: price,
         };
@@ -132,13 +151,7 @@ export default function Cart({
 
     return (
         <>
-            <Backdrop
-                sx={{ color: "#d2ba40", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={loading}
-            >
-                <CircularProgress color="inherit" />
-            </Backdrop>
-
+            <Loader loading={loading} />
             <div className={s.basket__container}>
                 <h2 className={s.basket__title}>ВАШІ ЗАМОВЛЕННЯ</h2>
                 {showIsMobile ? (

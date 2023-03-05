@@ -21,7 +21,7 @@ export default function Hero() {
     const [showIsTablet, setShowIsTablet] = useState(false);
     useEffect(() => {
         isTablet ? setShowIsTablet(true) : setShowIsTablet(false);
-    }, [isTablet]);
+    }, []);
     return (
         <motion.section
             initial="hidden"
@@ -40,21 +40,13 @@ export default function Hero() {
                     Український домашній текстиль від Zevs{" "}
                 </motion.h1>
                 {showIsTablet && (
-                    <>
-                        <motion.p
-                            viewport={{ amount: 0.2, once: true }}
-                            custom={1}
-                            variants={textAnmation}
-                            className={s.hero__text}
-                        >
-                            Продукція Zevs:
-                        </motion.p>
-                        <motion.ul
-                            viewport={{ amount: 0.2, once: true }}
-                            custom={2}
-                            variants={textAnmation}
-                            className={s.hero__list}
-                        >
+                    <motion.div
+                        viewport={{ amount: 0.2, once: true }}
+                        custom={0}
+                        variants={textAnmation}
+                    >
+                        <p className={s.hero__text}>Продукція Zevs:</p>
+                        <ul className={s.hero__list}>
                             <li className={s.hero__item}>
                                 <span>
                                     <Check className={s.hero__checkIcon} />
@@ -79,8 +71,8 @@ export default function Hero() {
                                 </span>
                                 Термозберігаюча
                             </li>
-                        </motion.ul>
-                    </>
+                        </ul>
+                    </motion.div>
                 )}
                 <motion.div
                     viewport={{ amount: 0.2, once: true }}

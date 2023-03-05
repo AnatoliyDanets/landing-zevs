@@ -29,6 +29,17 @@ function SamplePrevArrow(props) {
         </div>
     );
 }
+
+function urlSize(url, w, h) {
+    const startUrl = url.slice(0, 50)
+    const endUrl = url.split('/').slice(-3).join('/')
+    const newURL = startUrl + `w_${w},h_${h},c_scale/` + endUrl
+    return newURL
+}
+
+urlSize("https://res.cloudinary.com/dleesb43b/image/upload/v1677709955/products/jkabynffjeizbj1pmv20.jpg", 450, 400)
+
+
 export default class CenterMode extends Component {
     render() {
         const { cardImg } = this.props;
