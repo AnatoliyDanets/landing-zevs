@@ -59,7 +59,6 @@ export default function Cart({
         isMobile ? setShowIsMobile(true) : setShowIsMobile(false);
     }, [isMobile]);
 
-    // "https://testback-production-353f.up.railway.app/api/orders"
     const addedOrderProduct = (data) => {
         fetch("https://testback-production-353f.up.railway.app/api/orders", {
             method: "POST",

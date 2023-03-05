@@ -64,7 +64,7 @@ export default function Card({
                     Знижка<span className={s.discount__percent}>
                         -{card.discount}%{" "}
                     </span>{" "}
-                    діятиме:
+                    діятиме:{" "}
                     <span className={s.discount__percent}>
                         {zeroPad(days)}д {zeroPad(hours)}:{zeroPad(minutes)}:
                         {zeroPad(seconds)}
