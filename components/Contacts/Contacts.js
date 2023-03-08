@@ -114,8 +114,6 @@ export default function Contacts() {
                                     </tr>
                                 </tbody>
                             </table>
-
-                            {/* `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`. */}
                         </article>
                     </motion.li>
                 </ul>

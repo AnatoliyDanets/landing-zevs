@@ -22,7 +22,7 @@ function Loading() {
 
       }
       else {
-        console.log(`Route fuck!`)
+        console.log(`Route!`)
       }
     }
     router.events.on("routeChangeStart", handleStart);
@@ -34,7 +34,7 @@ function Loading() {
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleRouteChangeError);
     };
-  }, [router.events]);
+  }, [router.events, router.asPath]);
 
 
   return (

@@ -1,4 +1,4 @@
-import { CircularProgress } from "@mui/material";
+import CircularProgress from '@mui/material/CircularProgress';
 import Backdrop from "@mui/material/Backdrop";
 
 export default function Loader({ loading }) {

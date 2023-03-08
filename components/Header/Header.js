@@ -8,7 +8,7 @@ import Navigation from "../Navigation";
 import logo from "../../image/Hero/Zevs.png";
 import Burger from "../svgs/burger.svg";
 import s from "./Header.module.css";
-
+// import HeaderMobile from "./HeaderMobile";
 const HeaderMobile = dynamic(() => import("./HeaderMobile"));
 
 export default function Header() {
@@ -27,7 +27,25 @@ export default function Header() {
     useEffect(() => {
         isDesktop ? setShowshowIsDesktop(true) : setShowshowIsDesktop(false);
     }, [isDesktop]);
+    const styleFixedHeader = {
+        position: "fixed",
+        backgroundColor: "rgba(51, 51, 51, 0.85)",
 
+    };
+
+    const styleAbsoluteHeader = {
+        position: "absolute",
+        backgroundColor: "rgba(51, 51, 51, 0.4)",
+    };
+    useEffect(() => {
+        isMobile && scrollY >= 89
+            ? styleFixedHeader
+            : styleFixedHeader
+                ? isTablet && scrollY >= 106
+                    ? styleFixedHeader
+                    : styleAbsoluteHeader
+                : null;
+    }, [isMobile, scrollY, isTablet, styleFixedHeader, styleFixedHeader]);
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY);
@@ -44,11 +62,11 @@ export default function Header() {
             className={s.header}
             style={
                 isMobile && scrollY >= 89
-                    ? { position: "fixed", backgroundColor: "rgba(51, 51, 51, 0.85)" }
-                    : { position: "absolute", backgroundColor: "rgba(51, 51, 51, 0.4)" }
+                    ? styleFixedHeader
+                    : styleAbsoluteHeader
                         ? isTablet && scrollY >= 105
-                            ? { position: "fixed", backgroundColor: "rgba(51, 51, 51, 0.85)" }
-                            : { position: "absolute", backgroundColor: "rgba(51, 51, 51, 0.4)" }
+                            ? styleFixedHeader
+                            : styleAbsoluteHeader
                         : null
             }
         >
@@ -62,7 +80,7 @@ export default function Header() {
                                 className={s.header__list}
                                 style={
                                     showMobileMenu
-                                        ? { transform: "translateX(-101%) translateX(0%)" }
+                                        ? { transform: "translateX(-102%) translateX(0%)" }
                                         : { transform: null }
                                 }
                             >

@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 
-
-module.exports = {
-  reactStrictMode: false,
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
     remotePatterns: [
       {
@@ -31,5 +31,6 @@ module.exports = {
 
     return config
   },
-
 }
+
+module.exports = nextConfig

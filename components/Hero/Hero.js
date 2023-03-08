@@ -17,11 +17,11 @@ const textAnmation = {
 };
 
 export default function Hero() {
-    const isTablet = useMediaQuery({ query: "(min-width: 480px)" });
-    const [showIsTablet, setShowIsTablet] = useState(false);
-    useEffect(() => {
-        isTablet ? setShowIsTablet(true) : setShowIsTablet(false);
-    }, []);
+    // const isTablet = useMediaQuery({ query: "(min-width: 480px)" });
+    // const [showIsTablet, setShowIsTablet] = useState(false);
+    // useEffect(() => {
+    //     isTablet ? setShowIsTablet(true) : setShowIsTablet(false);
+    // }, []);
     return (
         <motion.section
             initial="hidden"
@@ -39,7 +39,7 @@ export default function Hero() {
                 >
                     Український домашній текстиль від Zevs{" "}
                 </motion.h1>
-                {showIsTablet && (
+                {/* {showIsTablet && (
                     <motion.div
                         viewport={{ amount: 0.2, once: true }}
                         custom={0}
@@ -73,10 +73,10 @@ export default function Hero() {
                             </li>
                         </ul>
                     </motion.div>
-                )}
+                )} */}
                 <motion.div
                     viewport={{ amount: 0.2, once: true }}
-                    custom={4}
+                    custom={2}
                     variants={textAnmation}
                 >
                     <Link

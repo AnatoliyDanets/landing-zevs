@@ -5,11 +5,10 @@ import Image from "next/image";
 import s from "./ProductSlider.module.css";
 
 function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
+    const { onClick } = props;
     return (
         <div
             className={s.nextArrow}
-            // style={{ ...style, display: "block", background: "transparent" }}
             onClick={onClick}
         >
             <Arrow className={s.arrow__icon} />
@@ -22,22 +21,12 @@ function SamplePrevArrow(props) {
     return (
         <div
             className={s.prevArrow}
-            // style={{ ...style, display: "block", background: "green" }}
             onClick={onClick}
         >
             <Arrow className={s.arrow__icon} />
         </div>
     );
 }
-
-function urlSize(url, w, h) {
-    const startUrl = url.slice(0, 50)
-    const endUrl = url.split('/').slice(-3).join('/')
-    const newURL = startUrl + `w_${w},h_${h},c_scale/` + endUrl
-    return newURL
-}
-
-urlSize("https://res.cloudinary.com/dleesb43b/image/upload/v1677709955/products/jkabynffjeizbj1pmv20.jpg", 450, 400)
 
 
 export default class CenterMode extends Component {
