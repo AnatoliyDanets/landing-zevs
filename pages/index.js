@@ -1,16 +1,12 @@
 import Script from "next/script";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import Head from "next/head";
+import { useIntl } from "react-intl";
 import { Suspense } from "react";
 import Header from "../components/Header";
-// import Hero from "../components/Hero";
-// import Products from "../components/Products";
-// import HowOrder from "../components/HowOrder";
-// import Contacts from "../components/Contacts";
-// import Features from "../components/Features";
 import Feedback from "../components/Feedback";
 import Footer from "../components/Footer";
-
 
 const Hero = dynamic(() => import("../components/Hero"));
 const Products = dynamic(() => import("../components/Products"));
@@ -19,22 +15,28 @@ const HowOrder = dynamic(() => import("../components/HowOrder"));
 const Contacts = dynamic(() => import("../components/Contacts"));
 
 export default function Home({ products }) {
+  const { locale, locales } = useRouter();
+  const intl = useIntl();
+  const title = intl.formatMessage({ id: "page.home.head.title" });
+  const description = intl.formatMessage({
+    id: "page.home.head.meta.description",
+  });
+
   return (
     <>
       <Head>
-        <title>
-          Ковдри, подушки купити з доставкою у Харкові, Україні. Домашній
-          текстиль Zevs
-        </title>
-        <meta name="description" content=" Ковдри, подушки купити з доставкою у Харкові, Україні" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="alternate" href="http://localhost:3000" hrefLang="uk" />
+        <link rel="alternate" href="http://localhost:3000/ru" hrefLang="ru" />
       </Head>
-      <Header />
+      <Header locales={locales} />
       <Hero />
       <Features />
       <Suspense fallback={<div>Loading...</div>}>
-        <Products products={products} />
+        <Products products={products} locale={locale} />
       </Suspense>
       <Feedback />
       <HowOrder />
@@ -47,9 +49,9 @@ export default function Home({ products }) {
     </>
   );
 }
-
+// `http://localhost:3001/api/products` 
 export async function getServerSideProps() {
-  const res = await fetch("https://testback-production-353f.up.railway.app/api/products");
+  const res = await fetch(`https://testback-production-353f.up.railway.app/api/products`);
   const products = await res.json();
 
   return {

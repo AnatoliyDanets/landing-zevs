@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FormattedMessage } from "react-intl";
 /* eslint-disable react/no-unescaped-entities */
 import Container from "../Container";
 import Section from "../Section";
@@ -24,7 +25,8 @@ export default function Features() {
     return (
         <Section id={"Features"}>
             <Container>
-                <SectionTitle name={"Чому ми?"} />
+                <SectionTitle name={<FormattedMessage id="page.home.features_title" />
+                } />
                 <ul className={s.features}>
                     <motion.li
 
@@ -37,10 +39,9 @@ export default function Features() {
                     >
                         <article>
                             <Star className={s.features__icon} />
-                            <h3 className={s.features__title}>Український бренд</h3>
+                            <h3 className={s.features__title}><FormattedMessage id="page.home.features_title_one" /></h3>
                             <p className={s.features__text}>
-                                Весь текстиль, який надано в нашому магазині - ми виробляємо
-                                самі
+                                <FormattedMessage id="page.home.features_item_one" />
                             </p>
                         </article>
                     </motion.li>
@@ -55,10 +56,9 @@ export default function Features() {
                     >
                         <article>
                             <Clients className={s.features__icon} />
-                            <h3 className={s.features__title}>Понад 17000 клієнтів</h3>
+                            <h3 className={s.features__title}><FormattedMessage id="page.home.features_title_two" /></h3>
                             <p className={s.features__text}>
-                                З нами працювало вже понад 17 000 осіб. Кожен четвертий купив у
-                                нас товар повторно! Це свідчить про результат!
+                                <FormattedMessage id="page.home.features_item_two" />
                             </p>
                         </article>
                     </motion.li>
@@ -73,10 +73,9 @@ export default function Features() {
                     >
                         <article>
                             <Internet className={s.features__icon} />
-                            <h3 className={s.features__title}>Понад 20 років на ринку</h3>
+                            <h3 className={s.features__title}><FormattedMessage id="page.home.features_title_three" /></h3>
                             <p className={s.features__text}>
-                                Ми працюємо понад 20 років на ринку. У нас продумані навіть
-                                найдрібніші деталі
+                                <FormattedMessage id="page.home.features_item_three" />
                             </p>
                         </article>
                     </motion.li>
@@ -91,10 +90,9 @@ export default function Features() {
                     >
                         <article>
                             <Problem className={s.features__icon} />
-                            <h3 className={s.features__title}>Вирішуємо всі проблеми</h3>
+                            <h3 className={s.features__title}><FormattedMessage id="page.home.features_title_four" /></h3>
                             <p className={s.features__text}>
-                                Якщо у вас виникла проблема, ми обов'язково вирішимо її. Ми
-                                працюємо на всі 100%, нам нема чого боятися.
+                                <FormattedMessage id="page.home.features_item_four" />
                             </p>
                         </article>
                     </motion.li>
@@ -109,9 +107,9 @@ export default function Features() {
                     >
                         <article>
                             <Product className={s.features__icon} />
-                            <h3 className={s.features__title}>Весь товар у наявності</h3>
+                            <h3 className={s.features__title}><FormattedMessage id="page.home.features_title_five" /></h3>
                             <p className={s.features__text}>
-                                У нас є абсолютно всі позиції, представлені на сайті
+                                <FormattedMessage id="page.home.features_item_five" />
                             </p>
                         </article>
                     </motion.li>
@@ -126,10 +124,9 @@ export default function Features() {
                     >
                         <article>
                             <Discount className={s.features__icon} />
-                            <h3 className={s.features__title}>Знижки та акції</h3>
+                            <h3 className={s.features__title}><FormattedMessage id="page.home.features_title_six" /></h3>
                             <p className={s.features__text}>
-                                У нас постійно діють якісь знижки та акції, представлені на
-                                сайті
+                                <FormattedMessage id="page.home.features_item_six" />
                             </p>
                         </article>
                     </motion.li>

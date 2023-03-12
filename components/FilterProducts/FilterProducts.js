@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { FormattedMessage } from "react-intl";
+
 import s from "./FilterProducts.module.css";
 
 const textAnmation = {
@@ -22,7 +24,7 @@ export default function FilterProducts({
             initial="hidden"
             whileInView="visible"
             viewport={{ amount: 0.2, once: true }}
-            custom={2}
+            custom={1}
             variants={textAnmation}
         >
             <li className={s.filter__item}>
@@ -32,7 +34,7 @@ export default function FilterProducts({
                     type="button"
                     onClick={handleFilterBlankets}
                 >
-                    Ковдри
+                    <FormattedMessage id="page.home.catalog_title_one" />
                 </button>
             </li>
             <li className={s.filter__item}>
@@ -42,7 +44,7 @@ export default function FilterProducts({
                     type="button"
                     onClick={handleFilterPillows}
                 >
-                    Подушки
+                    <FormattedMessage id="page.home.catalog_title_two" />
                 </button>
             </li>
         </motion.ul>

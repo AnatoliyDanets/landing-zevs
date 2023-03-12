@@ -1,9 +1,11 @@
-import Close from "../../svgs/close.svg";
+import { FormattedMessage } from "react-intl";
+import HeaderLangBox from "../HeaderLangBox";
 import { Link } from "react-scroll";
+import Close from "../../svgs/close.svg";
 import Container from "../../Container";
 import s from "./HeaderMobile.module.css";
 
-export default function HeaderMobile({ show, onClick }) {
+export default function HeaderMobile({ show, onClick, locales }) {
     return (
         <div
             className={s.mobileMenu}
@@ -26,6 +28,9 @@ export default function HeaderMobile({ show, onClick }) {
                     <nav className={s.mobile__nav}>
                         <ul className={s.nav__list}>
                             <li className={s.nav__item}>
+                                <HeaderLangBox locales={locales} />
+                            </li>
+                            <li className={s.nav__item}>
                                 <Link
                                     activeClass="active"
                                     to="Features"
@@ -35,7 +40,7 @@ export default function HeaderMobile({ show, onClick }) {
                                     duration={500}
                                     onClick={onClick}
                                 >
-                                    Переваги
+                                    <FormattedMessage id="page.home.header_item_one" />
                                 </Link>
                             </li>
                             <li className={s.nav__item}>
@@ -49,7 +54,7 @@ export default function HeaderMobile({ show, onClick }) {
                                     duration={500}
                                     onClick={onClick}
                                 >
-                                    Каталог
+                                    <FormattedMessage id="page.home.header_item_two" />
                                 </Link>
                             </li>
 
@@ -63,7 +68,7 @@ export default function HeaderMobile({ show, onClick }) {
                                     duration={500}
                                     onClick={onClick}
                                 >
-                                    Відгуки
+                                    <FormattedMessage id="page.home.header_item_three" />
                                 </Link>
                             </li>
                             <li className={s.nav__item}>
@@ -76,7 +81,7 @@ export default function HeaderMobile({ show, onClick }) {
                                     duration={500}
                                     onClick={onClick}
                                 >
-                                    Як замовити?
+                                    <FormattedMessage id="page.home.header_item_four" />
                                 </Link>
                             </li>
                             <li className={s.nav__item}>
@@ -89,7 +94,7 @@ export default function HeaderMobile({ show, onClick }) {
                                     duration={500}
                                     onClick={onClick}
                                 >
-                                    Контакти
+                                    <FormattedMessage id="page.home.header_item_five" />
                                 </Link>
                             </li>
                         </ul>

@@ -1,7 +1,8 @@
+import { FormattedMessage } from "react-intl";
 import { useEffect, useState } from "react";
 import Card from "./Card/Card";
 
-export default function ProductItem({ id, arr, text, set, items }) {
+export default function ProductItem({ id, arr, text, set, items, locale }) {
     const [disabled, setDisabled] = useState(false);
     const [cartText, setCartText] = useState("У кошик");
     const [currentSizeBlanket, setCurrentSizeBlanket] = useState(150);
@@ -22,7 +23,7 @@ export default function ProductItem({ id, arr, text, set, items }) {
     };
     const findProduct = arr?.filter(
         (el) =>
-            el.model === text &&
+            el.model[locale] === text &&
             (+el.size === currentSizeBlanket || el.size === +currentSizePillow)
     );
 
@@ -31,7 +32,7 @@ export default function ProductItem({ id, arr, text, set, items }) {
             ...prev,
             {
                 _id: findProduct[0]._id,
-                model: findProduct[0].model,
+                model: findProduct[0].model[locale],
                 price: findProduct[0].price,
                 totalPrice: findProduct[0].totalPrice,
                 size: findProduct[0].size,
@@ -47,32 +48,32 @@ export default function ProductItem({ id, arr, text, set, items }) {
             items?.find((el) => findProduct[0]?._id === el._id)?._id ===
             findProduct[0]?._id
         ) {
-            setCartText("Додано");
+            setCartText(<FormattedMessage id="page.home.catalog_added_cart" />);
             setDisabled(true);
         } else {
-            setCartText("У кошик");
+            setCartText(<FormattedMessage id="page.home.catalog_add_cart" />);
             setDisabled(false);
         }
-    }, [findProduct, arr]);
+    }, [items, findProduct[0]]);
     useEffect(() => {
         const findNewProduct = arr
             ?.filter(
                 (el) =>
-                    el.model === text &&
+                    el.model[locale] === text &&
                     ((+el.size === +currentSizeBlanket
                         ? currentSizeBlanket
                         : 175 || 200) ||
                         (el.size === +currentSizePillow ? +currentSizePillow : 70))
             )
             .sort((a, b) => a.size - b.size);
-        if (findNewProduct[0]?.category === "Ковдри") {
+        if (findNewProduct[0]?.category[locale] === "Одеяла" || findNewProduct[0]?.category[locale] === "Ковдри") {
             setCurrentSizeBlanket(findNewProduct[0]?.size);
         } else {
             setCurrentSizePillow(findNewProduct[0]?.size);
         }
-    }, []);
+    }, [arr, locale]);
 
-    return findProduct?.map((el, i) => (
+    return findProduct?.map((el) => (
         <Card
             id={el._id}
             key={el._id}
@@ -82,9 +83,11 @@ export default function ProductItem({ id, arr, text, set, items }) {
             disabled={disabled}
             text={cartText}
             model={text}
+            locale={locale}
             handleChange={handleChange}
             currentSize={
-                el.category === "Ковдри" ? currentSizeBlanket : currentSizePillow
+                (el.category[locale] === "Ковдри" || el.category[locale] === "Одеяла")
+                    ? currentSizeBlanket : currentSizePillow
             }
         />
     ));

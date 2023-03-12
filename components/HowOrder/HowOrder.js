@@ -2,6 +2,7 @@ import {
     VerticalTimeline,
     VerticalTimelineElement,
 } from "react-vertical-timeline-component";
+import { FormattedMessage } from "react-intl";
 import { useMediaQuery } from "react-responsive";
 import { useEffect, useState } from "react";
 import Container from "../Container";
@@ -24,7 +25,7 @@ export default function HowOrder() {
     return (
         <Section id={"HowOrder"}>
             <Container>
-                <SectionTitle name={"Як замовити?"} />
+                <SectionTitle name={<FormattedMessage id="page.home.how_order_title" />} />
                 <VerticalTimeline>
                     <VerticalTimelineElement
                         className="vertical-timeline-element--work"
@@ -40,8 +41,8 @@ export default function HowOrder() {
                             />
                         }
                     >
-                        <h3 className="vertical-timeline-element-title">Крок 1</h3>
-                        <p>Ви формуєте замовлення на нашому сайті</p>
+                        <h3 className="vertical-timeline-element-title"> <FormattedMessage id="page.home.how_order_title_one" /></h3>
+                        <p><FormattedMessage id="page.home.how_order_title_item_one" /></p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                         className="vertical-timeline-element--work"
@@ -57,8 +58,8 @@ export default function HowOrder() {
                             />
                         }
                     >
-                        <h3 className="vertical-timeline-element-title">Крок 2</h3>
-                        <p>Менеджер передзвонить вам для уточнення деталей замовлення</p>
+                        <h3 className="vertical-timeline-element-title"><FormattedMessage id="page.home.how_order_title_two" /></h3>
+                        <p><FormattedMessage id="page.home.how_order_title_item_two" /></p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                         className="vertical-timeline-element--education"
@@ -74,8 +75,8 @@ export default function HowOrder() {
                             />
                         }
                     >
-                        <h3 className="vertical-timeline-element-title">Крок 3</h3>
-                        <p>Найближчим часом відправляємо ваше замовлення</p>
+                        <h3 className="vertical-timeline-element-title"><FormattedMessage id="page.home.how_order_title_three" /></h3>
+                        <p><FormattedMessage id="page.home.how_order_title_item_three" /></p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                         className="vertical-timeline-element--education"
@@ -91,8 +92,8 @@ export default function HowOrder() {
                             />
                         }
                     >
-                        <h3 className="vertical-timeline-element-title">Крок 4</h3>
-                        <p>Ви оплачуєте замовлення на пошті під час отримання</p>
+                        <h3 className="vertical-timeline-element-title"><FormattedMessage id="page.home.how_order_title_four" /></h3>
+                        <p><FormattedMessage id="page.home.how_order_title_item_four" /></p>
                     </VerticalTimelineElement>
                 </VerticalTimeline>
             </Container>

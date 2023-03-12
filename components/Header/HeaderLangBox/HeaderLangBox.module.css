@@ -1,0 +1,39 @@
+.change_lang {
+  display: flex;
+  position: absolute;
+  top: 33px;
+  left: 50%;
+  font-size: 16px;
+  transform: translateX(-50%);
+}
+.change_lang__item:not(:last-child) {
+  margin-right: 5px;
+}
+.active {
+  color: #fff;
+  text-shadow: 2px 0 2px #333333, 0 2px 2px #333333, -2px 0 2px #333333,
+    0 -2px 2px #333333;
+}
+.noactive {
+  color: #d2ba40;
+  text-shadow: 2px 0 2px #333333, 0 2px 2px #333333, -2px 0 2px #333333,
+    0 -2px 2px #333333;
+}
+
+@media screen and (min-width: 1024px) {
+  .change_lang {
+    top: -12px;
+    left: unset;
+    right: 15px;
+    font-size: 14px;
+    transform: unset;
+  }
+}
+
+@media screen and (min-width: 1360px) {
+  .change_lang {
+    top: -24px;
+    right: 15px;
+    font-size: 16px;
+  }
+}

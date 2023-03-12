@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FormattedMessage } from "react-intl";
 import Container from "../Container";
 import Section from "../Section";
 import SectionTitle from "../SectionTitle";
@@ -20,7 +21,7 @@ export default function Contacts() {
     return (
         <Section id={"Contacts"} >
             <Container>
-                <SectionTitle name={"Контакти"} />
+                <SectionTitle name={<FormattedMessage id="page.home.contacts_title" />} />
 
                 <ul className={s.contacts}>
                     <motion.li
@@ -35,13 +36,13 @@ export default function Contacts() {
                             <div className={s.contacts__titles}>
                                 {" "}
                                 <Phone className={s.contacts__icon} />
-                                <h3>Зв&apos;язатися з нами</h3>
+                                <h3><FormattedMessage id="page.home.contacts_title_one" /></h3>
                             </div>
                             <table className={s.contacts__table}>
                                 <thead className={s.contacts__head}>
                                     <tr className={s.contacts__head_row}>
-                                        <th>Перший номер</th>
-                                        <th>Другий номер</th>
+                                        <th><FormattedMessage id="page.home.contacts_title_item_one" /></th>
+                                        <th><FormattedMessage id="page.home.contacts_title_item_two" /></th>
                                         <th>Viber</th>
                                         <th>Telegram</th>
                                     </tr>
@@ -80,9 +81,9 @@ export default function Contacts() {
                         <article>
                             <div className={s.contacts__titles}>
                                 <Location className={s.contacts__icon} />
-                                <h3>Місцезнаходження</h3>
+                                <h3><FormattedMessage id="page.home.contacts_title_two" /></h3>
                             </div>
-                            <p> Харків, Україна</p>
+                            <p><FormattedMessage id="page.home.contacts_title_two_item" /></p>
                         </article>
                     </motion.li>
                     <motion.li
@@ -96,14 +97,14 @@ export default function Contacts() {
                         <article>
                             <div className={s.contacts__titles}>
                                 <Clock className={s.contacts__icon} />
-                                <h3>Часи праці</h3>
+                                <h3><FormattedMessage id="page.home.contacts_title_three" /></h3>
                             </div>
 
                             <table className={s.contacts__table}>
                                 <thead className={s.contacts__head}>
                                     <tr className={s.contacts__head_row}>
-                                        <th>Понеділок - П&apos;ятниця </th>
-                                        <th>Субота, Неділя</th>
+                                        <th><FormattedMessage id="page.home.contacts_title_three_item_one" /></th>
+                                        <th><FormattedMessage id="page.home.contacts_title_three_item_two" /></th>
                                     </tr>
                                 </thead>
                                 <tbody className={s.contacts__body}>

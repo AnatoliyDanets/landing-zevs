@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import { useMediaQuery } from "react-responsive";
 import { useForm } from "react-hook-form";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
@@ -152,7 +153,7 @@ export default function Cart({
         <>
             <Loader loading={loading} />
             <div className={s.basket__container}>
-                <h2 className={s.basket__title}>ВАШІ ЗАМОВЛЕННЯ</h2>
+                <h2 className={s.basket__title}><FormattedMessage id="page.home.modal_order_title" /></h2>
                 {showIsMobile ? (
                     <ul className={s.mobile__cart}>
                         {uniqueCartProducts.map((el, i) => (
@@ -221,9 +222,9 @@ export default function Cart({
                                     className={s.tableCart__head_sel}
                                     style={{ emptyCells: "hide" }}
                                 ></th>
-                                <th className={s.tableCart__head_sel}>Модель</th>
-                                <th className={s.tableCart__head_sel}>Кількість</th>
-                                <th className={s.tableCart__head_sel}>Ціна</th>
+                                <th className={s.tableCart__head_sel}><FormattedMessage id="page.home.modal_table_model" /></th>
+                                <th className={s.tableCart__head_sel}><FormattedMessage id="page.home.modal_table_quantity" /></th>
+                                <th className={s.tableCart__head_sel}><FormattedMessage id="page.home.modal_table_price" /></th>
                                 <th className={s.tableCart__head_sel}></th>
                             </tr>
                         </thead>
@@ -307,16 +308,16 @@ export default function Cart({
                     <p className={s.basket__total}>{price.toFixed(2)}грн</p>
                 </div>
                 <div>
-                    <h3 className={s.basket__orderTitle}>ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h3>
+                    <h3 className={s.basket__orderTitle}><FormattedMessage id="page.home.modal_ordering_title" /></h3>
 
                     <form onSubmit={handleSubmit(onSubmit)} className={s.basket__form}>
                         <label className={s.basket__form_label} htmlFor="value">
-                            Им`я *
+                            <FormattedMessage id="page.home.modal_ordering_name" />
                         </label>
                         <div className={s.basket__form_inputWrap}>
                             <input
                                 className={s.basket__form_input}
-                                placeholder="Им`я"
+                                placeholder="John"
                                 {...register("name", {
                                     required: true,
                                     minLength: 3,
@@ -327,7 +328,7 @@ export default function Cart({
                             />
                         </div>
                         <label className={s.basket__form_label} htmlFor="phone">
-                            Телефон *
+                            <FormattedMessage id="page.home.modal_ordering_phone" />
                         </label>
                         <PhoneInputWithCountry
                             className={s.phone}
@@ -365,7 +366,7 @@ export default function Cart({
                                 !isValid
                             }
                         >
-                            Замовити
+                            <FormattedMessage id="page.home.modal_button_order" />
                         </Button>
                         {!(
                             value &&

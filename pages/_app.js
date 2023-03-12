@@ -1,7 +1,16 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { IntlProvider } from "react-intl";
+import uk from "../lang/uk.json";
+import ru from "../lang/ru.json";
+import Loader from "@/components/Loader";
 import "../styles/globals.css";
 import "normalize.css/normalize.css";
+
+const messages = {
+  uk,
+  ru,
+};
 
 function Loading() {
   const router = useRouter();
@@ -10,21 +19,32 @@ function Loading() {
 
   useEffect(() => {
     const handleStart = (url) => url !== router.asPath && setLoading(true);
-    const handleComplete = (url) =>
-      url === router.asPath &&
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
 
+    const handleComplete = (url) => {
+      if (url === "/ru") {
+        router.asPath = url;
+        setLoading(false);
+      }
+      if (url === "/uk") {
+        router.asPath = url;
+        setLoading(false);
+      }
+      if (url === "/") {
+        router.asPath = url;
+        setLoading(false);
+      }
+      url === router.asPath &&
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+    };
     const handleRouteChangeError = (err, url) => {
       if (err.cancelled) {
-        console.log(`Route to ${url} was cancelled!`)
-
+        console.log(`Route to ${url} was cancelled!`);
+      } else {
+        console.log(`Route!`);
       }
-      else {
-        console.log(`Route!`)
-      }
-    }
+    };
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
     router.events.on("routeChangeError", handleRouteChangeError);
@@ -34,23 +54,21 @@ function Loading() {
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleRouteChangeError);
     };
-  }, [router.events, router.asPath]);
+  }, [router, router.locale, router.asPath]);
 
-
-  return (
-    loading && (
-      <div className="spinner-wrapper">
-        <div className="spinner"></div>
-      </div>
-    )
-  );
+  return <Loader loading={loading} />;
 }
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
+  const { locale } = useRouter();
   return (
     <>
       <Loading />
-      <Component {...pageProps} />
+      <IntlProvider locale={locale} messages={messages[locale]}>
+        <Component {...pageProps} />
+      </IntlProvider>
     </>
   );
 }
+
+export default App;

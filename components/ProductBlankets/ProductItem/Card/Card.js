@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FormattedMessage } from "react-intl";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Button from "../../../Button/Button";
@@ -20,9 +21,10 @@ export default function Card({
     currentSize,
     model,
     arr,
+    locale
 }) {
     const [discount, setDiscount] = useState(0);
-
+    const [currentTime, setCurrentTime] = useState(null)
     const router = useRouter();
 
     useEffect(() => {
@@ -46,7 +48,15 @@ export default function Card({
             console.log(error.response.message);
         }
     };
+    useEffect(() => {
 
+        setCurrentTime(Date.now() +
+            (new Date(card?.discount_time).getTime() -
+                Date.now() -
+                7200000))
+
+
+    }, [card?.discount_time, card?.discount, currentTime])
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (completed) {
             const dataDiscount = {
@@ -61,11 +71,11 @@ export default function Card({
         } else {
             return (
                 <p className={s.discount_time}>
-                    Знижка{" "}
+                    <FormattedMessage id="page.home.catalog_discount" />{" "}
                     <span className={s.discount__percent}>
                         -{card.discount}%{" "}
                     </span>{" "}
-                    діятиме:{" "}
+                    <FormattedMessage id="page.home.catalog_discount_action" />{" "}
                     <span className={s.discount__percent}>
                         {zeroPad(days)}д {zeroPad(hours)}:{zeroPad(minutes)}:
                         {zeroPad(seconds)}
@@ -75,9 +85,14 @@ export default function Card({
         }
     };
 
+
+
+
+
+
     return (
         <article className={s.card__article} key={id}>
-            <h3 className={s.card__title}>{card.model}</h3>
+            <h3 className={s.card__title}>{card.model[locale]}</h3>
             <div className={s.card__wrapper}>
                 <div className={s.card__left}>
                     {card.discount > 0 && (
@@ -90,25 +105,25 @@ export default function Card({
                     {card.cardImg.length > 0 && <CenterMode cardImg={card.cardImg} />}
                 </div>
                 <div className={s.card__right}>
-                    <p className={s.card__discription}>{card.discription}</p>
+                    <p className={s.card__discription}>{card.discription[locale]}</p>
 
                     <div className={s.card__showPrice}>
                         <div className={s.blanket__size}>
                             <span className={s.blanket__sizeText}>
-                                Оберіть розмір (ШхД) :
+                                <FormattedMessage id="page.home.catalog_change_size" />
                             </span>
 
                             <FormControl sx={{ minWidth: 120 }}>
                                 <Select
                                     value={+currentSize}
                                     onChange={handleChange}
-                                    name={card.category === "Ковдри" ? "blanket" : "pillow"}
+                                    name={(card.category[locale] === "Ковдри" || card.category[locale] === "Одеяла") ? "blanket" : "pillow"}
                                     displayEmpty
                                     inputProps={{ MenuProps: { disableScrollLock: true } }}
                                     className={s.card__select}
                                 >
                                     {arr
-                                        .filter((el) => el.model === model)
+                                        .filter((el) => el.model[locale] === model)
                                         .sort((a, b) => a.size - b.size)
                                         .map(({ _id, size, height }) => (
                                             <MenuItem key={_id} value={+size}>
@@ -118,15 +133,10 @@ export default function Card({
                                 </Select>
                             </FormControl>
                         </div>
-                        {card.discount > 0 && (
+                        {currentTime > 0 && (
                             <>
                                 <Countdown
-                                    date={
-                                        Date.now() +
-                                        (new Date(card.discount_time).getTime() -
-                                            Date.now() -
-                                            7200000)
-                                    }
+                                    date={currentTime}
                                     renderer={renderer}
                                 />
                             </>
@@ -159,10 +169,11 @@ export default function Card({
                 </div>
             </div>
 
-            <h3 className={s.card__character}>Характеристики {card.model}</h3>
+            <h3 className={s.card__character}> <FormattedMessage id="page.home.catalog_character_title" /> {card.model[locale]}</h3>
 
             <Characteristics
-                type={card.category}
+                locale={locale}
+                type={card.category[locale]}
                 property={Object.values(card.characteristics)}
             />
         </article>

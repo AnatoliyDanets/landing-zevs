@@ -117,7 +117,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .basket__total {
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 28px;
   letter-spacing: 0.1em;
 
@@ -216,7 +216,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .tableCart__body_row {
   border-spacing: 5px 2px;
-  /* border: 1px solid #333333; */
   color: #ffffff;
 }
 .tableCart__body_select {
@@ -225,7 +224,6 @@ input[type="number"]::-webkit-outer-spin-button {
   line-height: 1.16;
   text-align: center;
   letter-spacing: 0.1em;
-  /* border: 1px solid #333333; */
   border: none;
   width: 50px;
 }
@@ -240,6 +238,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 20px;
+  text-transform: uppercase;
   color: #ffffff;
   text-align: center;
 }
@@ -264,8 +263,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .basket__form_input {
   flex: 1;
-  /* The phone number input should shrink
-     to make room for the extension input */
   min-width: 0;
   border: none;
   outline: none;
@@ -285,8 +282,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .phone input {
   flex: 1;
-  /* The phone number input should shrink
-     to make room for the extension input */
   min-width: 0;
   border: none;
   background-color: rgba(51, 51, 51, 0.75);

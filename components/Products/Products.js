@@ -7,7 +7,7 @@ import SuccessOrder from "../SuccessOrder";
 
 const Modal = dynamic(() => import("../Modal"));
 
-export default function Products({ products }) {
+export default function Products({ products, locale }) {
     const [showCart, setShowCart] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [items, setItems] = useState(() => {
@@ -18,16 +18,13 @@ export default function Products({ products }) {
         }
     });
     const [cartItem, setCartItem] = useState([]);
-    useEffect(() => {
-        const updateCart = items.map(el => products.find(val => val._id === el._id))
-        setItems(updateCart)
-    }, [products, items])
-    const quantityInCart = items
-        ?.reduce(
-            (acc, el) => (acc.find(({ _id }) => el._id === _id) || acc.push(el), acc),
-            []
-        )
-        .reduce((acc, el) => acc + el.count, 0);
+
+    const quantityInCart = items?.reduce(
+        (acc, el) => (acc.find(({ _id }) => el._id === _id) || acc.push(el), acc),
+        []
+    ).reduce((acc, el) => acc + el.count, 0);
+
+
     const handleShowCart = () => {
         setShowCart((prev) => !prev);
     };
@@ -79,6 +76,31 @@ export default function Products({ products }) {
         setItems([...findItems]);
     };
 
+
+
+    useEffect(() => {
+        if (items?.length > 0) {
+            const updateCart = items?.map(el => [products?.find(val => val._id === el._id)]
+                .reduce((acc, item) => {
+                    acc._id = item._id
+                    acc.model = item.model[locale];
+                    acc.size = item.size;
+                    acc.count = el.count;
+                    acc.discount = item.discount;
+                    acc.cards = item.cards
+                    acc.price = item.price
+                    acc.height = item.height
+                    acc.totalPrice = el.price
+                    return acc;
+                }, {})
+            )
+
+
+            setItems(updateCart)
+        }
+
+    }, [products, items?.length])
+
     useEffect(() => {
         const filterItems = items.reduce(
             (acc, el) => (acc.find(({ _id }) => el._id === _id) || acc.push(el), acc),
@@ -105,7 +127,7 @@ export default function Products({ products }) {
 
     return (
         <>
-            <ProductBlankets products={products} set={setItems} items={items} />
+            <ProductBlankets products={products} set={setItems} items={items} locale={locale} />
             {cartItem?.length > 0 && !showCart && (
                 <DisplayCart
                     handleShowCart={handleShowCart}
@@ -138,3 +160,4 @@ export default function Products({ products }) {
         </>
     );
 }
+

@@ -5,6 +5,7 @@ import Container from "../Container";
 import classNames from "classnames";
 import { Link } from "react-scroll/modules";
 import Check from "../svgs/check.svg";
+import { FormattedMessage, useIntl } from "react-intl";
 import s from "./Hero.module.css";
 
 const textAnmation = {
@@ -16,7 +17,14 @@ const textAnmation = {
     }),
 };
 
+export function getStaticProps({ locale }) {
+    return {
+        props: { locale }
+    }
+}
+
 export default function Hero() {
+
     // const isTablet = useMediaQuery({ query: "(min-width: 480px)" });
     // const [showIsTablet, setShowIsTablet] = useState(false);
     // useEffect(() => {
@@ -37,8 +45,10 @@ export default function Hero() {
                     variants={textAnmation}
                     className={s.hero__title}
                 >
-                    Український домашній текстиль від Zevs{" "}
+
+                    <FormattedMessage id="page.home.hero_title" />
                 </motion.h1>
+
                 {/* {showIsTablet && (
                     <motion.div
                         viewport={{ amount: 0.2, once: true }}
@@ -91,6 +101,7 @@ export default function Hero() {
                         Каталог
                     </Link>
                 </motion.div>
+
             </Container>
         </motion.section>
     );

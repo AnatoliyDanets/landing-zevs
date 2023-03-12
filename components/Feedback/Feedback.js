@@ -1,4 +1,5 @@
 import { Gallery, Item } from 'react-photoswipe-gallery'
+import { FormattedMessage } from "react-intl";
 import 'photoswipe/dist/photoswipe.css'
 import Image from 'next/image'
 import Section from "../Section"
@@ -29,7 +30,7 @@ export default function Feedback() {
     return (
         <Section id={"Feedback"}>
             <Container>
-                <SectionTitle name={"Відгуки"} />
+                <SectionTitle name={<FormattedMessage id="page.home.feedback_title" />} />
                 <Gallery>
                     <div style={{
                         display: 'grid',

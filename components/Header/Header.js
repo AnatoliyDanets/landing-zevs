@@ -4,14 +4,15 @@ import { Link } from "react-scroll/modules";
 import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
 import Container from "../Container";
+import HeaderLangBox from "./HeaderLangBox";
 import Navigation from "../Navigation";
 import logo from "../../image/Hero/Zevs.png";
 import Burger from "../svgs/burger.svg";
 import s from "./Header.module.css";
-// import HeaderMobile from "./HeaderMobile";
+
 const HeaderMobile = dynamic(() => import("./HeaderMobile"));
 
-export default function Header() {
+export default function Header({ locales }) {
     const [scrollY, setScrollY] = useState(0);
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [showIsDesktop, setShowshowIsDesktop] = useState(false);
@@ -70,9 +71,14 @@ export default function Header() {
                         : null
             }
         >
-            <Container style={{ backgroundColor: "transparent" }}>
+            <Container style={{ position: "relative" }}>
+
                 {showIsDesktop ? (
-                    <Navigation />
+                    <>
+                        <HeaderLangBox locales={locales} />
+                        <Navigation />
+                    </>
+
                 ) : (
                     <nav>
                         {
@@ -113,9 +119,10 @@ export default function Header() {
                                 </li>
                             </ul>
                         }
-                        <HeaderMobile show={showMobileMenu} onClick={handleShowMenu} />
+                        <HeaderMobile show={showMobileMenu} onClick={handleShowMenu} locales={locales} />
                     </nav>
                 )}
+
             </Container>
         </header>
     );
