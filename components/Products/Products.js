@@ -91,7 +91,7 @@ export default function Products({ products, locale }) {
                     acc.cards = item.cards
                     acc.price = item.price
                     acc.height = item.height
-                    acc.totalPrice = el.price
+                    acc.totalPrice = el.totalPrice
                     return acc;
                 }, {})
             )

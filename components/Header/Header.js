@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-scroll/modules";
 import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
@@ -38,15 +38,19 @@ export default function Header({ locales }) {
         position: "absolute",
         backgroundColor: "rgba(51, 51, 51, 0.4)",
     };
-    useEffect(() => {
-        isMobile && scrollY >= 89
+
+    const fixedHeader = useMemo(
+        () => isMobile && scrollY >= 89
             ? styleFixedHeader
             : styleFixedHeader
                 ? isTablet && scrollY >= 106
                     ? styleFixedHeader
                     : styleAbsoluteHeader
-                : null;
-    }, [isMobile, scrollY, isTablet, styleFixedHeader, styleFixedHeader]);
+                : null,
+        [isMobile, scrollY, isTablet, styleFixedHeader, styleAbsoluteHeader]
+    );
+
+
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY);
@@ -61,15 +65,7 @@ export default function Header({ locales }) {
     return (
         <header
             className={s.header}
-            style={
-                isMobile && scrollY >= 89
-                    ? styleFixedHeader
-                    : styleAbsoluteHeader
-                        ? isTablet && scrollY >= 105
-                            ? styleFixedHeader
-                            : styleAbsoluteHeader
-                        : null
-            }
+            style={fixedHeader}
         >
             <Container style={{ position: "relative" }}>
 

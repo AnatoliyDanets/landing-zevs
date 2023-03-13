@@ -71,7 +71,7 @@ export default function ProductItem({ id, arr, text, set, items, locale }) {
         } else {
             setCurrentSizePillow(findNewProduct[0]?.size);
         }
-    }, [arr, locale]);
+    }, [arr, locale, text]);
 
     return findProduct?.map((el) => (
         <Card
