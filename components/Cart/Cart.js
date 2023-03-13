@@ -120,7 +120,7 @@ export default function Cart({
                             (+val.price - (val.discount / 100) * +val.price) *
                             val.count
                         ).toFixed(2)
-                        : +val.totalPrice.toFixed(2);
+                        : val.count * (+val.price.toFixed(2));
                 return acc;
             }, {})
         );
@@ -199,7 +199,7 @@ export default function Cart({
                                                 (+el.price - (el.discount / 100) * +el.price) *
                                                 el.count
                                             ).toFixed(2)
-                                            : +el.totalPrice.toFixed(2)}
+                                            : +el.count * (+el.price.toFixed(2))}
                                         грн
                                     </span>
                                     <button
@@ -282,13 +282,14 @@ export default function Cart({
                                                         (+el.price - (el.discount / 100) * +el.price) *
                                                         el.count
                                                     ).toFixed(2)
-                                                    : +el.totalPrice.toFixed(2)}
+                                                    : +el.count * (+el.price.toFixed(2))}
                                                 грн
                                             </span>
                                         </td>
 
                                         <td className={s.tableCart__body_sel}>
                                             <button
+                                                aria-label={"Удалить"}
                                                 id={el._id}
                                                 className={s.basket__delete}
                                                 type="button"

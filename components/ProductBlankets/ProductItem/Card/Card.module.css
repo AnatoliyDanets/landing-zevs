@@ -201,23 +201,16 @@
 .card__select {
   font-family: "Nunito", sans-serif !important;
   font-weight: normal;
-  outline: none;
-  border: 1px solid #ffffff;
+  outline: 1px solid #d2ba40;
+  border-radius: 4px;
   color: #ffffff !important;
 }
+.card__select div {
+  font-family: "Nunito", sans-serif !important;
+  font-weight: normal;
 
+  color: #ffffff !important;
+}
 .card__select svg {
   fill: #d2ba40;
-}
-
-.card__select:hover,
-.card__select:active,
-.card__select:focus-visible,
-.card__select:focus-within,
-.card__select:focus {
-  outline: 0 !important;
-  outline-color: transparent !important;
-  outline-width: 0 !important;
-  outline-style: none !important;
-  border: 1px solid #d2ba40;
 }

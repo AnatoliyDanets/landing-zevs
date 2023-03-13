@@ -94,6 +94,7 @@ export default function Header({ locales }) {
                                     <Link
                                         activeClass="active"
                                         to="Hero"
+                                        href={"#Hero"}
                                         spy={true}
                                         smooth={true}
                                         offset={-100}
@@ -102,7 +103,7 @@ export default function Header({ locales }) {
                                         <Image
                                             src={logo}
                                             alt="Logo"
-                                            width={120}
+                                            width={112}
                                             height={40}
                                             priority="true"
                                         />
@@ -113,6 +114,7 @@ export default function Header({ locales }) {
                                         type="button"
                                         className={s.header__burger}
                                         onClick={handleShowMenu}
+                                        aria-label="Мобильное меню"
                                     >
                                         <Burger className={s.header__burgerIcon} />
                                     </button>

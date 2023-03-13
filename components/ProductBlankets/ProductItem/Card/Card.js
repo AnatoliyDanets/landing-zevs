@@ -7,7 +7,7 @@ import Characteristics from "../../../Characteristics";
 import CenterMode from "../../../ProductSlider/ProductSlider";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
 import Countdown, { zeroPad } from "react-countdown";
 import s from "./Card.module.css";
 
@@ -21,10 +21,10 @@ export default function Card({
     currentSize,
     model,
     arr,
-    locale
+    locale,
 }) {
     const [discount, setDiscount] = useState(0);
-    const [currentTime, setCurrentTime] = useState(null)
+    const [currentTime, setCurrentTime] = useState(null);
     const router = useRouter();
 
     useEffect(() => {
@@ -49,14 +49,11 @@ export default function Card({
         }
     };
     useEffect(() => {
-
-        setCurrentTime(Date.now() +
-            (new Date(card?.discount_time).getTime() -
-                Date.now() -
-                7200000))
-
-
-    }, [card?.discount_time, card?.discount, currentTime])
+        setCurrentTime(
+            Date.now() +
+            (new Date(card?.discount_time).getTime() - Date.now() - 7200000)
+        );
+    }, [card?.discount_time, card?.discount, currentTime]);
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (completed) {
             const dataDiscount = {
@@ -72,9 +69,7 @@ export default function Card({
             return (
                 <p className={s.discount_time}>
                     <FormattedMessage id="page.home.catalog_discount" />{" "}
-                    <span className={s.discount__percent}>
-                        -{card.discount}%{" "}
-                    </span>{" "}
+                    <span className={s.discount__percent}>-{card.discount}% </span>{" "}
                     <FormattedMessage id="page.home.catalog_discount_action" />{" "}
                     <span className={s.discount__percent}>
                         {zeroPad(days)}д {zeroPad(hours)}:{zeroPad(minutes)}:
@@ -85,10 +80,21 @@ export default function Card({
         }
     };
 
-
-
-
-
+    const style = {
+        "& .MuiOutlinedInput-root": {
+            "&.Mui-focused fieldset": {
+                borderColor: "#d2ba40",
+                border: "1px solid #d2ba40",
+                borderRadius: "4px",
+                "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                },
+            },
+            "&:hover fieldset": {
+                borderColor: "#d2ba40",
+            },
+        },
+    };
 
     return (
         <article className={s.card__article} key={id}>
@@ -114,11 +120,19 @@ export default function Card({
                             </span>
 
                             <FormControl sx={{ minWidth: 120 }}>
-                                <Select
+                                <TextField
+                                    sx={style}
+                                    id={`${card.size} ${card.model[locale]}`}
+                                    select
+                                    variant="outlined"
                                     value={+currentSize}
                                     onChange={handleChange}
-                                    name={(card.category[locale] === "Ковдри" || card.category[locale] === "Одеяла") ? "blanket" : "pillow"}
-                                    displayEmpty
+                                    name={
+                                        card.category[locale] === "Ковдри" ||
+                                            card.category[locale] === "Одеяла"
+                                            ? "blanket"
+                                            : "pillow"
+                                    }
                                     inputProps={{ MenuProps: { disableScrollLock: true } }}
                                     className={s.card__select}
                                 >
@@ -130,15 +144,12 @@ export default function Card({
                                                 {size}x{height}
                                             </MenuItem>
                                         ))}
-                                </Select>
+                                </TextField>
                             </FormControl>
                         </div>
                         {currentTime > 0 && (
                             <>
-                                <Countdown
-                                    date={currentTime}
-                                    renderer={renderer}
-                                />
+                                <Countdown date={currentTime} renderer={renderer} />
                             </>
                         )}
 
@@ -169,7 +180,11 @@ export default function Card({
                 </div>
             </div>
 
-            <h3 className={s.card__character}> <FormattedMessage id="page.home.catalog_character_title" /> {card.model[locale]}</h3>
+            <h3 className={s.card__character}>
+                {" "}
+                <FormattedMessage id="page.home.catalog_character_title" />{" "}
+                {card.model[locale]}
+            </h3>
 
             <Characteristics
                 locale={locale}

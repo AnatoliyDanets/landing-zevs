@@ -2,9 +2,6 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  /* box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-    0px 2px 1px rgba(0, 0, 0, 0.2); */
-  /* border: 1px solid #d2ba40; */
   padding: 10px;
   color: #ffffff;
 }
@@ -41,6 +38,6 @@
     padding: 5px;
     font-weight: 700;
     font-size: 16px;
-    line-height: 22;
+    line-height: 22px;
   }
 }

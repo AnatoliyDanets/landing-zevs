@@ -4,8 +4,9 @@ import { IntlProvider } from "react-intl";
 import uk from "../lang/uk.json";
 import ru from "../lang/ru.json";
 import Loader from "@/components/Loader";
-import "../styles/globals.css";
 import "normalize.css/normalize.css";
+import "../styles/globals.css";
+
 
 const messages = {
   uk,

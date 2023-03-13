@@ -66,7 +66,6 @@ export default class CenterMode extends Component {
                                 <Image
                                     src={img.url}
                                     alt="Picture of the author"
-                                    sizes="100vw"
                                     width={280}
                                     height={280}
                                     className={s.image}

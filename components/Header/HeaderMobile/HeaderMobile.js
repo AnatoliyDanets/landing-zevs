@@ -34,6 +34,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                 <Link
                                     activeClass="active"
                                     to="Features"
+                                    href={"#Features"}
                                     spy={true}
                                     smooth={true}
                                     offset={-100}
@@ -48,6 +49,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                 <Link
                                     activeClass="active"
                                     to="Products"
+                                    href={"#Products"}
                                     spy={true}
                                     smooth={true}
                                     offset={-30}
@@ -62,6 +64,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                 <Link
                                     activeClass="active"
                                     to="Feedback"
+                                    href={"#Feedback"}
                                     spy={true}
                                     smooth={true}
                                     offset={-50}
@@ -75,6 +78,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                 <Link
                                     activeClass="active"
                                     to="HowOrder"
+                                    href={"#HowOrder"}
                                     spy={true}
                                     smooth={true}
                                     offset={-50}
@@ -88,6 +92,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                 <Link
                                     activeClass="active"
                                     to="Contacts"
+                                    href={"#Contacts"}
                                     spy={true}
                                     smooth={true}
                                     offset={-50}

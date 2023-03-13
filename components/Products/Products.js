@@ -2,9 +2,10 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import ProductBlankets from "../ProductBlankets/ProductList";
 import Cart from "../Cart";
-import DisplayCart from "../DisplayCart";
+// import DisplayCart from "../DisplayCart";
 import SuccessOrder from "../SuccessOrder";
 
+const DisplayCart = dynamic(() => import("../DisplayCart"));
 const Modal = dynamic(() => import("../Modal"));
 
 export default function Products({ products, locale }) {
@@ -127,6 +128,7 @@ export default function Products({ products, locale }) {
 
     return (
         <>
+
             <ProductBlankets products={products} set={setItems} items={items} locale={locale} />
             {cartItem?.length > 0 && !showCart && (
                 <DisplayCart

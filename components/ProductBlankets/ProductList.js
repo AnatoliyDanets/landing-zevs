@@ -27,7 +27,7 @@ export default function ProductList({ products, set, items, locale }) {
     uk: "Подушки",
     ru: "Подушки"
   };
-  const [currentCategory, setCurrentCategory] = useState('');
+  const [currentCategory, setCurrentCategory] = useState(locale === "uk" ? "Ковдри" : "Одеяла");
   const [activeOne, setActiveOne] = useState(false);
   const [activeTwo, setActiveTwo] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);

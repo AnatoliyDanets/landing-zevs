@@ -5,7 +5,7 @@ import Container from "../Container";
 import classNames from "classnames";
 import { Link } from "react-scroll/modules";
 import Check from "../svgs/check.svg";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import s from "./Hero.module.css";
 
 const textAnmation = {
@@ -17,11 +17,7 @@ const textAnmation = {
     }),
 };
 
-export function getStaticProps({ locale }) {
-    return {
-        props: { locale }
-    }
-}
+
 
 export default function Hero() {
 
@@ -93,6 +89,7 @@ export default function Hero() {
                         activeClass="active"
                         className={s.btn}
                         to="Products"
+                        href={"#Products"}
                         spy={true}
                         smooth={true}
                         offset={-50}

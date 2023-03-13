@@ -21,7 +21,6 @@ export default function Characteristics({ type, property, locale }) {
         return acc;
     }, []);
 
-    // console.log(charProperty);
     return (
         <table className={s.card__character}>
             <thead className={s.card__character_head}>
