@@ -5,12 +5,12 @@ import Head from "next/head";
 import { useIntl } from "react-intl";
 import { Suspense } from "react";
 import Header from "../components/Header";
-import Feedback from "../components/Feedback";
 import Footer from "../components/Footer";
 
 const Hero = dynamic(() => import("../components/Hero"));
 const Products = dynamic(() => import("../components/Products"));
 const Features = dynamic(() => import("../components/Features"));
+const Feedback = dynamic(() => import("../components/Feedback"));
 const HowOrder = dynamic(() => import("../components/HowOrder"));
 const Contacts = dynamic(() => import("../components/Contacts"));
 

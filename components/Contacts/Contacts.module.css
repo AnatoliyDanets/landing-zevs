@@ -76,15 +76,20 @@
   text-align: left;
 }
 .contacts__body_row {
+  padding: 2px;
   font-size: 14px;
   display: flex;
   flex-direction: column;
   text-align: right;
 }
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 768px) {
   .contacts__head_row,
   .contacts__body_row {
     font-size: 16px;
   }
+}
+
+.contacts__body_row a:hover {
+  color: #ffffff;
 }

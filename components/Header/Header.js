@@ -42,7 +42,7 @@ export default function Header({ locales }) {
     const fixedHeader = useMemo(
         () => isMobile && scrollY >= 89
             ? styleFixedHeader
-            : styleFixedHeader
+            : styleAbsoluteHeader
                 ? isTablet && scrollY >= 106
                     ? styleFixedHeader
                     : styleAbsoluteHeader

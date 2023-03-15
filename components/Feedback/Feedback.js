@@ -1,13 +1,22 @@
-import { Gallery, Item } from "react-photoswipe-gallery";
+
 import { FormattedMessage } from "react-intl";
-import "photoswipe/dist/photoswipe.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import 'swiper/css/navigation';
+
+
+// import required modules
+import { Pagination, Navigation } from "swiper";
 import Image from "next/image";
 import Section from "../Section";
 import Container from "../Container";
 import SectionTitle from "../SectionTitle";
 import s from "./Feedback.module.css";
 
+
 export default function Feedback() {
+
     const feedbackPeople = [
         "https://i.ibb.co/xsqBHS5/Screenshot-2023-01-30-15-54-35-624-edit-com-uaprom-prom.jpg",
         "https://i.ibb.co/f8Ryj0g/Screenshot-2023-01-30-15-54-13-438-edit-com-uaprom-prom.jpg",
@@ -26,40 +35,45 @@ export default function Feedback() {
                 <SectionTitle
                     name={<FormattedMessage id="page.home.feedback_title" />}
                 />
-                <Gallery>
-                    <div
-                        style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))",
-                            gridGap: 5,
+                <div className={s.slider__wrapper}>
+                    <Swiper
+                        slidesPerView={1}
+                        breakpoints={{
+                            768: {
+
+                                slidesPerView: 2,
+                            },
+                            1024: {
+
+                                slidesPerView: 3,
+                            },
                         }}
+                        spaceBetween={10}
+
+                        pagination={{
+                            clickable: true,
+                        }}
+                        navigation
+                        modules={[Pagination, Navigation]}
+                        className="mySwiper"
+
                     >
-                        {feedbackPeople.map((el, i) => (
-                            <Item
-                                key={i}
-                                original={el}
-                                thumbnail={el}
-                                width="700"
-                                height="400"
-                            >
-                                {({ ref, open }) => (
-                                    <Image
-                                        ref={ref}
-                                        onClick={open}
-                                        src={el}
-                                        alt="Picture of the author"
-                                        width="130"
-                                        height="60"
-                                        className={s.slider__img}
-                                        priority
-                                        blurDataURL="data:..."
-                                        placeholder="blur"
-                                    />
-                                )}
-                            </Item>
+                        {feedbackPeople.map((el, i) => (<SwiperSlide key={i}>
+                            <Image
+                                src={el}
+                                alt="feedback"
+                                width="258"
+                                height="120"
+                                className={s.slider__img}
+                                priority
+                                blurDataURL="data:..."
+                                placeholder="blur"
+                            />
+                        </SwiperSlide>
                         ))}
-                    </div>
-                </Gallery>
+                    </Swiper>
+                </div>
+
             </Container>
         </Section>
     );
