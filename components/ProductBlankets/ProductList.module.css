@@ -5,6 +5,29 @@
   max-width: 100%;
 }
 
+.products:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.products__title {
+  position: relative;
+  font-size: 22px;
+  text-align: center;
+  margin: 0;
+  color: #ffffff;
+  margin-bottom: 25px;
+}
+
+@media screen and (min-width: 768px) {
+  .products__title {
+    font-size: 30px;
+    text-align: center;
+    margin: 0;
+    color: #ffffff;
+    margin-bottom: 30px;
+  }
+}
+
 .products__item {
   background-color: rgba(51, 51, 51, 0.75);
   border-radius: 8px;

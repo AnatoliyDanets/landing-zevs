@@ -21,7 +21,7 @@ export default function Footer() {
                     </li>
                 </ul>
 
-                <p className={s.footer__copy}>© 2022 Zevs VIP & Design</p>
+                <p className={s.footer__copy}>© 2023 Zevs VIP & Design</p>
             </Container>
         </footer>
     );

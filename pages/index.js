@@ -7,7 +7,9 @@ import { Suspense } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+
 const Hero = dynamic(() => import("../components/Hero"));
+const DiscountCards = dynamic(() => import("../components/DiscountCards"));
 const Products = dynamic(() => import("../components/Products"));
 const Features = dynamic(() => import("../components/Features"));
 const Feedback = dynamic(() => import("../components/Feedback"));
@@ -21,7 +23,6 @@ export default function Home({ products }) {
   const description = intl.formatMessage({
     id: "page.home.head.meta.description",
   });
-
   return (
     <>
       <Head>
@@ -34,6 +35,7 @@ export default function Home({ products }) {
       </Head>
       <Header locales={locales} />
       <Hero />
+      <DiscountCards products={products} locale={locale} />
       <Features />
       <Suspense fallback={<div>Loading...</div>}>
         <Products products={products} locale={locale} />
@@ -49,9 +51,9 @@ export default function Home({ products }) {
     </>
   );
 }
-//`http://localhost:3001/api/products`  
+
 export async function getServerSideProps() {
-  const res = await fetch(`https://testback-production-353f.up.railway.app/api/products`);
+  const res = await fetch(process.env.PRODUCTS_ENDPOINT);
   const products = await res.json();
 
   return {

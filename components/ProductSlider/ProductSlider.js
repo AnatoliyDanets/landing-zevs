@@ -5,6 +5,7 @@ import Image from "next/image";
 import s from "./ProductSlider.module.css";
 
 function SampleNextArrow(props) {
+
     const { onClick } = props;
     return (
         <div
@@ -30,6 +31,15 @@ function SamplePrevArrow(props) {
 
 
 export default class CenterMode extends Component {
+    makeSizeForImage = (img, w, h) => {
+        const splitImg = img.split("/")
+        const addSize = splitImg.find(el => el === "upload")
+        const concatSize = `${addSize}/w_${w},h_${h},c_fill`
+        const startPath = splitImg.slice(0, 5)
+        const endPath = splitImg.slice(-3)
+        const newImagePath = [...startPath, concatSize, ...endPath].join("/")
+        return newImagePath
+    }
     render() {
         const { cardImg } = this.props;
         const settings = {
@@ -38,8 +48,8 @@ export default class CenterMode extends Component {
                     <Image
                         src={cardImg[0 + i].url}
                         alt="Picture of the author"
-                        width={50}
-                        height={50}
+                        width={70}
+                        height={70}
                         className={s.image__dot}
                         priority
                         blurDataURL="data:..."
@@ -64,10 +74,10 @@ export default class CenterMode extends Component {
                         cardImg.map((img, i) => (
                             <div key={img.public_id} className={s.slider__wr}>
                                 <Image
-                                    src={img.url}
+                                    src={this.makeSizeForImage(img.url, 460, 460)}
                                     alt="Picture of the author"
-                                    width={280}
-                                    height={280}
+                                    width={460}
+                                    height={460}
                                     className={s.image}
                                 />
                             </div>

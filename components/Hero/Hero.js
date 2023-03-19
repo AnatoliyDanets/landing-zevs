@@ -1,10 +1,10 @@
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
+// import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import Container from "../Container";
 import classNames from "classnames";
 import { Link } from "react-scroll/modules";
-import Check from "../svgs/check.svg";
+// import Check from "../svgs/check.svg";;
 import { FormattedMessage } from "react-intl";
 import s from "./Hero.module.css";
 
@@ -17,15 +17,12 @@ const textAnmation = {
     }),
 };
 
-
-
 export default function Hero() {
-
-    // const isTablet = useMediaQuery({ query: "(min-width: 480px)" });
+    // const isTablet = useMediaQuery({ query: "(min-width: 768px)" });
     // const [showIsTablet, setShowIsTablet] = useState(false);
     // useEffect(() => {
     //     isTablet ? setShowIsTablet(true) : setShowIsTablet(false);
-    // }, []);
+    // }, [showIsTablet, isTablet, setShowIsTablet]);
     return (
         <motion.section
             initial="hidden"
@@ -41,7 +38,6 @@ export default function Hero() {
                     variants={textAnmation}
                     className={s.hero__title}
                 >
-
                     <FormattedMessage id="page.home.hero_title" />
                 </motion.h1>
 

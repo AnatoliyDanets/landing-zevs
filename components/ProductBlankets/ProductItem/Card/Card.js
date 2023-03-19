@@ -98,7 +98,7 @@ export default function Card({
 
     return (
         <article className={s.card__article} key={id}>
-            <h3 className={s.card__title}>{card.model[locale]}</h3>
+            <h4 className={s.card__title} id={card.model[locale]}>{card.model[locale]}</h4>
             <div className={s.card__wrapper}>
                 <div className={s.card__left}>
                     {card.discount > 0 && (
@@ -180,11 +180,11 @@ export default function Card({
                 </div>
             </div>
 
-            <h3 className={s.card__character}>
+            <h4 className={s.card__character}>
                 {" "}
                 <FormattedMessage id="page.home.catalog_character_title" />{" "}
                 {card.model[locale]}
-            </h3>
+            </h4>
 
             <Characteristics
                 locale={locale}

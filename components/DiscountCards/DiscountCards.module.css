@@ -1,0 +1,143 @@
+.slider__img_wrap {
+  width: 100%;
+}
+
+.slider__img {
+  object-fit: fill;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.slider__wrapper {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px 15px 30px;
+
+  height: 100%;
+  border-radius: 8px;
+}
+
+.slider__item {
+  position: relative;
+  padding: 0px 0px 10px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  border: 1px solid #d2ba40;
+  background-color: rgb(51, 51, 51);
+}
+
+.btn {
+  font-family: "Nunito";
+  background: #866a1a;
+  background: linear-gradient(
+    45deg,
+    rgba(134, 106, 26, 1) 55%,
+    rgba(210, 186, 64, 1) 75%
+  );
+  border: none;
+  text-shadow: 1px 0 1px #463f3f, 0 1px 1px #463f3f, -1px 0 1px #463f3f,
+    0 2px 2px #463f3f;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 14px;
+
+  width: 120px;
+  line-height: 1.16;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  cursor: pointer;
+  pointer-events: all;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn:focus,
+.btn:hover {
+  opacity: 0.9;
+}
+.btn:disabled {
+  color: #333333;
+  background-color: #ffffff;
+  border: none;
+}
+
+.slider__info {
+  padding: 10px 0px;
+}
+
+.slider__title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  height: 45px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.slider__discount {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  z-index: 50;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border-radius: 50%;
+  background-color: #d2ba40;
+  color: #333333;
+}
+
+.slider__discount_time {
+  position: absolute;
+  bottom: 42%;
+  right: 0;
+  width: 100%;
+  background-color: rgba(51, 51, 51, 0.5);
+  color: #d2ba40;
+  font-size: 14px;
+  padding: 5px 2px;
+}
+@media screen and (min-width: 480px) {
+  .slider__discount_time {
+    bottom: 31%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .slider__discount_time {
+    bottom: 35%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .slider__discount_time {
+    bottom: 45%;
+  }
+}
+
+.card__price {
+  color: #d2ba40;
+  font-size: 24px;
+  line-height: 1.55;
+  font-weight: 500;
+  background-position: center center;
+  border-color: transparent;
+}
+
+.card__price_discount {
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 500;
+  background-position: center center;
+  border-color: transparent;
+  margin-bottom: 10px;
+}

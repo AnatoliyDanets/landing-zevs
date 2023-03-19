@@ -30,6 +30,23 @@ export default function HeaderMobile({ show, onClick, locales }) {
                             <li className={s.nav__item}>
                                 <HeaderLangBox locales={locales} />
                             </li>
+
+
+                            <li className={s.nav__item}>
+                                <Link
+                                    activeClass="active"
+                                    to="Discount"
+                                    spy={true}
+                                    smooth={true}
+                                    offset={-100}
+                                    duration={500}
+                                    href={"#Discount"}
+                                    onClick={onClick}
+                                >
+                                    <FormattedMessage id="page.home.discount_title" />
+                                </Link>
+                            </li>
+
                             <li className={s.nav__item}>
                                 <Link
                                     activeClass="active"
@@ -48,15 +65,30 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                 {" "}
                                 <Link
                                     activeClass="active"
-                                    to="Products"
-                                    href={"#Products"}
+                                    to="Blankets"
+                                    href={"#Blankets"}
                                     spy={true}
                                     smooth={true}
-                                    offset={-30}
+                                    offset={-50}
                                     duration={500}
                                     onClick={onClick}
                                 >
-                                    <FormattedMessage id="page.home.header_item_two" />
+                                    <FormattedMessage id="page.home.catalog_title_one" />
+                                </Link>
+                            </li>
+                            <li className={s.nav__item}>
+                                {" "}
+                                <Link
+                                    activeClass="active"
+                                    to="Pillows"
+                                    href={"#Pillows"}
+                                    spy={true}
+                                    smooth={true}
+                                    offset={-50}
+                                    duration={500}
+                                    onClick={onClick}
+                                >
+                                    <FormattedMessage id="page.home.catalog_title_two" />
                                 </Link>
                             </li>
 

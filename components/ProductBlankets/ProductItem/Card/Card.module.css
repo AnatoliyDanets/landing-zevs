@@ -150,9 +150,6 @@
   border-color: transparent;
 }
 
-.card__price:not(:last-child) {
-  margin-right: 20px;
-}
 .card__price_discount {
   color: #ffffff;
   font-size: 20px;
@@ -181,11 +178,7 @@
   }
 }
 
-@media screen and (min-width: 1024px) {
-  .card__discription {
-    font-size: 18px;
-    line-height: 24px;
-  }
+@media screen and (min-width: 768px) {
   .card__wrapper {
     display: flex;
     background-color: transparent;
@@ -194,7 +187,15 @@
   }
   .card__left {
     margin-bottom: unset;
+    width: 45%;
     margin-right: 20px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .card__discription {
+    font-size: 18px;
+    line-height: 24px;
   }
 }
 

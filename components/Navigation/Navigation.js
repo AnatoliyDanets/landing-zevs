@@ -24,6 +24,20 @@ export default function Navigation() {
                 <li className={s.nav__item}>
                     <Link
                         activeClass="active"
+                        to="Discount"
+                        spy={true}
+                        smooth={true}
+                        offset={-100}
+                        duration={500}
+                        href={"#Discount"}
+                        className={s.nav__link}
+                    >
+                        <FormattedMessage id="page.home.discount_title" />
+                    </Link>
+                </li>
+                <li className={s.nav__item}>
+                    <Link
+                        activeClass="active"
                         to="Features"
                         spy={true}
                         smooth={true}
@@ -39,15 +53,30 @@ export default function Navigation() {
                     {" "}
                     <Link
                         activeClass="active"
-                        to="Products"
-                        href={"#Products"}
+                        to="Blankets"
+                        href={"#Blankets"}
                         spy={true}
                         smooth={true}
-                        offset={-50}
+                        offset={-120}
                         duration={500}
                         className={s.nav__link}
                     >
-                        <FormattedMessage id="page.home.header_item_two" />
+                        <FormattedMessage id="page.home.catalog_title_one" />
+                    </Link>
+                </li>
+                <li className={s.nav__item}>
+                    {" "}
+                    <Link
+                        activeClass="active"
+                        to="Pillows"
+                        href={"#Pillows"}
+                        spy={true}
+                        smooth={true}
+                        offset={-120}
+                        duration={500}
+                        className={s.nav__link}
+                    >
+                        <FormattedMessage id="page.home.catalog_title_two" />
                     </Link>
                 </li>
 
