@@ -52,6 +52,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .basket__title {
+  font-family: "Nunito", sans-serif;
   font-size: 32px;
   line-height: 1.36;
   text-align: center;
@@ -62,6 +63,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .basket__name {
+  font-family: "Nunito", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
@@ -108,6 +110,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-right: 5px;
 }
 .basket__price {
+  font-family: "Nunito", sans-serif;
   font-size: 14px;
   line-height: 22px;
   letter-spacing: 0.1em;
@@ -116,6 +119,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .basket__total {
+  font-family: "Nunito", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 28px;
@@ -125,6 +129,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .basket__back {
+  font-family: "Nunito", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.16;
@@ -139,6 +144,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .basket__active,
 .basket__btn {
+  font-family: "Nunito", sans-serif;
   font-weight: 500;
   font-size: 16px;
   height: 50px;
@@ -157,6 +163,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .basket__value {
+  font-family: "Nunito", sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.16;
@@ -191,6 +198,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .tableCart__head_sel {
+  font-family: "Nunito", sans-serif;
   font-weight: 500;
   font-size: 14px;
   color: #d2ba40;
@@ -206,6 +214,7 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: rgba(51, 51, 51, 0.75);
 }
 .tableCart__body_sel {
+  font-family: "Nunito", sans-serif;
   font-weight: 500;
   font-size: 14px;
   color: #ffffff;
@@ -219,6 +228,7 @@ input[type="number"]::-webkit-outer-spin-button {
   color: #ffffff;
 }
 .tableCart__body_select {
+  font-family: "Nunito", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.16;
@@ -235,6 +245,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .basket__orderTitle {
+  font-family: "Nunito", sans-serif;
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 20px;
@@ -247,6 +258,7 @@ input[type="number"]::-webkit-outer-spin-button {
   flex-direction: column;
 }
 .basket__form_label {
+  font-family: "Nunito", sans-serif;
   color: #ffffff;
   margin-bottom: 5px;
 }
@@ -262,6 +274,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .basket__form_input {
+  font-family: "Nunito", sans-serif;
   flex: 1;
   min-width: 0;
   border: none;
@@ -270,6 +283,7 @@ input[type="number"]::-webkit-outer-spin-button {
   color: #ffffff;
 }
 .phone {
+  font-family: "Nunito", sans-serif;
   display: flex;
   align-items: center;
   border: 1px solid #d4d4d8;

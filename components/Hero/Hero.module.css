@@ -167,7 +167,7 @@
 }
 
 .btn {
-  font-family: "Nunito";
+  font-family: "Nunito", sans-serif;
   background: #866a1a;
   background: linear-gradient(
     45deg,
@@ -204,4 +204,3 @@
   background-color: #ffffff;
   border: none;
 }
-

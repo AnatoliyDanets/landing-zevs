@@ -23,6 +23,7 @@
   display: flex;
   align-items: center;
 }
+
 .card__character_sel:nth-child(even) {
   background-color: transparent;
   color: #ffffff;
