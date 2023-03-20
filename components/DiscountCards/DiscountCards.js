@@ -1,4 +1,5 @@
 import { FormattedMessage } from "react-intl";
+import useFormattedDate from "@/hook/hook";
 import { Link } from "react-scroll/modules";
 import Section from "../Section";
 import SectionTitle from "../SectionTitle";
@@ -10,13 +11,18 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import { Autoplay, Pagination, Navigation } from "swiper";
-
 import s from "./DiscountCards.module.css";
 
+
+
+
+export const ConvertToNormalDate = ({ date }) => {
+    const finishDiscountDate = useFormattedDate(date);
+    return String(finishDiscountDate)
+};
+
+
 export default function DiscountCards({ products, locale }) {
-    const convertToNormalDate = (date) => {
-        return new Date(date - 10800000).toLocaleDateString();
-    };
     const makeSizeForImage = (img, w, h) => {
         const splitImg = img.split("/");
         const addSize = splitImg.find((el) => el === "upload");
@@ -82,7 +88,7 @@ export default function DiscountCards({ products, locale }) {
                                                     />
                                                     <div className={s.slider__discount_time}>
                                                         <FormattedMessage id="page.home.discount_product_time" />
-                                                        {String(convertToNormalDate(el.discount_time))}
+                                                        {<ConvertToNormalDate date={el.discount_time} />}
                                                     </div>
                                                 </div>
                                                 <article className={s.slider__info}>
@@ -134,8 +140,6 @@ export default function DiscountCards({ products, locale }) {
                                                         <FormattedMessage id="page.home.discount_product_link" />
                                                     </Link>
                                                 </article>
-
-                                                {/* </div> */}
                                             </div>
                                         </SwiperSlide>
                                     </div>

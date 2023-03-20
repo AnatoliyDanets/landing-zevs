@@ -17,6 +17,17 @@ import Loader from "../Loader";
 import Button from "../Button";
 import s from "./Cart.module.css";
 
+import { Nunito } from "@next/font/google";
+
+const nunito = Nunito({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    display: "swap",
+    variable: "--font-nunito",
+});
+
+
+
 export default function Cart({
     cartProduct,
     increment,
@@ -152,233 +163,236 @@ export default function Cart({
     return (
         <>
             <Loader loading={loading} />
-            <div className={s.basket__container}>
-                <h2 className={s.basket__title}><FormattedMessage id="page.home.modal_order_title" /></h2>
-                {showIsMobile ? (
-                    <ul className={s.mobile__cart}>
-                        {uniqueCartProducts.map((el, i) => (
-                            <li key={el.cards.public_id} className={s.mobile__cartItem}>
-                                <div className={s.mobile__cartWrap}>
-                                    <Image
-                                        src={el.cards.url}
-                                        alt={el.model}
-                                        width={70}
-                                        height={70}
-                                        priority
-                                    />
+            <div className={`${nunito.className} `}>
+                <div className={s.basket__container}>
+                    <h2 className={s.basket__title}><FormattedMessage id="page.home.modal_order_title" /></h2>
+                    {showIsMobile ? (
+                        <ul className={s.mobile__cart}>
+                            {uniqueCartProducts.map((el, i) => (
+                                <li key={el.cards.public_id} className={s.mobile__cartItem}>
+                                    <div className={s.mobile__cartWrap}>
+                                        <Image
+                                            src={el.cards.url}
+                                            alt={el.model}
+                                            width={70}
+                                            height={70}
+                                            priority
+                                        />
 
-                                    <p className={s.mobile__name}>
-                                        {" "}
-                                        {`${el.model} ${el.size}x${el.height}`}
-                                    </p>
-                                </div>
-
-                                <div className={s.mobile__cartWrapCount}>
-                                    <div className={s.mobile__cartCount}>
-                                        <button
-                                            className={s.basket__decrement}
-                                            onClick={decrement}
-                                            id={el._id}
-                                        >
+                                        <p className={s.mobile__name}>
                                             {" "}
-                                            <Minus className={s.basket__minus} />
-                                        </button>
+                                            {`${el.model} ${el.size}x${el.height}`}
+                                        </p>
+                                    </div>
 
-                                        <span className={s.mobile__cartValue}>{+el.count}</span>
+                                    <div className={s.mobile__cartWrapCount}>
+                                        <div className={s.mobile__cartCount}>
+                                            <button
+                                                className={s.basket__decrement}
+                                                onClick={decrement}
+                                                id={el._id}
+                                            >
+                                                {" "}
+                                                <Minus className={s.basket__minus} />
+                                            </button>
+
+                                            <span className={s.mobile__cartValue}>{+el.count}</span>
+                                            <button
+                                                className={s.basket__increment}
+                                                onClick={increment}
+                                                id={el._id}
+                                            >
+                                                <Plus className={s.basket__plus} />
+                                            </button>
+                                        </div>
+                                        <span className={s.mobile__cartPrice}>
+                                            {el.discount > 0
+                                                ? (
+                                                    (+el.price - (el.discount / 100) * +el.price) *
+                                                    el.count
+                                                ).toFixed(2)
+                                                : +el.count * (+el.price.toFixed(2))}
+                                            грн
+                                        </span>
                                         <button
-                                            className={s.basket__increment}
-                                            onClick={increment}
                                             id={el._id}
+                                            className={s.basket__delete}
+                                            type="button"
+                                            onClick={() => removeClick(el._id)}
                                         >
-                                            <Plus className={s.basket__plus} />
+                                            <Del className={s.basket__plus} />
                                         </button>
                                     </div>
-                                    <span className={s.mobile__cartPrice}>
-                                        {el.discount > 0
-                                            ? (
-                                                (+el.price - (el.discount / 100) * +el.price) *
-                                                el.count
-                                            ).toFixed(2)
-                                            : +el.count * (+el.price.toFixed(2))}
-                                        грн
-                                    </span>
-                                    <button
-                                        id={el._id}
-                                        className={s.basket__delete}
-                                        type="button"
-                                        onClick={() => removeClick(el._id)}
-                                    >
-                                        <Del className={s.basket__plus} />
-                                    </button>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <table className={s.tableCart}>
-                        <thead className={s.tableCart__head}>
-                            <tr className={s.tableCart__head_row}>
-                                <th
-                                    className={s.tableCart__head_sel}
-                                    style={{ emptyCells: "hide" }}
-                                ></th>
-                                <th className={s.tableCart__head_sel}><FormattedMessage id="page.home.modal_table_model" /></th>
-                                <th className={s.tableCart__head_sel}><FormattedMessage id="page.home.modal_table_quantity" /></th>
-                                <th className={s.tableCart__head_sel}><FormattedMessage id="page.home.modal_table_price" /></th>
-                                <th className={s.tableCart__head_sel}></th>
-                            </tr>
-                        </thead>
-                        <tbody className={s.tableCart__body}>
-                            {uniqueCartProducts.map((el, i) => (
-                                <tr className={s.tableCart__body_row} key={el.cards.public_id}>
-                                    <>
-                                        <td className={s.tableCart__body_sel}>
-                                            {
-                                                <Image
-                                                    src={el.cards.url}
-                                                    alt={el.model}
-                                                    width={70}
-                                                    height={70}
-                                                    priority
-                                                />
-                                            }
-                                        </td>
-                                        <td className={s.tableCart__body_sel}>
-                                            <p className={s.basket__name}>
-                                                {el.model} {`${el.size}x${el.height}`}
-                                            </p>
-                                        </td>
-                                        <td className={s.tableCart__body_sel}>
-                                            {" "}
-                                            <div className={s.basket__count}>
-                                                <button
-                                                    className={s.basket__decrement}
-                                                    onClick={decrement}
-                                                    id={el._id}
-                                                >
-                                                    {" "}
-                                                    <Minus className={s.basket__minus} />
-                                                </button>
-
-                                                <span
-                                                    className={s.basket__value}
-                                                    style={{ width: "20px" }}
-                                                >
-                                                    {+el.count}
-                                                </span>
-                                                <button
-                                                    className={s.basket__increment}
-                                                    onClick={increment}
-                                                    id={el._id}
-                                                >
-                                                    <Plus className={s.basket__plus} />
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td className={s.tableCart__body_sel}>
-                                            <span className={s.basket__price}>
-                                                {el.discount > 0
-                                                    ? (
-                                                        (+el.price - (el.discount / 100) * +el.price) *
-                                                        el.count
-                                                    ).toFixed(2)
-                                                    : +el.count * (+el.price.toFixed(2))}
-                                                грн
-                                            </span>
-                                        </td>
-
-                                        <td className={s.tableCart__body_sel}>
-                                            <button
-                                                aria-label={"Удалить"}
-                                                id={el._id}
-                                                className={s.basket__delete}
-                                                type="button"
-                                                onClick={() => removeClick(el._id)}
-                                            >
-                                                <Del className={s.basket__plus} />
-                                            </button>
-                                        </td>
-                                    </>
-                                </tr>
+                                </li>
                             ))}
-                        </tbody>
-                    </table>
-                )}
+                        </ul>
+                    ) : (
+                        <table className={s.tableCart}>
+                            <thead className={s.tableCart__head}>
+                                <tr className={s.tableCart__head_row}>
+                                    <th
+                                        className={s.tableCart__head_sel}
+                                        style={{ emptyCells: "hide" }}
+                                    ></th>
+                                    <th className={s.tableCart__head_sel}><FormattedMessage id="page.home.modal_table_model" /></th>
+                                    <th className={s.tableCart__head_sel}><FormattedMessage id="page.home.modal_table_quantity" /></th>
+                                    <th className={s.tableCart__head_sel}><FormattedMessage id="page.home.modal_table_price" /></th>
+                                    <th className={s.tableCart__head_sel}></th>
+                                </tr>
+                            </thead>
+                            <tbody className={s.tableCart__body}>
+                                {uniqueCartProducts.map((el, i) => (
+                                    <tr className={s.tableCart__body_row} key={el.cards.public_id}>
+                                        <>
+                                            <td className={s.tableCart__body_sel}>
+                                                {
+                                                    <Image
+                                                        src={el.cards.url}
+                                                        alt={el.model}
+                                                        width={70}
+                                                        height={70}
+                                                        priority
+                                                    />
+                                                }
+                                            </td>
+                                            <td className={s.tableCart__body_sel}>
+                                                <p className={s.basket__name}>
+                                                    {el.model} {`${el.size}x${el.height}`}
+                                                </p>
+                                            </td>
+                                            <td className={s.tableCart__body_sel}>
+                                                {" "}
+                                                <div className={s.basket__count}>
+                                                    <button
+                                                        className={s.basket__decrement}
+                                                        onClick={decrement}
+                                                        id={el._id}
+                                                    >
+                                                        {" "}
+                                                        <Minus className={s.basket__minus} />
+                                                    </button>
 
-                <div className={s.basket__order}>
-                    <p className={s.basket__total}>{price.toFixed(2)}грн</p>
-                </div>
-                <div>
-                    <h3 className={s.basket__orderTitle}><FormattedMessage id="page.home.modal_ordering_title" /></h3>
+                                                    <span
+                                                        className={s.basket__value}
+                                                        style={{ width: "20px" }}
+                                                    >
+                                                        {+el.count}
+                                                    </span>
+                                                    <button
+                                                        className={s.basket__increment}
+                                                        onClick={increment}
+                                                        id={el._id}
+                                                    >
+                                                        <Plus className={s.basket__plus} />
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td className={s.tableCart__body_sel}>
+                                                <span className={s.basket__price}>
+                                                    {el.discount > 0
+                                                        ? (
+                                                            (+el.price - (el.discount / 100) * +el.price) *
+                                                            el.count
+                                                        ).toFixed(2)
+                                                        : +el.count * (+el.price.toFixed(2))}
+                                                    грн
+                                                </span>
+                                            </td>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className={s.basket__form}>
-                        <label className={s.basket__form_label} htmlFor="value">
-                            <FormattedMessage id="page.home.modal_ordering_name" />
-                        </label>
-                        <div className={s.basket__form_inputWrap}>
-                            <input
-                                className={s.basket__form_input}
-                                placeholder="John"
-                                {...register("name", {
+                                            <td className={s.tableCart__body_sel}>
+                                                <button
+                                                    aria-label={"Удалить"}
+                                                    id={el._id}
+                                                    className={s.basket__delete}
+                                                    type="button"
+                                                    onClick={() => removeClick(el._id)}
+                                                >
+                                                    <Del className={s.basket__plus} />
+                                                </button>
+                                            </td>
+                                        </>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+
+                    <div className={s.basket__order}>
+                        <p className={s.basket__total}>{price.toFixed(2)}грн</p>
+                    </div>
+                    <div>
+                        <h3 className={s.basket__orderTitle}><FormattedMessage id="page.home.modal_ordering_title" /></h3>
+
+                        <form onSubmit={handleSubmit(onSubmit)} className={s.basket__form}>
+                            <label className={s.basket__form_label} htmlFor="value">
+                                <FormattedMessage id="page.home.modal_ordering_name" />
+                            </label>
+                            <div className={s.basket__form_inputWrap}>
+                                <input
+                                    className={s.basket__form_input}
+                                    placeholder="John"
+                                    {...register("name", {
+                                        required: true,
+                                        minLength: 3,
+                                        maxLength: 40,
+                                        min: 3,
+                                        max: 40,
+                                    })}
+                                />
+                            </div>
+                            <label className={s.basket__form_label} htmlFor="phone">
+                                <FormattedMessage id="page.home.modal_ordering_phone" />
+                            </label>
+                            <PhoneInputWithCountry
+                                className={s.phone}
+                                labels={ua}
+                                name="phone"
+                                id="phone"
+                                international
+                                defaultCountry="UA"
+                                value={value}
+                                maxLength={16}
+                                onChange={setValue}
+                                control={control}
+                                countryCallingCodeEditable={false}
+                                rules={{
                                     required: true,
-                                    minLength: 3,
-                                    maxLength: 40,
-                                    min: 3,
-                                    max: 40,
-                                })}
+                                }}
+                                error={
+                                    value
+                                        ? isValidPhoneNumber(value)
+                                            ? undefined
+                                            : "Invalid phone number"
+                                        : "Phone number required"
+                                }
                             />
-                        </div>
-                        <label className={s.basket__form_label} htmlFor="phone">
-                            <FormattedMessage id="page.home.modal_ordering_phone" />
-                        </label>
-                        <PhoneInputWithCountry
-                            className={s.phone}
-                            labels={ua}
-                            name="phone"
-                            id="phone"
-                            international
-                            defaultCountry="UA"
-                            value={value}
-                            maxLength={16}
-                            onChange={setValue}
-                            control={control}
-                            countryCallingCodeEditable={false}
-                            rules={{
-                                required: true,
-                            }}
-                            error={
-                                value
-                                    ? isValidPhoneNumber(value)
-                                        ? undefined
-                                        : "Invalid phone number"
-                                    : "Phone number required"
-                            }
-                        />
-                        <Button
-                            style={{
-                                margin: "auto",
-                            }}
-                            type={"submit"}
-                            disabled={
-                                (!(value && isPossiblePhoneNumber(value)) &&
-                                    !(value && isValidPhoneNumber(value))) ||
-                                value?.length > 13 ||
-                                !isDirty ||
-                                !isValid
-                            }
-                        >
-                            <FormattedMessage id="page.home.modal_button_order" />
-                        </Button>
-                        {!(
-                            value &&
-                            isPossiblePhoneNumber(value) &&
-                            value &&
-                            isValidPhoneNumber(value)
-                        ) &&
-                            value?.length > 13 && <p>Невірно набраний номер</p>}
-                    </form>
+                            <Button
+                                style={{
+                                    margin: "auto",
+                                }}
+                                type={"submit"}
+                                disabled={
+                                    (!(value && isPossiblePhoneNumber(value)) &&
+                                        !(value && isValidPhoneNumber(value))) ||
+                                    value?.length > 13 ||
+                                    !isDirty ||
+                                    !isValid
+                                }
+                            >
+                                <FormattedMessage id="page.home.modal_button_order" />
+                            </Button>
+                            {!(
+                                value &&
+                                isPossiblePhoneNumber(value) &&
+                                value &&
+                                isValidPhoneNumber(value)
+                            ) &&
+                                value?.length > 13 && <p>Невірно набраний номер</p>}
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </>
     );
 }
