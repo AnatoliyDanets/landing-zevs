@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Arrow from "../../../svgs/arrow.svg";
 import Button from "../../../Button/Button";
 import Characteristics from "../../../Characteristics";
 import CenterMode from "../../../ProductSlider/ProductSlider";
@@ -26,7 +27,20 @@ export default function Card({
     const [discount, setDiscount] = useState(0);
     const [currentTime, setCurrentTime] = useState(null);
     const router = useRouter();
+    const [showDisc, setShowDisc] = useState(false);
+    const [showAllDisc, setShowAllDisc] = useState(card.discription[locale]);
 
+    const handleShowDisc = () => {
+        setShowDisc((prev) => !prev);
+    };
+
+    useEffect(() => {
+        if (card.discription[locale].length > 400) {
+            setShowDisc(false);
+            const showText = card.discription[locale].slice(0, 400);
+            setShowAllDisc(showText);
+        }
+    }, [card.discription[locale]]);
     useEffect(() => {
         setDiscount(card.discount);
     }, [card.discount]);
@@ -67,11 +81,11 @@ export default function Card({
             }
         } else {
             return (
-                <p className={s.discount_time}>
+                <p className={s.card__discount_time}>
                     <FormattedMessage id="page.home.catalog_discount" />{" "}
-                    <span className={s.discount__percent}>-{card.discount}% </span>{" "}
+                    <span className={s.card__discount_percent}>-{card.discount}% </span>{" "}
                     <FormattedMessage id="page.home.catalog_discount_action" />{" "}
-                    <span className={s.discount__percent}>
+                    <span className={s.card__discount_percent}>
                         {zeroPad(days)}д {zeroPad(hours)}:{zeroPad(minutes)}:
                         {zeroPad(seconds)}
                     </span>
@@ -98,7 +112,9 @@ export default function Card({
 
     return (
         <article className={s.card__article} key={id}>
-            <h4 className={s.card__title} id={card.model[locale]}>{card.model[locale]}</h4>
+            <h4 className={s.card__title} id={card.model[locale]}>
+                {card.model[locale]}
+            </h4>
             <div className={s.card__wrapper}>
                 <div className={s.card__left}>
                     {card.discount > 0 && (
@@ -111,11 +127,36 @@ export default function Card({
                     {card.cardImg.length > 0 && <CenterMode cardImg={card.cardImg} />}
                 </div>
                 <div className={s.card__right}>
-                    <p className={s.card__discription}>{card.discription[locale]}</p>
-
+                    <p className={s.card__discription}>
+                        {showDisc === false && card?.discription[locale]?.length >= 400
+                            ? `${showAllDisc?.slice(0, 400)}...`
+                            : card.discription[locale]}
+                    </p>
+                    {card?.discription[locale]?.length >= 400 && (
+                        <button
+                            className={s.card__discription_show}
+                            type="button"
+                            onClick={handleShowDisc}
+                        >
+                            {!showDisc ? (
+                                <>
+                                    {" "}
+                                    <FormattedMessage id="page.home.catalog_discription_button_true" />{" "}
+                                </>
+                            ) : (
+                                <>
+                                    <FormattedMessage id="page.home.catalog_discription_button_false" />
+                                </>
+                            )}
+                            <Arrow
+                                className={s.card__discription_icon}
+                                style={showDisc === false && card?.discription[locale]?.length >= 400 ? { transform: "rotate(0deg)" } : { transform: "rotate(180deg)" }}
+                            />
+                        </button>
+                    )}
                     <div className={s.card__showPrice}>
-                        <div className={s.blanket__size}>
-                            <span className={s.blanket__sizeText}>
+                        <div className={s.card__product_size}>
+                            <span className={s.card__product_sizeText}>
                                 <FormattedMessage id="page.home.catalog_change_size" />
                             </span>
 
@@ -180,13 +221,8 @@ export default function Card({
                 </div>
             </div>
 
-            <h4 className={s.card__character}>
-                {" "}
-                <FormattedMessage id="page.home.catalog_character_title" />{" "}
-                {card.model[locale]}
-            </h4>
-
             <Characteristics
+                model={card.model[locale]}
                 locale={locale}
                 type={card.category[locale]}
                 property={Object.values(card.characteristics)}

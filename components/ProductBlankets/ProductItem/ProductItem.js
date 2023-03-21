@@ -2,7 +2,7 @@ import { FormattedMessage } from "react-intl";
 import { useEffect, useState } from "react";
 import Card from "./Card/Card";
 
-export default function ProductItem({ id, arr, text, set, items, locale }) {
+export default function ProductItem({ arr, text, set, items, locale }) {
     const [disabled, setDisabled] = useState(false);
     const [cartText, setCartText] = useState("У кошик");
     const [currentSizeBlanket, setCurrentSizeBlanket] = useState(150);

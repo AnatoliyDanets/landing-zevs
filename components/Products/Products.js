@@ -1,11 +1,13 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import ProductBlankets from "../ProductBlankets/ProductList";
-import Cart from "../Cart";
+// import Cart from "../Cart";
 // import DisplayCart from "../DisplayCart";
-import SuccessOrder from "../SuccessOrder";
+// import SuccessOrder from "../SuccessOrder";
 
 const DisplayCart = dynamic(() => import("../DisplayCart"));
+const SuccessOrder = dynamic(() => import("../SuccessOrder"));
+const Cart = dynamic(() => import("../Cart"));
 const Modal = dynamic(() => import("../Modal"));
 
 export default function Products({ products, locale }) {

@@ -3,7 +3,7 @@
   font-size: 28px;
   text-align: center;
   margin: 0;
-  color: #ffffff;
+  color: var(--secondary-color);
   margin-bottom: 25px;
 }
 .title::after {
@@ -15,16 +15,13 @@
   transform: translateX(50%);
   text-align: center;
   height: 2px;
-  background-color: #d2ba40;
+  background-color: var(--secondary-bcg-color);
   width: 278px;
 }
 
 @media screen and (min-width: 768px) {
   .title {
     font-size: 36px;
-    text-align: center;
-    margin: 0;
-    color: #ffffff;
     margin-bottom: 30px;
   }
 }

@@ -72,11 +72,13 @@ function App({ Component, pageProps }) {
   return (
     <>
       <Loading />
-      <main className={`${nunito.className} `}>
-        <IntlProvider locale={locale} messages={messages[locale]}>
+
+      <IntlProvider locale={locale} messages={messages[locale]}>
+        <main className={`${nunito.className} `}>
           <Component {...pageProps} />
-        </IntlProvider>
-      </main>
+        </main>
+      </IntlProvider>
+
     </>
   );
 }

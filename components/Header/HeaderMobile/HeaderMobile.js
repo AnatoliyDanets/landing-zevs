@@ -22,17 +22,17 @@ export default function HeaderMobile({ show, onClick, locales }) {
                     className={s.mobileMenu__close}
                     title="button-menu-close"
                 >
-                    <Close className={s.modal__close_icon} />
+                    <Close className={s.mobileMenu__close_icon} />
                 </button>
                 <div className={s.mobileMenu__wrapper}>
-                    <nav className={s.mobile__nav}>
-                        <ul className={s.nav__list}>
-                            <li className={s.nav__item}>
+                    <nav className={s.mobileMenu__nav}>
+                        <ul className={s.mobileMenu__nav_list}>
+                            <li className={s.mobileMenu__nav_item}>
                                 <HeaderLangBox locales={locales} />
                             </li>
 
 
-                            <li className={s.nav__item}>
+                            <li className={s.mobileMenu__nav_item}>
                                 <Link
                                     activeClass="active"
                                     to="Discount"
@@ -47,7 +47,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                 </Link>
                             </li>
 
-                            <li className={s.nav__item}>
+                            <li className={s.mobileMenu__nav_item}>
                                 <Link
                                     activeClass="active"
                                     to="Features"
@@ -61,7 +61,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                     <FormattedMessage id="page.home.header_item_one" />
                                 </Link>
                             </li>
-                            <li className={s.nav__item}>
+                            <li className={s.mobileMenu__nav_item}>
                                 {" "}
                                 <Link
                                     activeClass="active"
@@ -76,7 +76,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                     <FormattedMessage id="page.home.catalog_title_one" />
                                 </Link>
                             </li>
-                            <li className={s.nav__item}>
+                            <li className={s.mobileMenu__nav_item}>
                                 {" "}
                                 <Link
                                     activeClass="active"
@@ -92,7 +92,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                 </Link>
                             </li>
 
-                            <li className={s.nav__item}>
+                            <li className={s.mobileMenu__nav_item}>
                                 <Link
                                     activeClass="active"
                                     to="Feedback"
@@ -106,7 +106,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                     <FormattedMessage id="page.home.header_item_three" />
                                 </Link>
                             </li>
-                            <li className={s.nav__item}>
+                            <li className={s.mobileMenu__nav_item}>
                                 <Link
                                     activeClass="active"
                                     to="HowOrder"
@@ -120,7 +120,7 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                     <FormattedMessage id="page.home.header_item_four" />
                                 </Link>
                             </li>
-                            <li className={s.nav__item}>
+                            <li className={s.mobileMenu__nav_item}>
                                 <Link
                                     activeClass="active"
                                     to="Contacts"

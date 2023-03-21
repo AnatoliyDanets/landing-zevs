@@ -1,4 +1,4 @@
-.change_lang {
+.change__lang {
   display: flex;
   position: absolute;
   top: 33px;
@@ -6,22 +6,24 @@
   font-size: 16px;
   transform: translateX(-50%);
 }
-.change_lang__item:not(:last-child) {
+.change__lang_item:not(:last-child) {
   margin-right: 5px;
 }
-.active {
-  color: #fff;
-  text-shadow: 2px 0 2px #333333, 0 2px 2px #333333, -2px 0 2px #333333,
-    0 -2px 2px #333333;
+.change__lang_active {
+  color: var(--secondary-color);
+  text-shadow: 2px 0 2px var(--additional-color),
+    0 2px 2px var(--additional-color), -2px 0 2px var(--additional-color),
+    0 -2px 2px var(--additional-color);
 }
-.noactive {
+.change__lang_noactive {
   color: #d2ba40;
-  text-shadow: 2px 0 2px #333333, 0 2px 2px #333333, -2px 0 2px #333333,
-    0 -2px 2px #333333;
+  text-shadow: 2px 0 2px var(--additional-color),
+    0 2px 2px var(--additional-color), -2px 0 2px var(--additional-color),
+    0 -2px 2px var(--additional-color);
 }
 
 @media screen and (min-width: 1024px) {
-  .change_lang {
+  .change__lang {
     top: -12px;
     left: unset;
     right: 15px;
@@ -31,7 +33,7 @@
 }
 
 @media screen and (min-width: 1360px) {
-  .change_lang {
+  .change__lang {
     top: -24px;
     right: 15px;
     font-size: 16px;

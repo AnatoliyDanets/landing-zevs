@@ -5,19 +5,22 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 30px;
-  color: #ffffff;
+  color: var(--secondary-color);
 }
 
 .features__item {
   position: relative;
-  border: 1px solid #d2ba40;
-  background-color: rgba(51, 51, 51, 0.75);
+  border: var(--border);
+  background-color: var(--primary-bcg-color);
   padding: 10px;
   border-radius: 20px;
 }
 
 .features__title {
   position: relative;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
   padding-bottom: 5px;
   margin-bottom: 20px;
   text-align: center;
@@ -31,86 +34,26 @@
   position: absolute;
   top: 100%;
   left: 50%;
-  border-bottom: 1px dashed #d2ba40;
-
+  border-bottom: 1px dashed var(--primary-color);
   transform: translate(-50%, 50%);
 }
+
 .features__icon {
   position: absolute;
   top: -15px;
   left: -15px;
   text-align: center;
   border-radius: 50%;
-  border: 1px solid #d2ba40;
+  border: var(--border);
   padding: 5px;
-  background-color: #333333;
+  background-color: var(--additional-color);
 }
 
 .features__text {
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-}
-
-@media screen and (min-width: 320px) {
-  .features {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-
-    grid-gap: 30px;
-    color: #ffffff;
-  }
-
-  .features__item {
-    position: relative;
-    border: 1px solid #d2ba40;
-    background-color: rgba(51, 51, 51, 0.75);
-    padding: 10px;
-    border-radius: 20px;
-  }
-
-  .features__title {
-    position: relative;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 24px;
-    padding-bottom: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  .features__title::after {
-    content: "";
-    display: block;
-    width: 50%;
-    height: 1px;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    border-bottom: 1px dashed #d2ba40;
-
-    transform: translate(-50%, 50%);
-  }
-  .features__icon {
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    text-align: center;
-    border-radius: 50%;
-    border: 1px solid #d2ba40;
-    padding: 5px;
-    background-color: #333333;
-  }
-
-  .features__text {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-  }
+  font-size: 14px;
+  line-height: 20px;
 }
 
 @media screen and (min-width: 480px) {

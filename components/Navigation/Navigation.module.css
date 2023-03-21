@@ -13,11 +13,12 @@
   font-size: 18px;
   line-height: 22px;
   cursor: pointer;
-  color: #ffffff;
+  color: var(--secondary-color);
 }
 .nav__link {
-  text-shadow: 2px 0 2px #333333, 0 2px 2px #333333, -2px 0 2px #333333,
-    0 -2px 2px #333333;
+  text-shadow: 2px 0 2px var(--additional-color),
+    0 2px 2px var(--additional-color), -2px 0 2px var(--additional-color),
+    0 -2px 2px var(--additional-color);
 }
 @media screen and (min-width: 1200px) {
   .nav__item {

@@ -2,7 +2,7 @@
   padding: 22px 0px;
   width: 100%;
   z-index: 500;
-  background-color: rgba(51, 51, 51, 0.7);
+  background-color: var(--primary-bcg-color);
 }
 
 @media screen and (min-width: 768px) {
@@ -34,7 +34,7 @@
   font-size: 20px;
   line-height: 22px;
   cursor: pointer;
-  color: #ffffff;
+  color: var(--secondary-color);
 }
 
 .header__burger {
@@ -44,7 +44,7 @@
   cursor: pointer;
 }
 .header__burgerIcon {
-  fill: #d2ba40;
+  fill: var(--primary-color);
   width: 30px;
   height: 30px;
 }

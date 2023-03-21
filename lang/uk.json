@@ -26,6 +26,8 @@
   "page.home.catalog_title": "Каталог",
   "page.home.catalog_title_one": "Ковдри",
   "page.home.catalog_title_two": "Подушки",
+  "page.home.catalog_discription_button_true": "Показати все",
+  "page.home.catalog_discription_button_false": "Приховати",
   "page.home.catalog_change_size": "Оберіть розмір (ШхД) :",
   "page.home.catalog_discount": "Знижка",
   "page.home.catalog_discount_action": "діятиме:",

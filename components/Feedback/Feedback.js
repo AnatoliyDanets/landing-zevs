@@ -1,10 +1,8 @@
-
 import { FormattedMessage } from "react-intl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import 'swiper/css/navigation';
-
+import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation } from "swiper";
@@ -14,9 +12,7 @@ import Container from "../Container";
 import SectionTitle from "../SectionTitle";
 import s from "./Feedback.module.css";
 
-
 export default function Feedback() {
-
     const feedbackPeople = [
         "https://i.ibb.co/xsqBHS5/Screenshot-2023-01-30-15-54-35-624-edit-com-uaprom-prom.jpg",
         "https://i.ibb.co/f8Ryj0g/Screenshot-2023-01-30-15-54-13-438-edit-com-uaprom-prom.jpg",
@@ -35,45 +31,41 @@ export default function Feedback() {
                 <SectionTitle
                     name={<FormattedMessage id="page.home.feedback_title" />}
                 />
-                <div className={s.slider__wrapper}>
+                <div className={s.feedback}>
                     <Swiper
                         slidesPerView={1}
                         breakpoints={{
                             768: {
-
                                 slidesPerView: 2,
                             },
                             1024: {
-
                                 slidesPerView: 3,
                             },
                         }}
                         spaceBetween={10}
-
                         pagination={{
                             clickable: true,
                         }}
                         navigation
                         modules={[Pagination, Navigation]}
                         className="mySwiper"
-
                     >
-                        {feedbackPeople.map((el, i) => (<SwiperSlide key={i}>
-                            <Image
-                                src={el}
-                                alt="feedback"
-                                width="258"
-                                height="120"
-                                className={s.slider__img}
-                                priority
-                                blurDataURL="data:..."
-                                placeholder="blur"
-                            />
-                        </SwiperSlide>
+                        {feedbackPeople.map((el, i) => (
+                            <SwiperSlide key={i}>
+                                <Image
+                                    src={el}
+                                    alt="feedback"
+                                    width="258"
+                                    height="120"
+                                    className={s.feedback__img}
+                                    // priority
+                                    blurDataURL="data:..."
+                                    placeholder="blur"
+                                />
+                            </SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
-
             </Container>
         </Section>
     );

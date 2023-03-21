@@ -51,7 +51,7 @@ export default class CenterMode extends Component {
                         width={70}
                         height={70}
                         className={s.image__dot}
-                        priority
+                        // priority
                         blurDataURL="data:..."
                         placeholder="blur"
                     />

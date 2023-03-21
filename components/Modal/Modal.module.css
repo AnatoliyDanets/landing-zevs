@@ -35,7 +35,7 @@
   border: none;
   cursor: pointer;
   background-color: transparent;
-  fill: #d2ba40;
+  fill: var(--primary-color);
 }
 
 .modal__close_icon {
@@ -46,7 +46,7 @@
 }
 
 .modal__close_icon:hover {
-  fill: #fff;
+  fill: var(--secondary-color);
   transform: rotate(0deg);
 }
 

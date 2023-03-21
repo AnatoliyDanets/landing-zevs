@@ -26,6 +26,8 @@
   "page.home.catalog_title": "Каталог",
   "page.home.catalog_title_one": "Одеяла",
   "page.home.catalog_title_two": "Подушки",
+  "page.home.catalog_discription_button_true": "Показать всё",
+  "page.home.catalog_discription_button_false": "Скрыть",
   "page.home.catalog_change_size": "Выберите размер (ШхД) :",
   "page.home.catalog_discount": "Скидка",
   "page.home.catalog_discount_action": "действует:",

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import Container from "../Container";
 import Section from "../Section";

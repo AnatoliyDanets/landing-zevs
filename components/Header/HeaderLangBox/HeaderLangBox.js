@@ -9,14 +9,14 @@ export default function HeaderLangBox({ locales }) {
 
 
     return (
-        <ul className={s.change_lang}>
-            <li className={s.change_lang__item}>
-                <Link className={currentRoute === locales[0] ? s.active : s.noactive} key={locales[0]} href="/" locale={locales[0]}>
+        <ul className={s.change__lang}>
+            <li className={s.change__lang_item}>
+                <Link className={currentRoute === locales[0] ? s.change__lang_active : s.change__lang_noactive} key={locales[0]} href="/" locale={locales[0]}>
                     UA
                 </Link>
             </li>
-            <li className={s.change_lang__item}>
-                <Link className={currentRoute === locales[1] ? s.active : s.noactive} key={locales[1]} href="/" locale={locales[1]}>
+            <li className={s.change__lang_item}>
+                <Link className={currentRoute === locales[1] ? s.change__lang_active : s.change__lang_noactive} key={locales[1]} href="/" locale={locales[1]}>
                     RU
                 </Link>
             </li>

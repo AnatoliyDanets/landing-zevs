@@ -1,0 +1,39 @@
+.basket__count {
+  flex-basis: 80px;
+  display: flex;
+  justify-content: center;
+}
+.basket__minus,
+.basket__plus {
+  width: 24px;
+  height: 24px;
+  fill: var(--primary-color);
+  pointer-events: none;
+}
+.basket__increment,
+.basket__decrement {
+  background-color: transparent;
+  width: 24px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.basket__increment {
+  margin-left: 5px;
+}
+.basket__decrement {
+  margin-right: 5px;
+}
+.basket__value {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.16;
+  text-align: center;
+  letter-spacing: 0.1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secondary-color);
+}

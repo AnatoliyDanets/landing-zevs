@@ -26,7 +26,7 @@ export default function HowOrder() {
         <Section id={"HowOrder"}>
             <Container>
                 <SectionTitle name={<FormattedMessage id="page.home.how_order_title" />} />
-                <div className={s.howOrder__wrapper}>
+                <div className={s.howOrder}>
                     <VerticalTimeline>
                         <VerticalTimelineElement
                             className="vertical-timeline-element--work"

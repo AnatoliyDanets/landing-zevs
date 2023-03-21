@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from "react";
+import classNames from "classnames";
+import { Nunito } from "@next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactDOM from "react-dom";
 import Close from "../svgs/close.svg";
 import s from "./Modal.module.css";
+
+
+
+const nunito = Nunito({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    display: "swap",
+    variable: "--font-nunito",
+});
+
+
 
 const backdropVariant = {
     hidden: {
@@ -56,6 +69,7 @@ const Modal = ({ show, onClose, children, style }) => {
     };
 
     const modalContent = show ? (
+
         <motion.div
             variants={backdropVariant}
             initial="hidden"
@@ -64,7 +78,7 @@ const Modal = ({ show, onClose, children, style }) => {
             className={s.modal__backdrop}
             onClick={handleCloseClick}
         >
-            <motion.div style={style} className={s.modal} variants={modalVariant}>
+            <motion.div style={style} className={classNames(`${nunito.className} `, s.modal)} variants={modalVariant}>
                 <button
                     type="button"
                     className={s.modal__close}

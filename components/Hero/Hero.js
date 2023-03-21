@@ -1,11 +1,8 @@
-// import { useMediaQuery } from "react-responsive";
-// import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Container from "../Container";
 import classNames from "classnames";
 import { Link } from "react-scroll/modules";
-// import Check from "../svgs/check.svg";;
 import { FormattedMessage } from "react-intl";
+import Container from "../Container";
 import s from "./Hero.module.css";
 
 const textAnmation = {
@@ -18,11 +15,7 @@ const textAnmation = {
 };
 
 export default function Hero() {
-    // const isTablet = useMediaQuery({ query: "(min-width: 768px)" });
-    // const [showIsTablet, setShowIsTablet] = useState(false);
-    // useEffect(() => {
-    //     isTablet ? setShowIsTablet(true) : setShowIsTablet(false);
-    // }, [showIsTablet, isTablet, setShowIsTablet]);
+
     return (
         <motion.section
             initial="hidden"
@@ -41,41 +34,7 @@ export default function Hero() {
                     <FormattedMessage id="page.home.hero_title" />
                 </motion.h1>
 
-                {/* {showIsTablet && (
-                    <motion.div
-                        viewport={{ amount: 0.2, once: true }}
-                        custom={0}
-                        variants={textAnmation}
-                    >
-                        <p className={s.hero__text}>Продукція Zevs:</p>
-                        <ul className={s.hero__list}>
-                            <li className={s.hero__item}>
-                                <span>
-                                    <Check className={s.hero__checkIcon} />
-                                </span>{" "}
-                                Антибактеріальна
-                            </li>
-                            <li className={s.hero__item}>
-                                <span>
-                                    <Check className={s.hero__checkIcon} />
-                                </span>
-                                Повітряпропускна
-                            </li>
-                            <li className={s.hero__item}>
-                                <span>
-                                    <Check className={s.hero__checkIcon} />
-                                </span>
-                                Антиалергенна
-                            </li>
-                            <li className={s.hero__item}>
-                                <span>
-                                    <Check className={s.hero__checkIcon} />
-                                </span>
-                                Термозберігаюча
-                            </li>
-                        </ul>
-                    </motion.div>
-                )} */}
+
                 <motion.div
                     viewport={{ amount: 0.2, once: true }}
                     custom={2}
@@ -83,7 +42,7 @@ export default function Hero() {
                 >
                     <Link
                         activeClass="active"
-                        className={s.btn}
+                        className={s.hero__btn}
                         to="Products"
                         href={"#Products"}
                         spy={true}

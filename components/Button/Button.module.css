@@ -1,9 +1,5 @@
 .btn {
-  background: linear-gradient(
-    45deg,
-    rgba(134, 106, 26, 1) 55%,
-    rgba(210, 186, 64, 1) 75%
-  );
+  background: var(--btn-bcg-color);
   border: none;
   text-shadow: 1px 0 1px #463f3f, 0 1px 1px #463f3f, -1px 0 1px #463f3f,
     0 2px 2px #463f3f;
@@ -19,7 +15,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
+  color: var(--secondary-color);
   cursor: pointer;
   pointer-events: all;
   transition: opacity(0.4, 0, 0.2, 1);
@@ -29,7 +25,6 @@
   opacity: 0.9;
 }
 .btn:disabled {
-  color: #333333;
-  background-color: #ffffff;
+  color: var(--additional-color);
   border: none;
 }
