@@ -44,11 +44,11 @@ export default function Card({
     useEffect(() => {
         setDiscount(card.discount);
     }, [card.discount]);
-
+    // console.log(`${process.env.API_}/${id}`)
     const changeDiscountProduct = async (data, id) => {
         try {
             const res = await axios.patch(
-                `${process.env.API_PRODUCTS}/${id}`,
+                `https://testback-production-353f.up.railway.app/api/products/${id}`,
                 data
             );
             if (res.status === 200) {

@@ -41,7 +41,8 @@ export default function Cart({
     }, [isMobile]);
 
     const addedOrderProduct = (data) => {
-        fetch(process.env.API_ORDERS, {
+        // https://testback-production-353f.up.railway.app/api/orders
+        fetch("http://testback-production-353f.up.railway.app/api/orders", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -128,7 +129,7 @@ export default function Cart({
 
         set([]);
     };
-
+    console.log(process.env.ORDER_ENDPOINT, process.env.PRODUCTS_ENDPOINT)
     return (
         <>
             <Loader loading={loading} />
