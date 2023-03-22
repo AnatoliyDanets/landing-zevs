@@ -31,8 +31,8 @@ export default function Home({ products }) {
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="alternate" href="http://localhost:3000" hrefLang="uk" />
-        <link rel="alternate" href="http://localhost:3000/ru" hrefLang="ru" />
+        <link rel="alternate" href={process.env.NEXT_PUBLIC_CLIENT} hrefLang="uk" />
+        <link rel="alternate" href={`${process.env.NEXT_PUBLIC_CLIENT}/ru`} hrefLang="ru" />
       </Head>
       <Header locales={locales} />
       <Hero />

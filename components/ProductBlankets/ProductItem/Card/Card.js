@@ -44,13 +44,10 @@ export default function Card({
     useEffect(() => {
         setDiscount(card.discount);
     }, [card.discount]);
-    // console.log(`${process.env.API_}/${id}`)
+
     const changeDiscountProduct = async (data, id) => {
         try {
-            const res = await axios.patch(
-                `https://testback-production-353f.up.railway.app/api/products/${id}`,
-                data
-            );
+            const res = await axios.patch(`${process.env.API_PRODUCTS}/${id}`, data);
             if (res.status === 200) {
                 router
                     .replace(router.asPath, undefined, { scroll: false })
@@ -129,9 +126,13 @@ export default function Card({
                 </div>
                 <div className={s.card__right}>
                     <p className={s.card__discription}>
-                        {showDisc === false && card?.discription[locale]?.length >= 450
-                            ? `${showAllDisc?.slice(0, 450)}...`
-                            : <span className={s.card__discription_text}>{card.discription[locale]}</span>}
+                        {showDisc === false && card?.discription[locale]?.length >= 450 ? (
+                            `${showAllDisc?.slice(0, 450)}...`
+                        ) : (
+                            <span className={s.card__discription_text}>
+                                {card.discription[locale]}
+                            </span>
+                        )}
                         {card?.discription[locale]?.length >= 450 && (
                             <button
                                 className={s.card__discription_show}
@@ -149,9 +150,7 @@ export default function Card({
                                             <FormattedMessage id="page.home.catalog_discription_button_false" />
                                         </>
                                     )}
-                                    <Arrow
-                                        className={s.card__discription_icon}
-                                    />
+                                    <Arrow className={s.card__discription_icon} />
                                 </span>
                             </button>
                         )}
