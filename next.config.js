@@ -3,10 +3,6 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  env: {
-    API_PRODUCTS: process.env.PRODUCTS_ENDPOINT,
-    API_ORDERS: process.env.ORDERS_ENDPOINT,
-  },
   i18n: {
     defaultLocale: "uk",
     locales: ["uk", "ru"],
