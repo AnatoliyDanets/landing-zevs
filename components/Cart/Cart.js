@@ -41,7 +41,7 @@ export default function Cart({
     }, [isMobile]);
 
     const addedOrderProduct = (data) => {
-        fetch("https://testback-production-353f.up.railway.app/api/orders", {
+        fetch(process.env.API_ORDERS, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {

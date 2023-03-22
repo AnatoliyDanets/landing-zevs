@@ -1,9 +1,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import ProductBlankets from "../ProductBlankets/ProductList";
-// import Cart from "../Cart";
-// import DisplayCart from "../DisplayCart";
-// import SuccessOrder from "../SuccessOrder";
+
 
 const DisplayCart = dynamic(() => import("../DisplayCart"));
 const SuccessOrder = dynamic(() => import("../SuccessOrder"));

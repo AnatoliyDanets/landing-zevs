@@ -107,13 +107,6 @@ select:-webkit-autofill:focus {
   height: 10px;
 }
 
-@media screen and (min-width: 800px) {
-  .slick-dots li {
-    width: 100px;
-    height: 100px;
-  }
-}
-
 @media screen and (min-width: 1024px) {
   .slick-slider {
     width: 450px;
@@ -151,6 +144,9 @@ select:-webkit-autofill:focus {
   color: var(--primary-color);
   font-size: 25px !important;
   font-weight: bolder;
+  text-shadow: 2px 0 2px var(--additional-color),
+    0 2px 2px var(--additional-color), -2px 0 2px var(--additional-color),
+    0 -2px 2px var(--additional-color);
 }
 
 @media screen and (min-width: 480px) {

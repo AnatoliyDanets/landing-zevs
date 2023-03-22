@@ -98,10 +98,3 @@
     height: 40px;
   }
 }
-
-@media screen and (min-width: 800px) {
-  .image__dot {
-    width: 100px;
-    height: 100px;
-  }
-}

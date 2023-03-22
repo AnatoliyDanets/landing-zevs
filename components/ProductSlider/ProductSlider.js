@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { makeSizeForImage } from "@/services/services";
 import Arrow from "../svgs/arrow.svg";
 import Slider from "react-slick";
 import Image from "next/image";
@@ -30,23 +31,18 @@ function SamplePrevArrow(props) {
 }
 
 
+
 export default class CenterMode extends Component {
-    makeSizeForImage = (img, w, h) => {
-        const splitImg = img.split("/")
-        const addSize = splitImg.find(el => el === "upload")
-        const concatSize = `${addSize}/w_${w},h_${h},c_fill`
-        const startPath = splitImg.slice(0, 5)
-        const endPath = splitImg.slice(-3)
-        const newImagePath = [...startPath, concatSize, ...endPath].join("/")
-        return newImagePath
-    }
+
+
     render() {
+
         const { cardImg } = this.props;
         const settings = {
             customPaging: function (i) {
                 return (
                     <Image
-                        src={cardImg[0 + i].url}
+                        src={makeSizeForImage(cardImg[0 + i].url, 70, 70)}
                         alt="Picture of the author"
                         width={70}
                         height={70}
@@ -74,7 +70,7 @@ export default class CenterMode extends Component {
                         cardImg.map((img, i) => (
                             <div key={img.public_id} className={s.slider__wr}>
                                 <Image
-                                    src={this.makeSizeForImage(img.url, 460, 460)}
+                                    src={makeSizeForImage(img.url, 460, 460)}
                                     alt="Picture of the author"
                                     width={460}
                                     height={460}

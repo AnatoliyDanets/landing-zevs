@@ -7,7 +7,7 @@ export default function Footer() {
     return (
         <footer className={s.footer}>
             <Container>
-                <ul className={s.footer__list}>
+                {/* <ul className={s.footer__list}>
                     <li className={s.footer__item}>
                         {" "}
                         <Link href={"/political"} prefetch={false}>
@@ -19,7 +19,7 @@ export default function Footer() {
                             <FormattedMessage id="page.home.footer_title_two" />
                         </Link>
                     </li>
-                </ul>
+                </ul> */}
 
                 <p className={s.footer__copy}>© 2023 Zevs VIP & Design</p>
             </Container>

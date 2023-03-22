@@ -50,8 +50,13 @@
   flex-direction: column;
   text-align: right;
 }
-
-@media screen and (min-width: 768px) {
+.contacts__mobile_item:not(:last-child) {
+  margin-bottom: 20px;
+}
+.contacts__mobile_title {
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 480px) {
   .contacts__head_row,
   .contacts__body_row {
     font-size: 16px;

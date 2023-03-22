@@ -35,19 +35,20 @@ export default function Card({
     };
 
     useEffect(() => {
-        if (card.discription[locale].length > 400) {
+        if (card.discription[locale].length > 450) {
             setShowDisc(false);
-            const showText = card.discription[locale].slice(0, 400);
+            const showText = card.discription[locale].slice(0, 450);
             setShowAllDisc(showText);
         }
     }, [card.discription[locale]]);
     useEffect(() => {
         setDiscount(card.discount);
     }, [card.discount]);
+
     const changeDiscountProduct = async (data, id) => {
         try {
             const res = await axios.patch(
-                `https://testback-production-353f.up.railway.app/api/products/${id}`,
+                `${process.env.API_PRODUCTS}/${id}`,
                 data
             );
             if (res.status === 200) {
@@ -128,32 +129,34 @@ export default function Card({
                 </div>
                 <div className={s.card__right}>
                     <p className={s.card__discription}>
-                        {showDisc === false && card?.discription[locale]?.length >= 400
-                            ? `${showAllDisc?.slice(0, 400)}...`
-                            : card.discription[locale]}
+                        {showDisc === false && card?.discription[locale]?.length >= 450
+                            ? `${showAllDisc?.slice(0, 450)}...`
+                            : <span className={s.card__discription_text}>{card.discription[locale]}</span>}
+                        {card?.discription[locale]?.length >= 450 && (
+                            <button
+                                className={s.card__discription_show}
+                                type="button"
+                                onClick={handleShowDisc}
+                            >
+                                <span className={s.card__discription_showText}>
+                                    {!showDisc ? (
+                                        <>
+                                            {" "}
+                                            <FormattedMessage id="page.home.catalog_discription_button_true" />{" "}
+                                        </>
+                                    ) : (
+                                        <>
+                                            <FormattedMessage id="page.home.catalog_discription_button_false" />
+                                        </>
+                                    )}
+                                    <Arrow
+                                        className={s.card__discription_icon}
+                                    />
+                                </span>
+                            </button>
+                        )}
                     </p>
-                    {card?.discription[locale]?.length >= 400 && (
-                        <button
-                            className={s.card__discription_show}
-                            type="button"
-                            onClick={handleShowDisc}
-                        >
-                            {!showDisc ? (
-                                <>
-                                    {" "}
-                                    <FormattedMessage id="page.home.catalog_discription_button_true" />{" "}
-                                </>
-                            ) : (
-                                <>
-                                    <FormattedMessage id="page.home.catalog_discription_button_false" />
-                                </>
-                            )}
-                            <Arrow
-                                className={s.card__discription_icon}
-                                style={showDisc === false && card?.discription[locale]?.length >= 400 ? { transform: "rotate(0deg)" } : { transform: "rotate(180deg)" }}
-                            />
-                        </button>
-                    )}
+
                     <div className={s.card__showPrice}>
                         <div className={s.card__product_size}>
                             <span className={s.card__product_sizeText}>

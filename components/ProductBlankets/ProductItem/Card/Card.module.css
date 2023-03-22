@@ -43,21 +43,25 @@
   font-weight: 500;
   color: var(--secondary-color);
 }
+
 .card__discription_show {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
   padding: 2px 5px;
-  margin-left: auto;
-  margin-bottom: 15px;
   font-size: 14px;
   color: var(--primary-color);
   background-color: transparent;
-  border: var(--border);
-  border-radius: 8px;
+  border: none;
   cursor: pointer;
 }
+
+.card__discription_showText {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .card__discription_icon {
+  width: 10px;
+  height: 10px;
   fill: var(--primary-color);
   margin-left: 5px;
 }
@@ -108,7 +112,7 @@
 
 .card__price {
   color: var(--primary-color);
-  font-size: 24px;
+  font-size: 28px;
   line-height: 1.55;
   font-weight: 500;
   background-position: center center;
@@ -117,7 +121,7 @@
 
 .card__price_discount {
   color: var(--secondary-color);
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.55;
   font-weight: 500;
   background-position: center center;
@@ -129,6 +133,17 @@
     font-size: 16px;
     line-height: 22px;
   }
+  .card__discription_show {
+    font-size: 16px;
+  }
+
+  .card__discription_icon {
+    width: 12px;
+    height: 12px;
+    fill: var(--primary-color);
+    margin-left: 5px;
+  }
+
   .card__price {
     font-size: 28px;
     line-height: 34px;
@@ -153,5 +168,13 @@
   .card__discription {
     font-size: 18px;
     line-height: 24px;
+  }
+  .card__discription_show {
+    font-size: 18px;
+  }
+
+  .card__discription_icon {
+    width: 14px;
+    height: 14px;
   }
 }

@@ -25,9 +25,11 @@ export default function HowOrder() {
     return (
         <Section id={"HowOrder"}>
             <Container>
-                <SectionTitle name={<FormattedMessage id="page.home.how_order_title" />} />
+                <SectionTitle
+                    name={<FormattedMessage id="page.home.how_order_title" />}
+                />
                 <div className={s.howOrder}>
-                    <VerticalTimeline>
+                    <VerticalTimeline animate={false}>
                         <VerticalTimelineElement
                             className="vertical-timeline-element--work"
                             iconStyle={{ background: "#333", color: "#fff" }}
@@ -42,8 +44,13 @@ export default function HowOrder() {
                                 />
                             }
                         >
-                            <h3 className="vertical-timeline-element-title"> <FormattedMessage id="page.home.how_order_title_one" /></h3>
-                            <p><FormattedMessage id="page.home.how_order_title_item_one" /></p>
+                            <h3 className="vertical-timeline-element-title">
+                                {" "}
+                                <FormattedMessage id="page.home.how_order_title_one" />
+                            </h3>
+                            <p>
+                                <FormattedMessage id="page.home.how_order_title_item_one" />
+                            </p>
                         </VerticalTimelineElement>
                         <VerticalTimelineElement
                             className="vertical-timeline-element--work"
@@ -59,8 +66,12 @@ export default function HowOrder() {
                                 />
                             }
                         >
-                            <h3 className="vertical-timeline-element-title"><FormattedMessage id="page.home.how_order_title_two" /></h3>
-                            <p><FormattedMessage id="page.home.how_order_title_item_two" /></p>
+                            <h3 className="vertical-timeline-element-title">
+                                <FormattedMessage id="page.home.how_order_title_two" />
+                            </h3>
+                            <p>
+                                <FormattedMessage id="page.home.how_order_title_item_two" />
+                            </p>
                         </VerticalTimelineElement>
                         <VerticalTimelineElement
                             className="vertical-timeline-element--education"
@@ -76,8 +87,12 @@ export default function HowOrder() {
                                 />
                             }
                         >
-                            <h3 className="vertical-timeline-element-title"><FormattedMessage id="page.home.how_order_title_three" /></h3>
-                            <p><FormattedMessage id="page.home.how_order_title_item_three" /></p>
+                            <h3 className="vertical-timeline-element-title">
+                                <FormattedMessage id="page.home.how_order_title_three" />
+                            </h3>
+                            <p>
+                                <FormattedMessage id="page.home.how_order_title_item_three" />
+                            </p>
                         </VerticalTimelineElement>
                         <VerticalTimelineElement
                             className="vertical-timeline-element--education"
@@ -93,12 +108,15 @@ export default function HowOrder() {
                                 />
                             }
                         >
-                            <h3 className="vertical-timeline-element-title"><FormattedMessage id="page.home.how_order_title_four" /></h3>
-                            <p><FormattedMessage id="page.home.how_order_title_item_four" /></p>
+                            <h3 className="vertical-timeline-element-title">
+                                <FormattedMessage id="page.home.how_order_title_four" />
+                            </h3>
+                            <p>
+                                <FormattedMessage id="page.home.how_order_title_item_four" />
+                            </p>
                         </VerticalTimelineElement>
                     </VerticalTimeline>
                 </div>
-
             </Container>
         </Section>
     );

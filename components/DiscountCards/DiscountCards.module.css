@@ -2,16 +2,17 @@
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  padding: 0px 15px 30px;
+  padding: 0px 12px 30px;
   height: 100%;
   border-radius: 8px;
+  overflow: hidden;
 }
 .discount__item {
   position: relative;
   padding: 0px 0px 10px;
   border-radius: 8px;
   border: var(--border);
-  background-color: var(--primary-bcg-color);
+  background-color: var(--additional-color);
 }
 
 .discount__img {
@@ -23,14 +24,14 @@
   position: absolute;
   bottom: 42%;
   right: 0;
-  width: 100%;
-  background-color: rgba(51, 51, 51, 0.5);
+  width: calc(100% - 4px);
+  background-color: var(--primary-bcg-color);
   color: var(--primary-color);
   font-size: 14px;
   padding: 5px 2px;
 }
 @media screen and (min-width: 480px) {
-  .sdiscount__time {
+  .discount__time {
     bottom: 31%;
   }
 }

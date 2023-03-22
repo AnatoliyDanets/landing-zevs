@@ -1,13 +1,12 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { IntlProvider } from "react-intl";
-
+import { Nunito } from "@next/font/google";
 import uk from "../lang/uk.json";
 import ru from "../lang/ru.json";
 import Loader from "@/components/Loader";
 import "normalize.css/normalize.css";
 import "../styles/globals.css";
-import { Nunito } from "@next/font/google";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -72,13 +71,11 @@ function App({ Component, pageProps }) {
   return (
     <>
       <Loading />
-
       <IntlProvider locale={locale} messages={messages[locale]}>
-        <main className={`${nunito.className} `}>
+        <div className={`${nunito.className} `}>
           <Component {...pageProps} />
-        </main>
+        </div>
       </IntlProvider>
-
     </>
   );
 }
