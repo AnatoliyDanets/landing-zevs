@@ -12,7 +12,7 @@ import s from "./Header.module.css";
 
 const HeaderMobile = dynamic(() => import("./HeaderMobile"));
 
-export default function Header({ locales }) {
+export default function Header({ locales, findDiscountProducts }) {
     const [scrollY, setScrollY] = useState(0);
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [showIsDesktop, setShowshowIsDesktop] = useState(false);
@@ -72,7 +72,7 @@ export default function Header({ locales }) {
                 {showIsDesktop ? (
                     <>
                         <HeaderLangBox locales={locales} />
-                        <Navigation />
+                        <Navigation findDiscountProducts={findDiscountProducts} />
                     </>
 
                 ) : (
@@ -117,7 +117,7 @@ export default function Header({ locales }) {
                                 </li>
                             </ul>
                         }
-                        <HeaderMobile show={showMobileMenu} onClick={handleShowMenu} locales={locales} />
+                        <HeaderMobile show={showMobileMenu} onClick={handleShowMenu} locales={locales} findDiscountProducts={findDiscountProducts} />
                     </nav>
                 )}
 

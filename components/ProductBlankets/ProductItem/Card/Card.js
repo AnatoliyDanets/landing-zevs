@@ -150,7 +150,7 @@ export default function Card({
                                             <FormattedMessage id="page.home.catalog_discription_button_false" />
                                         </>
                                     )}
-                                    <Arrow className={s.card__discription_icon} />
+                                    <Arrow style={showDisc ? { transform: "rotate(180deg)" } : { transform: "rotate(0deg)" }} className={s.card__discription_icon} />
                                 </span>
                             </button>
                         )}

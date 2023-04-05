@@ -7,7 +7,6 @@ import { Suspense } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-
 const Hero = dynamic(() => import("../components/Hero"));
 const DiscountCards = dynamic(() => import("../components/DiscountCards"));
 const Products = dynamic(() => import("../components/Products"));
@@ -23,7 +22,10 @@ export default function Home({ products }) {
   const description = intl.formatMessage({
     id: "page.home.head.meta.description",
   });
-
+  const findDiscountProducts = products.find(
+    (el) => +el?.discount_time > 0
+  )?.discount_time;
+  // console.log(Date.now())
   return (
     <>
       <Head>
@@ -31,14 +33,25 @@ export default function Home({ products }) {
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="alternate" href={process.env.NEXT_PUBLIC_CLIENT} hrefLang="uk" />
-        <link rel="alternate" href={`${process.env.NEXT_PUBLIC_CLIENT}/ru`} hrefLang="ru" />
+        <link
+          rel="alternate"
+          href={process.env.NEXT_PUBLIC_CLIENT}
+          hrefLang="uk"
+        />
+        <link
+          rel="alternate"
+          href={`${process.env.NEXT_PUBLIC_CLIENT}/ru`}
+          hrefLang="ru"
+        />
       </Head>
-      <Header locales={locales} />
-      <Hero />
-      <DiscountCards products={products} locale={locale} />
-      <Features />
       <Suspense fallback={<div>Loading...</div>}>
+        <Header locales={locales} findDiscountProducts={findDiscountProducts} />
+        <Hero />
+        {findDiscountProducts > 0 && (
+          <DiscountCards products={products} locale={locale} />
+        )}
+
+        <Features />
         <Products products={products} locale={locale} />
       </Suspense>
       <Feedback />

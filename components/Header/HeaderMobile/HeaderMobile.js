@@ -5,7 +5,12 @@ import Close from "../../svgs/close.svg";
 import Container from "../../Container";
 import s from "./HeaderMobile.module.css";
 
-export default function HeaderMobile({ show, onClick, locales }) {
+export default function HeaderMobile({
+    show,
+    onClick,
+    locales,
+    findDiscountProducts,
+}) {
     return (
         <div
             className={s.mobileMenu}
@@ -31,21 +36,22 @@ export default function HeaderMobile({ show, onClick, locales }) {
                                 <HeaderLangBox locales={locales} />
                             </li>
 
-
-                            <li className={s.mobileMenu__nav_item}>
-                                <Link
-                                    activeClass="active"
-                                    to="Discount"
-                                    spy={true}
-                                    smooth={true}
-                                    offset={-100}
-                                    duration={500}
-                                    href={"#Discount"}
-                                    onClick={onClick}
-                                >
-                                    <FormattedMessage id="page.home.discount_title" />
-                                </Link>
-                            </li>
+                            {findDiscountProducts > 0 && (
+                                <li className={s.mobileMenu__nav_item}>
+                                    <Link
+                                        activeClass="active"
+                                        to="Discount"
+                                        spy={true}
+                                        smooth={true}
+                                        offset={-100}
+                                        duration={500}
+                                        href={"#Discount"}
+                                        onClick={onClick}
+                                    >
+                                        <FormattedMessage id="page.home.discount_title" />
+                                    </Link>
+                                </li>
+                            )}
 
                             <li className={s.mobileMenu__nav_item}>
                                 <Link

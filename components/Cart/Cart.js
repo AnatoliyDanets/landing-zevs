@@ -108,6 +108,7 @@ export default function Cart({
         const order = {
             ...data,
             date: currentDate(),
+            dateSort: Date.now(),
             order: orderCart,
             totalPrice: price,
         };
