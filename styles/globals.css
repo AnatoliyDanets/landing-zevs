@@ -5,6 +5,7 @@
   --primary-bcg-color: rgba(51, 51, 51, 0.75);
   --secondary-bcg-color: #d2ba40;
   --border: 1px solid #d2ba40;
+  --additional-border-color: #d4d4d8;
   --btn-bcg-color: linear-gradient(
     45deg,
     rgba(134, 106, 26, 1) 55%,

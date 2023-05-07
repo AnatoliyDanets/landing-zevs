@@ -15,11 +15,17 @@ export default function Cart({
     removeClick,
     set,
     handleShowIsSuccess,
+    handleShowError
 }) {
     const [value, setValue] = useState();
     const [loading, setLoading] = useState(false);
     const [showIsMobile, setShowIsMobile] = useState(false);
+    const [showAddInfo, setShowAddInfo] = useState(false)
+    const [selectMail, setSelectMail] = useState(false);
     const isMobile = useMediaQuery({ query: "(max-width: 479.9px)" });
+
+
+
 
     const uniqueCartProducts = cartProduct.reduce(
         (acc, el) => (acc.find(({ _id }) => el._id === _id) || acc.push(el), acc),
@@ -54,10 +60,15 @@ export default function Cart({
                     handleShowIsSuccess(true);
                     resetForm();
                 }
-            })
-            .catch((error) => {
+                else {
+                    return Promise.reject(res)
+                }
+            }).catch((error) => {
+                if (error) {
+                    console.log(error.statusText);
+                }
                 setLoading(false);
-                console.log(error);
+                handleShowError(true)
             });
     };
 
@@ -104,14 +115,25 @@ export default function Cart({
                 return acc;
             }, {})
         );
-
+        console.log("data", data)
         const order = {
             ...data,
+            name: data?.name,
+            phone: data?.phone,
+            fullName: showAddInfo ? data?.fullName : "Отсутстует",
+            location: showAddInfo ? data?.location : "Отсутстует",
+            state: showAddInfo ? data?.state : "Отсутстует",
+            mail: showAddInfo ? data?.mail : "Отсутстует",
+            mailNumber: (showAddInfo && selectMail) ? data?.mailNumber : 0,
+            postal: (showAddInfo && !selectMail) ? data?.postal : "Отсутстует",
             date: currentDate(),
             dateSort: Date.now(),
             order: orderCart,
             totalPrice: price,
+            IsCall: showAddInfo ? false : true
+
         };
+        console.log(order)
         addedOrderProduct(order);
     };
 
@@ -129,7 +151,7 @@ export default function Cart({
 
         set([]);
     };
-    console.log(process.env.ORDER_ENDPOINT, process.env.PRODUCTS_ENDPOINT)
+
     return (
         <>
             <Loader loading={loading} />
@@ -268,7 +290,7 @@ export default function Cart({
                     <p className={s.cart__total}>{price.toFixed(2)}грн</p>
                 </div>
 
-                <CartOrderForm onSubmit={onSubmit} value={value} setValue={setValue} />
+                <CartOrderForm onSubmit={onSubmit} value={value} setValue={setValue} showAddInfo={showAddInfo} setShowAddInfo={setShowAddInfo} selectMail={selectMail} setSelectMail={setSelectMail} />
             </div>
         </>
     );
