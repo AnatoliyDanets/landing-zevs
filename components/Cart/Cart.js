@@ -130,7 +130,8 @@ export default function Cart({
             dateSort: Date.now(),
             order: orderCart,
             totalPrice: price,
-            IsCall: showAddInfo ? false : true
+            IsCall: showAddInfo ? false : true,
+            status: "Новый"
 
         };
         console.log(order)
