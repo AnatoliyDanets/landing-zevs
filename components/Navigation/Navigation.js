@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from "../../image/Hero/Zevs.png";
 import s from "./Navigation.module.css";
 
-export default function Navigation({ findDiscountProducts }) {
+export default function Navigation({ }) {
     return (
         <nav>
             <ul className={s.nav__list}>
@@ -21,7 +21,7 @@ export default function Navigation({ findDiscountProducts }) {
                         <Image src={logo} alt="Logo" width={112} height={40} priority />
                     </Link>
                 </li>
-                {findDiscountProducts > 0 && (
+                {/* {findDiscountProducts > 0 && (
                     <li className={s.nav__item}>
                         <Link
                             activeClass="active"
@@ -36,7 +36,7 @@ export default function Navigation({ findDiscountProducts }) {
                             <FormattedMessage id="page.home.discount_title" />
                         </Link>
                     </li>
-                )}
+                )} */}
                 <li className={s.nav__item}>
                     <Link
                         activeClass="active"

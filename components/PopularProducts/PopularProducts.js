@@ -12,7 +12,7 @@ import { Link } from "react-scroll/modules";
 import Section from "../Section";
 import SectionTitle from "../SectionTitle";
 import Container from "../Container";
-import s from "./DiscountCards.module.css";
+import s from "./PopularProducts.module.css";
 
 
 
@@ -21,7 +21,6 @@ export const ConvertToNormalDate = ({ date }) => {
     const finishDiscountDate = useFormattedDate(date);
     return String(finishDiscountDate)
 };
-
 
 export default function DiscountCards({ products, locale }) {
 
@@ -62,7 +61,7 @@ export default function DiscountCards({ products, locale }) {
                                 ),
                                 []
                             )
-                            .filter((el) => el.discount > 0)
+
                             .map((el, i) => (
 
                                 <SwiperSlide key={i}>
@@ -78,17 +77,17 @@ export default function DiscountCards({ products, locale }) {
                                             blurDataURL="data:..."
                                             placeholder="blur"
                                         />
-                                        <div className={s.discount__time}>
+                                        {el.discount > 0 && <div className={s.discount__time}>
                                             <FormattedMessage id="page.home.discount_product_time" />
                                             {<ConvertToNormalDate date={el.discount_time} />}
-                                        </div>
+                                        </div>}
 
                                         <article className={s.discount__info}>
                                             <h3 className={s.discount__title}>
                                                 {el.model[locale]}
                                             </h3>
-                                            <div>
-                                                <p className={s.discount__price}>
+                                            <div className={s.popular__price} >
+                                                <p className={s.discount__price} style={el.discount > 0 ? { marginRight: '5px' } : { marginRight: "0" }}>
                                                     {el.discount > 0
                                                         ? el.price - (el.discount / 100) * el.price
                                                         : el.price}{" "}
@@ -107,7 +106,7 @@ export default function DiscountCards({ products, locale }) {
                                                     </p>
                                                 )}
                                             </div>
-                                            <div>
+                                            {el.discount > 0 && <div>
                                                 <div
                                                     style={{ display: "flex", alignItems: "center" }}
                                                 >
@@ -117,7 +116,7 @@ export default function DiscountCards({ products, locale }) {
                                                         <span style={{ fontSize: "12px" }}>%</span>
                                                     </span>{" "}
                                                 </div>
-                                            </div>
+                                            </div>}
                                             <Link
 
                                                 className={s.discount__btn}

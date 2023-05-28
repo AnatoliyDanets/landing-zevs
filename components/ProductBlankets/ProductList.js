@@ -46,6 +46,7 @@ export default function ProductList({ products, set, items, locale }) {
                   items={items}
                   text={model[locale]}
                   locale={locale}
+
                 />
               </li>
             ))}
@@ -72,6 +73,7 @@ export default function ProductList({ products, set, items, locale }) {
                   items={items}
                   text={model[locale]}
                   locale={locale}
+
                 />
               </li>
             ))}

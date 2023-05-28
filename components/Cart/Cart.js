@@ -15,6 +15,7 @@ export default function Cart({
     removeClick,
     set,
     handleShowIsSuccess,
+    handleShowIsSuccessMessage,
     handleShowError
 }) {
     const [value, setValue] = useState();
@@ -56,9 +57,18 @@ export default function Cart({
         })
             .then((res) => {
                 if (res.status === 201) {
-                    setLoading(false);
-                    handleShowIsSuccess(true);
-                    resetForm();
+                    if (!showAddInfo) {
+                        setLoading(false);
+                        handleShowIsSuccess(true);
+                        resetForm();
+
+                    }
+                    else {
+                        setLoading(false);
+                        handleShowIsSuccessMessage(true)
+                        resetForm();
+                    }
+
                 }
                 else {
                     return Promise.reject(res)

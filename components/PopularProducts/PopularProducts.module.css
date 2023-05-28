@@ -22,7 +22,7 @@
 }
 .discount__time {
   position: absolute;
-  bottom: 42%;
+  bottom: 39%;
   right: 0;
   width: calc(100% - 4px);
   background-color: var(--primary-bcg-color);
@@ -32,18 +32,18 @@
 }
 @media screen and (min-width: 480px) {
   .discount__time {
-    bottom: 31%;
+    bottom: 28%;
   }
 }
 @media screen and (min-width: 768px) {
   .discount__time {
-    bottom: 35%;
+    bottom: 32%;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .discount__time {
-    bottom: 45%;
+    bottom: 42%;
   }
 }
 
@@ -119,4 +119,10 @@
 .discount__btn:focus,
 .discount__btn:hover {
   font-weight: 600;
+}
+
+.popular__price {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }

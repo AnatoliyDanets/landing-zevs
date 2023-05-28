@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
-import axios from "axios";
-import { useRouter } from "next/router";
 import Arrow from "../../../svgs/arrow.svg";
 import Button from "../../../Button/Button";
 import Characteristics from "../../../Characteristics";
@@ -24,12 +22,10 @@ export default function Card({
     arr,
     locale,
 }) {
-    const [discount, setDiscount] = useState(0);
+
     const [currentTime, setCurrentTime] = useState(null);
-    const router = useRouter();
     const [showDisc, setShowDisc] = useState(false);
     const [showAllDisc, setShowAllDisc] = useState(card.discription[locale]);
-
     const handleShowDisc = () => {
         setShowDisc((prev) => !prev);
     };
@@ -41,42 +37,13 @@ export default function Card({
             setShowAllDisc(showText);
         }
     }, [card.discription[locale]]);
-    useEffect(() => {
-        setDiscount(card.discount);
-    }, [card.discount]);
 
-    const changeDiscountProduct = async (data, id) => {
-        try {
-            const res = await axios.patch(`${process.env.API_PRODUCTS}/${id}`, data);
-            if (res.status === 200) {
-                router
-                    .replace(router.asPath, undefined, { scroll: false })
-                    .catch((e) => {
-                        console.log("error", e);
-                    });
-                setDiscount(res.data.discount);
-            }
-        } catch (error) {
-            console.log(error.response.message);
-        }
-    };
     useEffect(() => {
-        setCurrentTime(
-            Date.now() +
-            (new Date(card?.discount_time).getTime() - Date.now() - 7200000)
-        );
+        setCurrentTime(card?.discount_time);
     }, [card?.discount_time, card?.discount, currentTime]);
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (completed) {
-            const dataDiscount = {
-                discount: 0,
-                discount_time: 0,
-            };
-            if (discount === 0) {
-                return;
-            } else {
-                changeDiscountProduct(dataDiscount, id);
-            }
+            return;
         } else {
             return (
                 <p className={s.card__discount_time}>
@@ -150,7 +117,14 @@ export default function Card({
                                             <FormattedMessage id="page.home.catalog_discription_button_false" />
                                         </>
                                     )}
-                                    <Arrow style={showDisc ? { transform: "rotate(180deg)" } : { transform: "rotate(0deg)" }} className={s.card__discription_icon} />
+                                    <Arrow
+                                        style={
+                                            showDisc
+                                                ? { transform: "rotate(180deg)" }
+                                                : { transform: "rotate(0deg)" }
+                                        }
+                                        className={s.card__discription_icon}
+                                    />
                                 </span>
                             </button>
                         )}

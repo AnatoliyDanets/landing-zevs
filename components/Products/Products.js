@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import ProductBlankets from "../ProductBlankets/ProductList";
 
 const DisplayCart = dynamic(() => import("../DisplayCart"));
@@ -11,6 +12,8 @@ const Modal = dynamic(() => import("../Modal"));
 export default function Products({ products, locale }) {
     const [showCart, setShowCart] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [showIsSuccessMessage, setShowIsSuccessMessage] = useState(false);
+
     const [showError, setShowError] = useState(false);
     const [items, setItems] = useState(() => {
         if (typeof window !== "undefined") {
@@ -35,7 +38,10 @@ export default function Products({ products, locale }) {
         setShowSuccess((prev) => !prev);
         setShowCart(false);
     };
-
+    const handleShowIsSuccessMessage = () => {
+        setShowIsSuccessMessage((prev) => !prev);
+        setShowCart(false);
+    };
     const handleShowError = () => {
         setShowError((prev) => !prev);
         setShowCart(false);
@@ -120,7 +126,7 @@ export default function Products({ products, locale }) {
         if (items?.length > 0) {
             setCartItem(items);
         } else {
-            if (!showSuccess) {
+            if ((!showSuccess) && (!showIsSuccessMessage)) {
                 setShowCart(false);
             }
             setCartItem([]);
@@ -129,7 +135,7 @@ export default function Products({ products, locale }) {
         if (cartItem?.length === 0) {
             setShowCart(false);
         }
-    }, [items, showSuccess]);
+    }, [items, showSuccess, showIsSuccessMessage]);
 
     return (
         <>
@@ -138,6 +144,7 @@ export default function Products({ products, locale }) {
                 set={setItems}
                 items={items}
                 locale={locale}
+
             />
             {cartItem?.length > 0 && !showCart && (
                 <DisplayCart
@@ -148,19 +155,22 @@ export default function Products({ products, locale }) {
 
             <Modal
                 show={showCart}
-                style={((showSuccess) || (showError)) && { height: "150px" }}
-                onClose={showSuccess ? handleShowSuccess : handleShowCart ? showError ? handleShowError : handleShowCart : handleShowSuccess}
+                style={((showSuccess || showIsSuccessMessage) || (showError)) && { height: "150px" }}
+                onClose={showIsSuccessMessage ? handleShowIsSuccessMessage : handleShowCart ? showError ? handleShowError : handleShowCart ? showSuccess ? handleShowSuccess : handleShowCart : handleShowCart : handleShowIsSuccessMessage}
             >
-                {showSuccess && <SuccessOrder onClick={() => { setShowCart(false), setShowSuccess(false) }} />}
+                {showSuccess && <SuccessOrder onClick={() => { setShowCart(false), setShowSuccess(false) }} message={<FormattedMessage id="page.home.success_order_in" />} />}
+                {showIsSuccessMessage && <SuccessOrder onClick={() => { setShowCart(false), setShowIsSuccessMessage(false) }} message={<FormattedMessage id="page.home.success_order_out" />} />}
+
                 {showError && <ErrorOrder onClick={() => { setShowCart(false), setShowError(false) }} />}
 
-                {!(showSuccess || showError) && <Cart
+                {!(showSuccess || showIsSuccessMessage || showError) && <Cart
                     cartProduct={items}
                     increment={handleIncrement}
                     decrement={handleDecrement}
                     removeClick={handleRemoveProduct}
                     set={setItems}
                     handleShowIsSuccess={setShowSuccess}
+                    handleShowIsSuccessMessage={setShowIsSuccessMessage}
                     handleShowError={setShowError}
                 />}
 

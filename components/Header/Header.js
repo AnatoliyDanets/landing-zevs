@@ -72,7 +72,7 @@ export default function Header({ locales, findDiscountProducts }) {
                 {showIsDesktop ? (
                     <>
                         <HeaderLangBox locales={locales} />
-                        <Navigation findDiscountProducts={findDiscountProducts} />
+                        <Navigation />
                     </>
 
                 ) : (
@@ -117,7 +117,7 @@ export default function Header({ locales, findDiscountProducts }) {
                                 </li>
                             </ul>
                         }
-                        <HeaderMobile show={showMobileMenu} onClick={handleShowMenu} locales={locales} findDiscountProducts={findDiscountProducts} />
+                        <HeaderMobile show={showMobileMenu} onClick={handleShowMenu} locales={locales} />
                     </nav>
                 )}
 
