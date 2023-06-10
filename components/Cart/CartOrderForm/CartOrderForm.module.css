@@ -113,6 +113,7 @@
 /* Firefox */
 .cart__form_input {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .cart__form_added {
@@ -123,7 +124,7 @@
   position: absolute;
   top: 35px;
   left: 0;
-  color: #d2ba40;
+  color: var(--primary-color);
   font-size: 12px;
 }
 

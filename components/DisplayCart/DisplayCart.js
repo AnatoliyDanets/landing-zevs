@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Basket from "../svgs/basket.svg"
 import s from "./DisplayCart.module.css"
 
@@ -27,3 +28,8 @@ export default function DisplayCart({ handleShowCart, quantityInCart }) {
         </div>
     )
 }
+
+DisplayCart.propTypes = {
+    handleShowCart: PropTypes.func,
+    quantityInCart: PropTypes.number
+};

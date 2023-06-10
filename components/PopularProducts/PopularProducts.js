@@ -1,4 +1,5 @@
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 import useFormattedDate from "@/hook/hook";
 import Image from "next/image";
 import { makeSizeForImage } from "@/services/services";
@@ -141,3 +142,8 @@ export default function DiscountCards({ products, locale }) {
         </Section>
     );
 }
+
+DiscountCards.propTypes = {
+    locale: PropTypes.string,
+    products: PropTypes.array
+};

@@ -1,4 +1,5 @@
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 import Button from "../Button/Button";
 import s from "./ErrorOrder.module.css"
 
@@ -13,4 +14,8 @@ export default function ErrorOrder({ onClick }) {
             </Button>
         </div>
     );
+}
+
+ErrorOrder.propTypes = {
+    onClick: PropTypes.func,
 }

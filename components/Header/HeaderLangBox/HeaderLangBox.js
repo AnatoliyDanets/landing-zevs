@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import PropTypes from "prop-types";
 import s from "./HeaderLangBox.module.css";
 
 export default function HeaderLangBox({ locales }) {
     const router = useRouter();
     const currentRoute = router.locale;
-
 
     return (
         <ul className={s.change__lang}>
@@ -23,3 +22,7 @@ export default function HeaderLangBox({ locales }) {
         </ul>
     );
 }
+
+HeaderLangBox.propTypes = {
+    locales: PropTypes.array
+};

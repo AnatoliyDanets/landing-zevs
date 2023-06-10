@@ -1,4 +1,5 @@
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 import HeaderLangBox from "../HeaderLangBox";
 import { Link } from "react-scroll";
 import Close from "../../svgs/close.svg";
@@ -145,3 +146,9 @@ export default function HeaderMobile({
         </div>
     );
 }
+
+HeaderMobile.propTypes = {
+    show: PropTypes.bool,
+    onClick: PropTypes.func,
+    locales: PropTypes.array
+};

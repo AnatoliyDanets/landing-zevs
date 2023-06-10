@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Nunito } from "@next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
@@ -102,3 +103,10 @@ const Modal = ({ show, onClose, children, style }) => {
 };
 
 export default Modal;
+
+
+Modal.propTypes = {
+    show: PropTypes.bool,
+    onClose: PropTypes.func,
+    children: PropTypes.node
+}

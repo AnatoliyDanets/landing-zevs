@@ -1,4 +1,5 @@
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 import Container from "../Container";
 import Section from "../Section";
 import ProductItem from "./ProductItem/ProductItem";
@@ -82,3 +83,10 @@ export default function ProductList({ products, set, items, locale }) {
     </Section>
   );
 }
+
+ProductList.propTypes = {
+  products: PropTypes.array,
+  set: PropTypes.func,
+  items: PropTypes.array,
+  locale: PropTypes.string
+};

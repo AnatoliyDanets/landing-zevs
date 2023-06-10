@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import s from "./SectionTitle.module.css";
 
 export default function SectionTitle({ style, name }) {
@@ -6,4 +7,9 @@ export default function SectionTitle({ style, name }) {
             {name}
         </h2>
     );
+}
+
+SectionTitle.propTypes = {
+    style: PropTypes.object,
+    name: PropTypes.node
 }

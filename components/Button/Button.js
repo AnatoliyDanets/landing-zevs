@@ -1,9 +1,34 @@
+import PropTypes from "prop-types";
+import s from "./Button.module.css";
 
-import s from "./Button.module.css"
-
-const Button = ({ ariaLabel, id, type, style, onClick, children, disabled }) => {
+export default function Button({
+    ariaLabel,
+    id,
+    type,
+    style,
+    onClick,
+    children,
+    disabled,
+}) {
     return (
-        <button aria-label={ariaLabel} id={id} type={type} className={s.btn} style={style} onClick={onClick} disabled={disabled}>{children}</button>
-    )
+        <button
+            aria-label={ariaLabel}
+            id={id}
+            type={type}
+            className={s.btn}
+            style={style}
+            onClick={onClick}
+            disabled={disabled}
+        >
+            {children}
+        </button>
+    );
 }
-export default Button
+
+Button.propTypes = {
+    id: PropTypes.string,
+    type: PropTypes.string,
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool,
+    children: PropTypes.node
+}

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useIntl } from "react-intl";
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 import { useForm, Controller } from "react-hook-form";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import {
@@ -160,7 +161,7 @@ export default function CartOrderForm({
             </h3>
 
             <form onSubmit={handleSubmit(onSubmit)} className={s.cart__form}>
-                <label className={s.cart__form_label} htmlFor="value">
+                <label className={s.cart__form_label} htmlFor="name">
                     <FormattedMessage id="page.home.modal_ordering_name" />
                 </label>
 
@@ -239,9 +240,9 @@ export default function CartOrderForm({
                     />
                 </div>
                 <div className={s.cart__form_checkboxWrap}>
-                    <label className={s.cart__form_checkLabel} htmlFor="phone">
+                    <p className={s.cart__form_checkLabel} >
                         <FormattedMessage id="page.home.modal_ordering_is_call" />
-                    </label>
+                    </p>
                     <FormControlLabel
                         control={
                             <Checkbox
@@ -260,9 +261,9 @@ export default function CartOrderForm({
                 </div>
                 {showAddInfo && (
                     <>
-                        <label className={s.cart__form_label} htmlFor="mail">
+                        <p className={s.cart__form_label} >
                             <FormattedMessage id="page.home.modal_ordering_mail" />
-                        </label>
+                        </p>
                         <div className={s.cart__form_radioWrap}>
                             <Controller
                                 name={"mail"}
@@ -537,4 +538,14 @@ export default function CartOrderForm({
             </form>
         </>
     );
+}
+
+CartOrderForm.propTypes = {
+    onSubmit: PropTypes.func,
+    value: PropTypes.string,
+    setValue: PropTypes.func,
+    showAddInfo: PropTypes.bool,
+    setShowAddInfo: PropTypes.func,
+    selectMail: PropTypes.bool,
+    setSelectMail: PropTypes.func
 }

@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState, useMemo } from "react";
+import PropTypes from "prop-types";
+
 import { Link } from "react-scroll/modules";
 import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
@@ -12,11 +14,10 @@ import s from "./Header.module.css";
 
 const HeaderMobile = dynamic(() => import("./HeaderMobile"));
 
-export default function Header({ locales, findDiscountProducts }) {
+export default function Header({ locales }) {
     const [scrollY, setScrollY] = useState(0);
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [showIsDesktop, setShowshowIsDesktop] = useState(false);
-
     const isMobile = useMediaQuery({ query: "(max-width: 767.9px)" });
     const isTablet = useMediaQuery({ query: "(min-width: 768px)" });
     const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
@@ -125,3 +126,7 @@ export default function Header({ locales, findDiscountProducts }) {
         </header>
     );
 }
+
+Header.propTypes = {
+    locales: PropTypes.array
+};

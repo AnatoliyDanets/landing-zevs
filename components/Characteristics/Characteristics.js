@@ -1,9 +1,9 @@
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types"
 import s from "./Characteristics.module.css"
 
 
 export default function Characteristics({ type, property, locale, model }) {
-
 
     const charProperty = property.reduce((acc, el) => {
         if (typeof el === "number" || typeof el === "string") {
@@ -66,4 +66,11 @@ export default function Characteristics({ type, property, locale, model }) {
         </>
 
     )
+}
+
+Characteristics.propTypes = {
+    type: PropTypes.string,
+    property: PropTypes.array,
+    locale: PropTypes.string,
+    model: PropTypes.string
 }

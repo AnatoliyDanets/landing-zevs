@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Plus from "../../svgs/plus.svg";
 import Minus from "../../svgs/minus.svg";
 import s from "./CartProductCounter.module.css"
@@ -29,4 +30,11 @@ export default function CartProductCounter({ increment, decrement, count, id }) 
             </button>
         </div>
     )
+}
+
+CartProductCounter.propTypes = {
+    increment: PropTypes.func,
+    decrement: PropTypes.func,
+    count: PropTypes.number,
+    id: PropTypes.string
 }

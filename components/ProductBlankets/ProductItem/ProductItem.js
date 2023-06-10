@@ -1,4 +1,5 @@
-import { FormattedMessage } from "react-intl";
+import { useIntl } from "react-intl";
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import Card from "./Card/Card";
 
@@ -7,7 +8,9 @@ export default function ProductItem({ arr, text, set, items, locale }) {
     const [cartText, setCartText] = useState("У кошик");
     const [currentSizeBlanket, setCurrentSizeBlanket] = useState(150);
     const [currentSizePillow, setCurrentSizePillow] = useState(50);
-
+    const intl = useIntl();
+    const addCart = intl.formatMessage({ id: "page.home.catalog_add_cart" });
+    const addedCart = intl.formatMessage({ id: "page.home.catalog_added_cart" });
     const handleChange = (e) => {
         const { value, name } = e.target;
         switch (name) {
@@ -48,10 +51,10 @@ export default function ProductItem({ arr, text, set, items, locale }) {
             items?.find((el) => findProduct[0]?._id === el._id)?._id ===
             findProduct[0]?._id
         ) {
-            setCartText(<FormattedMessage id="page.home.catalog_added_cart" />);
+            setCartText(addedCart);
             setDisabled(true);
         } else {
-            setCartText(<FormattedMessage id="page.home.catalog_add_cart" />);
+            setCartText(addCart);
             setDisabled(false);
         }
     }, [items, findProduct[0]]);
@@ -92,3 +95,12 @@ export default function ProductItem({ arr, text, set, items, locale }) {
         />
     ));
 }
+
+ProductItem.propTypes = {
+    id: PropTypes.string,
+    arr: PropTypes.array,
+    set: PropTypes.func,
+    items: PropTypes.array,
+    text: PropTypes.string,
+    locale: PropTypes.string
+};

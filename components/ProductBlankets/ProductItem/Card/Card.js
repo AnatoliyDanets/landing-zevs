@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
+import PropTypes, { object, string } from "prop-types";
 import Arrow from "../../../svgs/arrow.svg";
 import Button from "../../../Button/Button";
 import Characteristics from "../../../Characteristics";
@@ -29,7 +30,7 @@ export default function Card({
     const handleShowDisc = () => {
         setShowDisc((prev) => !prev);
     };
-
+    // console.log(model)
     useEffect(() => {
         if (card.discription[locale].length > 450) {
             setShowDisc(false);
@@ -74,7 +75,7 @@ export default function Card({
             },
         },
     };
-
+    // console.log(text)
     return (
         <article className={s.card__article} key={id}>
             <h4 className={s.card__title} id={card.model[locale]}>
@@ -206,3 +207,35 @@ export default function Card({
         </article>
     );
 }
+
+
+
+
+Card.propTypes = {
+    id: PropTypes.string,
+    card: PropTypes.shape({
+        brand: PropTypes.string,
+        cardImg: PropTypes.array,
+        cards: PropTypes.object,
+        category: PropTypes.object,
+        characteristics: PropTypes.object,
+        count: PropTypes.number,
+        discount: PropTypes.number,
+        discount_time: PropTypes.number,
+        discription: PropTypes.object,
+        height: PropTypes.number,
+        model: PropTypes.object,
+        price: PropTypes.number,
+        size: PropTypes.number,
+        totalPrice: PropTypes.number,
+    }),
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool,
+    text: PropTypes.string,
+    handleChange: PropTypes.func,
+    currentSize: PropTypes.number,
+    model: PropTypes.string,
+    arr: PropTypes.array,
+    locale: PropTypes.string
+
+};

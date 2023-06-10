@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { makeSizeForImage } from "@/services/services";
 import Arrow from "../svgs/arrow.svg";
 import Slider from "react-slick";
@@ -6,37 +7,32 @@ import Image from "next/image";
 import s from "./ProductSlider.module.css";
 
 function SampleNextArrow(props) {
-
     const { onClick } = props;
     return (
-        <div
-            className={s.nextArrow}
-            onClick={onClick}
-        >
+        <div className={s.nextArrow} onClick={onClick}>
             <Arrow className={s.arrow__icon} />
         </div>
     );
 }
+SampleNextArrow.propTypes = {
+    onClick: PropTypes.func,
+};
 
 function SamplePrevArrow(props) {
     const { onClick } = props;
     return (
-        <div
-            className={s.prevArrow}
-            onClick={onClick}
-        >
+        <div className={s.prevArrow} onClick={onClick}>
             <Arrow className={s.arrow__icon} />
         </div>
     );
 }
 
-
+SamplePrevArrow.propTypes = {
+    onClick: PropTypes.func,
+};
 
 export default class CenterMode extends Component {
-
-
     render() {
-
         const { cardImg } = this.props;
         const settings = {
             customPaging: function (i) {
@@ -62,7 +58,6 @@ export default class CenterMode extends Component {
             prevArrow: <SamplePrevArrow />,
         };
 
-
         return (
             <div>
                 <Slider {...settings}>
@@ -83,3 +78,7 @@ export default class CenterMode extends Component {
         );
     }
 }
+
+CenterMode.propTypes = {
+    cardImg: PropTypes.array,
+};

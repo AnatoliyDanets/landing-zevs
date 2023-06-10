@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
 import Del from "../svgs/del.svg";
@@ -305,4 +306,15 @@ export default function Cart({
             </div>
         </>
     );
+}
+
+Cart.propTypes = {
+    cartProduct: PropTypes.array,
+    increment: PropTypes.func,
+    decrement: PropTypes.func,
+    removeClick: PropTypes.func,
+    set: PropTypes.func,
+    handleShowIsSuccess: PropTypes.func,
+    handleShowIsSuccessMessage: PropTypes.func,
+    handleShowError: PropTypes.func
 }

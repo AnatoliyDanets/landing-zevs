@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import ProductBlankets from "../ProductBlankets/ProductList";
@@ -177,4 +178,9 @@ export default function Products({ products, locale }) {
             </Modal>
         </>
     );
+}
+
+Products.propTypes = {
+    products: PropTypes.array,
+    locale: PropTypes.string
 }
