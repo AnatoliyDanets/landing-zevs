@@ -18,10 +18,9 @@ export default function Navigation() {
                         duration={500}
                         href={"#Hero"}
                     >
-                        <Image src={logo} alt="Logo" width={112} height={40} priority />
+                        <Image src={logo} alt="Logo" width={120} height={40} priority />
                     </Link>
                 </li>
-                {/* {findDiscountProducts > 0 && ( */}
                 <li className={s.nav__item}>
                     <Link
                         activeClass="active"
@@ -36,7 +35,6 @@ export default function Navigation() {
                         <FormattedMessage id="page.home.discount_title" />
                     </Link>
                 </li>
-                {/* )} */}
                 <li className={s.nav__item}>
                     <Link
                         activeClass="active"
@@ -108,6 +106,20 @@ export default function Navigation() {
                         className={s.nav__link}
                     >
                         <FormattedMessage id="page.home.header_item_four" />
+                    </Link>
+                </li>
+                <li className={s.nav__item}>
+                    <Link
+                        activeClass="active"
+                        to="Delivery"
+                        spy={true}
+                        smooth={true}
+                        offset={-50}
+                        duration={500}
+                        href={"#Delivery"}
+                        className={s.nav__link}
+                    >
+                        <FormattedMessage id="page.home.delivery_title" />
                     </Link>
                 </li>
                 <li className={s.nav__item}>

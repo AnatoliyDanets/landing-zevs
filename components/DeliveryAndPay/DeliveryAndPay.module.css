@@ -1,0 +1,37 @@
+.delivery {
+  border: var(--border);
+  background-color: var(--primary-bcg-color);
+  padding: 20px 10px;
+  border-radius: 8px;
+}
+.delivery__title {
+  color: var(--primary-color);
+  text-align: center;
+  font-size: 18px;
+
+  margin: 0;
+  margin-bottom: 10px;
+}
+.delivery__list {
+  margin-bottom: 20px;
+}
+.delivery__condition {
+  color: var(--secondary-color);
+  font-size: 14px;
+}
+.delivery__postal {
+  color: var(--primary-color);
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+.delivery__condition:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+@media screen and (min-width: 1024px) {
+  .delivery__condition,
+  .delivery__postal {
+    font-size: 16px;
+  }
+}

@@ -18,7 +18,7 @@ export default function Products({ products, locale }) {
     const [showError, setShowError] = useState(false);
     const [items, setItems] = useState(() => {
         if (typeof window !== "undefined") {
-            const savedItem = localStorage.getItem("items");
+            const savedItem = localStorage.getItem("zevipprod");
             const parsedItem = JSON.parse(savedItem);
             return parsedItem || [];
         }
@@ -120,7 +120,7 @@ export default function Products({ products, locale }) {
         );
 
         if (items?.length >= 0)
-            localStorage.setItem("items", JSON.stringify(filterItems));
+            localStorage.setItem("zevipprod", JSON.stringify(filterItems));
     }, [items]);
 
     useEffect(() => {

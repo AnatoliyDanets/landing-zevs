@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
-import PropTypes, { object, string } from "prop-types";
+import PropTypes from "prop-types";
 import Arrow from "../../../svgs/arrow.svg";
 import Button from "../../../Button/Button";
 import Characteristics from "../../../Characteristics";
-import CenterMode from "../../../ProductSlider/ProductSlider";
+import ProductSlider from "../../../ProductSlider/ProductSlider";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
@@ -30,7 +30,6 @@ export default function Card({
     const handleShowDisc = () => {
         setShowDisc((prev) => !prev);
     };
-    // console.log(model)
     useEffect(() => {
         if (card.discription[locale].length > 450) {
             setShowDisc(false);
@@ -90,7 +89,7 @@ export default function Card({
                             </div>
                         </>
                     )}
-                    {card.cardImg.length > 0 && <CenterMode cardImg={card.cardImg} />}
+                    {card.cardImg.length > 0 && <ProductSlider cardImg={card.cardImg} />}
                 </div>
                 <div className={s.card__right}>
                     <p className={s.card__discription}>

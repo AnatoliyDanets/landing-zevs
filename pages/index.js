@@ -15,6 +15,7 @@ const Products = dynamic(() => import("../components/Products"));
 const Features = dynamic(() => import("../components/Features"));
 const Feedback = dynamic(() => import("../components/Feedback"));
 const HowOrder = dynamic(() => import("../components/HowOrder"));
+const DeliveryAndPay = dynamic(() => import("../components/DeliveryAndPay"));
 const Contacts = dynamic(() => import("../components/Contacts"));
 
 export default function Home({ products }) {
@@ -27,9 +28,7 @@ export default function Home({ products }) {
     id: "page.home.head.meta.description",
   });
 
-
   useEffect(() => {
-
     const timer = setTimeout(() => {
       setCurrentDate(Date.now());
     }, 1000);
@@ -67,8 +66,7 @@ export default function Home({ products }) {
           changeDiscountProduct(dataDiscount, el._id);
           router.replace(router.asPath, undefined, { scroll: false });
         }
-        return
-
+        return;
       });
   }, [currentDate, products]);
 
@@ -99,6 +97,7 @@ export default function Home({ products }) {
       </Suspense>
       <Feedback />
       <HowOrder />
+      <DeliveryAndPay />
       <Contacts />
       <Footer />
       <Script

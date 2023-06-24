@@ -1,78 +1,26 @@
-/* .slick-slider {
-  position: relative;
-  width: 450px;
-}
-.slick-dots {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border: 1px solid #fff;
-  padding: 5px 0px 2px;
-  width: calc(100% - 2px);
-}
-
-.slick-dots li {
-  width: 100px;
-  height: 100%;
-  opacity: 0.7;
-  margin: 0 10px;
-}
-
-.slick-dots li.slick-active {
-  border: 1px solid #d2ba40;
-  opacity: 1;
-}
-
-.slick-prev,
-.slick-next {
-  z-index: 10;
-}
-
-.slick-prev:before {
-  font-size: 24px;
-  color: #d2ba40;
-  left: 28px;
-  bottom: -206px;
-  background: transparent;
+.prevArrow,
+.prevArrowGallery {
   position: absolute;
-}
-
-.slick-next:before {
-  font-size: 24px;
-  color: #d2ba40;
-  left: -33px;
-  bottom: -206px;
-  background: transparent;
-  position: absolute;
-}
-
-.slider__img {
-  display: flex;
-}
-.dots {
-  display: flex;
-} */
-
-.prevArrow {
-  position: absolute;
-  top: calc(50% - 50px);
+  top: 50%;
   left: 5px;
   z-index: 1;
-  fill: #d2ba40;
-  color: #d2ba40;
-  transform: rotate(90deg);
+  fill: var(--primary-color);
+  color: var(--primary-color);
+  transform: rotate(90deg) translateX(-50%);
   cursor: pointer;
 }
 
-.nextArrow {
+.nextArrow,
+.nextArrowGallery {
   position: absolute;
-  top: calc(50% - 50px);
+  top: 50%;
   right: 5px;
-  fill: #d2ba40;
-  color: #d2ba40;
-  transform: rotate(270deg);
+  fill: var(--primary-color);
+  color: var(--primary-color);
+  transform: rotate(270deg) translateX(50%);
   cursor: pointer;
 }
+
 .arrow__icon {
   width: 25px;
   height: 25px;
@@ -87,12 +35,6 @@
 }
 
 @media screen and (min-width: 480px) {
-  .prevArrow {
-    top: calc(50% - 80px);
-  }
-  .nextArrow {
-    top: calc(50% - 80px);
-  }
   .arrow__icon {
     width: 40px;
     height: 40px;

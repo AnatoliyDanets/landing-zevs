@@ -128,6 +128,20 @@ export default function HeaderMobile({
                             <li className={s.mobileMenu__nav_item}>
                                 <Link
                                     activeClass="active"
+                                    to="Delivery"
+                                    href={"#Delivery"}
+                                    spy={true}
+                                    smooth={true}
+                                    offset={-50}
+                                    duration={500}
+                                    onClick={onClick}
+                                >
+                                    <FormattedMessage id="page.home.delivery_title" />
+                                </Link>
+                            </li>
+                            <li className={s.mobileMenu__nav_item}>
+                                <Link
+                                    activeClass="active"
                                     to="Contacts"
                                     href={"#Contacts"}
                                     spy={true}

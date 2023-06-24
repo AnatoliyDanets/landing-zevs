@@ -20,7 +20,7 @@ export default function DisplayCart({ handleShowCart, quantityInCart }) {
                         className={s.displayCart__icon}
                     />
                 </div>
-                <span className={s.displayCart__quantity}
+                <span className={s.displayCart__quantity} style={quantityInCart > 99 ? { fontSize: "12px" } : { fontSize: "16px" }}
                 >
                     {quantityInCart}
                 </span>

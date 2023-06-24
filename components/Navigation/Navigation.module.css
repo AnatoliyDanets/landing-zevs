@@ -9,12 +9,13 @@
 
 .nav__item {
   position: relative;
-  font-weight: 400;
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 16px;
   line-height: 22px;
   cursor: pointer;
   color: var(--secondary-color);
 }
+
 .nav__link {
   text-shadow: 2px 0 2px var(--additional-color),
     0 2px 2px var(--additional-color), -2px 0 2px var(--additional-color),
@@ -22,6 +23,24 @@
 }
 @media screen and (min-width: 1200px) {
   .nav__item {
-    font-size: 20px;
+    font-size: 18px;
   }
+}
+.nav__link::after {
+  position: absolute;
+  content: "";
+  width: 0px;
+  height: 4px;
+  bottom: -43px;
+  left: 0;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 2px 0 2px var(--additional-color),
+    0 2px 2px var(--additional-color), -2px 0 2px var(--additional-color),
+    0 -2px 2px var(--additional-color);
+  transition: width 250ms linear;
+  background-color: var(--primary-color);
+}
+.nav__link:hover::after {
+  width: 100%;
 }

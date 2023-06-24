@@ -29,8 +29,9 @@ export default function HowOrder() {
                     name={<FormattedMessage id="page.home.how_order_title" />}
                 />
                 <div className={s.howOrder}>
-                    <VerticalTimeline animate={false}>
+                    <VerticalTimeline animate={false} className={s.vertical}>
                         <VerticalTimelineElement
+
                             className="vertical-timeline-element--work"
                             iconStyle={{ background: "#333", color: "#fff" }}
                             icon={

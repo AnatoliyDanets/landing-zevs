@@ -17,17 +17,14 @@ export default function Cart({
     set,
     handleShowIsSuccess,
     handleShowIsSuccessMessage,
-    handleShowError
+    handleShowError,
 }) {
     const [value, setValue] = useState();
     const [loading, setLoading] = useState(false);
     const [showIsMobile, setShowIsMobile] = useState(false);
-    const [showAddInfo, setShowAddInfo] = useState(false)
+    const [showAddInfo, setShowAddInfo] = useState(false);
     const [selectMail, setSelectMail] = useState(false);
     const isMobile = useMediaQuery({ query: "(max-width: 479.9px)" });
-
-
-
 
     const uniqueCartProducts = cartProduct.reduce(
         (acc, el) => (acc.find(({ _id }) => el._id === _id) || acc.push(el), acc),
@@ -62,24 +59,21 @@ export default function Cart({
                         setLoading(false);
                         handleShowIsSuccess(true);
                         resetForm();
-
-                    }
-                    else {
+                    } else {
                         setLoading(false);
-                        handleShowIsSuccessMessage(true)
+                        handleShowIsSuccessMessage(true);
                         resetForm();
                     }
-
+                } else {
+                    return Promise.reject(res);
                 }
-                else {
-                    return Promise.reject(res)
-                }
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 if (error) {
                     console.log(error.statusText);
                 }
                 setLoading(false);
-                handleShowError(true)
+                handleShowError(true);
             });
     };
 
@@ -126,7 +120,6 @@ export default function Cart({
                 return acc;
             }, {})
         );
-        console.log("data", data)
         const order = {
             ...data,
             name: data?.name,
@@ -135,17 +128,15 @@ export default function Cart({
             location: showAddInfo ? data?.location : "Отсутстует",
             state: showAddInfo ? data?.state : "Отсутстует",
             mail: showAddInfo ? data?.mail : "Отсутстует",
-            mailNumber: (showAddInfo && selectMail) ? data?.mailNumber : 0,
-            postal: (showAddInfo && !selectMail) ? data?.postal : "Отсутстует",
+            mailNumber: showAddInfo && selectMail ? data?.mailNumber : 0,
+            postal: showAddInfo && !selectMail ? data?.postal : "Отсутстует",
             date: currentDate(),
             dateSort: Date.now(),
             order: orderCart,
             totalPrice: price,
             IsCall: showAddInfo ? false : true,
-            status: "Новый"
-
+            status: "Новый",
         };
-        console.log(order)
         addedOrderProduct(order);
     };
 
@@ -302,7 +293,15 @@ export default function Cart({
                     <p className={s.cart__total}>{price.toFixed(2)}грн</p>
                 </div>
 
-                <CartOrderForm onSubmit={onSubmit} value={value} setValue={setValue} showAddInfo={showAddInfo} setShowAddInfo={setShowAddInfo} selectMail={selectMail} setSelectMail={setSelectMail} />
+                <CartOrderForm
+                    onSubmit={onSubmit}
+                    value={value}
+                    setValue={setValue}
+                    showAddInfo={showAddInfo}
+                    setShowAddInfo={setShowAddInfo}
+                    selectMail={selectMail}
+                    setSelectMail={setSelectMail}
+                />
             </div>
         </>
     );
@@ -316,5 +315,5 @@ Cart.propTypes = {
     set: PropTypes.func,
     handleShowIsSuccess: PropTypes.func,
     handleShowIsSuccessMessage: PropTypes.func,
-    handleShowError: PropTypes.func
-}
+    handleShowError: PropTypes.func,
+};
