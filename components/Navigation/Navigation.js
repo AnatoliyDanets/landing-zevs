@@ -36,20 +36,6 @@ export default function Navigation() {
                     </Link>
                 </li>
                 <li className={s.nav__item}>
-                    <Link
-                        activeClass="active"
-                        to="Features"
-                        spy={true}
-                        smooth={true}
-                        offset={-100}
-                        duration={500}
-                        href={"#Features"}
-                        className={s.nav__link}
-                    >
-                        <FormattedMessage id="page.home.header_item_one" />
-                    </Link>
-                </li>
-                <li className={s.nav__item}>
                     {" "}
                     <Link
                         activeClass="active"
@@ -79,7 +65,20 @@ export default function Navigation() {
                         <FormattedMessage id="page.home.catalog_title_two" />
                     </Link>
                 </li>
-
+                <li className={s.nav__item}>
+                    <Link
+                        activeClass="active"
+                        to="Features"
+                        spy={true}
+                        smooth={true}
+                        offset={-100}
+                        duration={500}
+                        href={"#Features"}
+                        className={s.nav__link}
+                    >
+                        <FormattedMessage id="page.home.header_item_one" />
+                    </Link>
+                </li>
                 <li className={s.nav__item}>
                     <Link
                         activeClass="active"

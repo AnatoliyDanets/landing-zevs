@@ -51,21 +51,6 @@ export default function HeaderMobile({
                                     <FormattedMessage id="page.home.discount_title" />
                                 </Link>
                             </li>
-
-                            <li className={s.mobileMenu__nav_item}>
-                                <Link
-                                    activeClass="active"
-                                    to="Features"
-                                    href={"#Features"}
-                                    spy={true}
-                                    smooth={true}
-                                    offset={-100}
-                                    duration={500}
-                                    onClick={onClick}
-                                >
-                                    <FormattedMessage id="page.home.header_item_one" />
-                                </Link>
-                            </li>
                             <li className={s.mobileMenu__nav_item}>
                                 {" "}
                                 <Link
@@ -96,7 +81,20 @@ export default function HeaderMobile({
                                     <FormattedMessage id="page.home.catalog_title_two" />
                                 </Link>
                             </li>
-
+                            <li className={s.mobileMenu__nav_item}>
+                                <Link
+                                    activeClass="active"
+                                    to="Features"
+                                    href={"#Features"}
+                                    spy={true}
+                                    smooth={true}
+                                    offset={-100}
+                                    duration={500}
+                                    onClick={onClick}
+                                >
+                                    <FormattedMessage id="page.home.header_item_one" />
+                                </Link>
+                            </li>
                             <li className={s.mobileMenu__nav_item}>
                                 <Link
                                     activeClass="active"

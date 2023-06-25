@@ -29,13 +29,13 @@ export default function Home({ products }) {
   });
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       setCurrentDate(Date.now());
     }, 1000);
     return () => {
-      clearTimeout(timer);
+      clearInterval(timer);
     };
-  }, [currentDate]);
+  }, []);
 
   const changeDiscountProduct = useCallback(
     async (data, id) => {
@@ -70,6 +70,11 @@ export default function Home({ products }) {
       });
   }, [currentDate, products]);
 
+
+
+
+
+
   return (
     <>
       <Head>
@@ -92,9 +97,9 @@ export default function Home({ products }) {
         <Header locales={locales} />
         <Hero />
         <PopularProducts products={products} locale={locale} />
-        <Features />
         <Products products={products} locale={locale} />
       </Suspense>
+      <Features />
       <Feedback />
       <HowOrder />
       <DeliveryAndPay />
