@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState, useMemo } from "react";
 import PropTypes from "prop-types";
-
 import { Link } from "react-scroll/modules";
 import { useMediaQuery } from "react-responsive";
 import Image from "next/image";

@@ -70,18 +70,13 @@ export default function Home({ products }) {
       });
   }, [currentDate, products]);
 
-
-
-
-
-
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.PNG" type="image/png" sizes="32x32" />
         <link
           rel="alternate"
           href={process.env.NEXT_PUBLIC_CLIENT}

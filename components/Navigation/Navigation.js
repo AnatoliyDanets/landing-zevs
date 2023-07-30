@@ -1,7 +1,7 @@
 import { Link } from "react-scroll";
 import { FormattedMessage } from "react-intl";
 import Image from "next/image";
-import logo from "../../image/Hero/Zevs.png";
+import logo from "../../image/Hero/Zevs_desk.png";
 import s from "./Navigation.module.css";
 
 export default function Navigation() {
@@ -18,7 +18,7 @@ export default function Navigation() {
                         duration={500}
                         href={"#Hero"}
                     >
-                        <Image src={logo} alt="Logo" width={120} height={40} priority />
+                        <Image src={logo} alt="Logo" width={122} height={40} priority />
                     </Link>
                 </li>
                 <li className={s.nav__item}>
