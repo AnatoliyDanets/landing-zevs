@@ -1,8 +1,10 @@
 import dynamic from "next/dynamic";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { useEffect, useState, useCallback } from "react";
 import { FormattedMessage } from "react-intl";
 import ProductBlankets from "../ProductBlankets/ProductList";
+import { useRouter } from "next/router";
 
 const DisplayCart = dynamic(() => import("../DisplayCart"));
 const SuccessOrder = dynamic(() => import("../SuccessOrder"));
@@ -11,6 +13,9 @@ const Cart = dynamic(() => import("../Cart"));
 const Modal = dynamic(() => import("../Modal"));
 
 export default function Products({ products, locale }) {
+    const [currentDate, setCurrentDate] = useState(Date.now());
+    const router = useRouter();
+
     const [showCart, setShowCart] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [showIsSuccessMessage, setShowIsSuccessMessage] = useState(false);
@@ -24,6 +29,47 @@ export default function Products({ products, locale }) {
         }
     });
     const [cartItem, setCartItem] = useState([]);
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentDate(Date.now());
+        }, 1000);
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
+    const changeDiscountProduct = useCallback(
+        async (data, id) => {
+            try {
+                const res = await axios.patch(
+                    `${process.env.API_PRODUCTS}/${id}`,
+                    data
+                );
+                if (res.status === 200) {
+                    console.log("Discount :0");
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        },
+        [router.asPath, router]
+    );
+
+    useEffect(() => {
+        const dataDiscount = {
+            discount: 0,
+            discount_time: 0,
+        };
+
+        products
+            .filter((el) => el.discount > 0)
+            .map((el) => {
+                if (currentDate > el.discount_time) {
+                    changeDiscountProduct(dataDiscount, el._id);
+                    router.replace(router.asPath, undefined, { scroll: false });
+                }
+                return;
+            });
+    }, [currentDate, products]);
 
     const quantityInCart = items
         ?.reduce(
@@ -127,7 +173,7 @@ export default function Products({ products, locale }) {
         if (items?.length > 0) {
             setCartItem(items);
         } else {
-            if ((!showSuccess) && (!showIsSuccessMessage)) {
+            if (!showSuccess && !showIsSuccessMessage) {
                 setShowCart(false);
             }
             setCartItem([]);
@@ -145,7 +191,6 @@ export default function Products({ products, locale }) {
                 set={setItems}
                 items={items}
                 locale={locale}
-
             />
             {cartItem?.length > 0 && !showCart && (
                 <DisplayCart
@@ -156,25 +201,62 @@ export default function Products({ products, locale }) {
 
             <Modal
                 show={showCart}
-                style={((showSuccess || showIsSuccessMessage) || (showError)) && { height: "150px" }}
-                onClose={showIsSuccessMessage ? handleShowIsSuccessMessage : handleShowCart ? showError ? handleShowError : handleShowCart ? showSuccess ? handleShowSuccess : handleShowCart : handleShowCart : handleShowIsSuccessMessage}
+                style={
+                    (showSuccess || showIsSuccessMessage || showError) && {
+                        height: "150px",
+                    }
+                }
+                onClose={
+                    showIsSuccessMessage
+                        ? handleShowIsSuccessMessage
+                        : handleShowCart
+                            ? showError
+                                ? handleShowError
+                                : handleShowCart
+                                    ? showSuccess
+                                        ? handleShowSuccess
+                                        : handleShowCart
+                                    : handleShowCart
+                            : handleShowIsSuccessMessage
+                }
             >
-                {showSuccess && <SuccessOrder onClick={() => { setShowCart(false), setShowSuccess(false) }} message={<FormattedMessage id="page.home.success_order_in" />} />}
-                {showIsSuccessMessage && <SuccessOrder onClick={() => { setShowCart(false), setShowIsSuccessMessage(false) }} message={<FormattedMessage id="page.home.success_order_out" />} />}
+                {showSuccess && (
+                    <SuccessOrder
+                        onClick={() => {
+                            setShowCart(false), setShowSuccess(false);
+                        }}
+                        message={<FormattedMessage id="page.home.success_order_in" />}
+                    />
+                )}
+                {showIsSuccessMessage && (
+                    <SuccessOrder
+                        onClick={() => {
+                            setShowCart(false), setShowIsSuccessMessage(false);
+                        }}
+                        message={<FormattedMessage id="page.home.success_order_out" />}
+                    />
+                )}
 
-                {showError && <ErrorOrder onClick={() => { setShowCart(false), setShowError(false) }} />}
+                {showError && (
+                    <ErrorOrder
+                        onClick={() => {
+                            setShowCart(false), setShowError(false);
+                        }}
+                    />
+                )}
 
-                {!(showSuccess || showIsSuccessMessage || showError) && <Cart
-                    cartProduct={items}
-                    increment={handleIncrement}
-                    decrement={handleDecrement}
-                    removeClick={handleRemoveProduct}
-                    set={setItems}
-                    handleShowIsSuccess={setShowSuccess}
-                    handleShowIsSuccessMessage={setShowIsSuccessMessage}
-                    handleShowError={setShowError}
-                />}
-
+                {!(showSuccess || showIsSuccessMessage || showError) && (
+                    <Cart
+                        cartProduct={items}
+                        increment={handleIncrement}
+                        decrement={handleDecrement}
+                        removeClick={handleRemoveProduct}
+                        set={setItems}
+                        handleShowIsSuccess={setShowSuccess}
+                        handleShowIsSuccessMessage={setShowIsSuccessMessage}
+                        handleShowError={setShowError}
+                    />
+                )}
             </Modal>
         </>
     );
@@ -182,5 +264,5 @@ export default function Products({ products, locale }) {
 
 Products.propTypes = {
     products: PropTypes.array,
-    locale: PropTypes.string
-}
+    locale: PropTypes.string,
+};

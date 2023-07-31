@@ -1,6 +1,5 @@
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import useFormattedDate from "@/hook/hook";
 import Image from "next/image";
 import { makeSizeForImage } from "@/services/services";
 import { Autoplay, Pagination, Navigation } from "swiper";
@@ -15,13 +14,7 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import s from "./PopularProducts.module.css";
 
-export const ConvertToNormalDate = ({ date }) => {
-    const finishDiscountDate = useFormattedDate(date);
-    return String(finishDiscountDate);
-};
-
 export default function DiscountCards({ products, locale }) {
-
     return (
         <Section id={"Discount"}>
             <Container>
@@ -50,7 +43,6 @@ export default function DiscountCards({ products, locale }) {
                         className={s.slider}
                     >
                         {products
-                            .sort((a, b) => a.size - b.size)
                             .reduce(
                                 (acc, el) => (
                                     acc.find(({ model }) => el.model[locale] === model[locale]) ||
@@ -58,7 +50,9 @@ export default function DiscountCards({ products, locale }) {
                                     acc
                                 ),
                                 []
-                            ).map((el, i) => (
+                            )
+                            .sort((a, b) => a.size - b.size)
+                            .map((el, i) => (
                                 <SwiperSlide key={i}>
                                     <div className={s.discount__item}>
                                         <Image
@@ -74,7 +68,9 @@ export default function DiscountCards({ products, locale }) {
                                         {el.discount > 0 && (
                                             <div className={s.discount__time}>
                                                 <FormattedMessage id="page.home.discount_product_time" />
-                                                {<ConvertToNormalDate date={el.discount_time} />}
+                                                {new Date(
+                                                    el.discount_time - 10800000
+                                                ).toLocaleDateString()}
                                             </div>
                                         )}
 
@@ -100,7 +96,9 @@ export default function DiscountCards({ products, locale }) {
                                             </div>
                                             {el.discount > 0 && (
                                                 <div>
-                                                    <div style={{ display: "flex", alignItems: "center" }}>
+                                                    <div
+                                                        style={{ display: "flex", alignItems: "center" }}
+                                                    >
                                                         <span className={s.discount__discount}>
                                                             {" "}
                                                             -{el.discount}{" "}
