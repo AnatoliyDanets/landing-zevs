@@ -21,7 +21,6 @@ export default function DiscountCards({ products, locale }) {
                 <SectionTitle
                     name={<FormattedMessage id="page.home.discount_title" />}
                 />
-
                 <div className={s.discount}>
                     <Swiper
                         slidesPerView={1}
