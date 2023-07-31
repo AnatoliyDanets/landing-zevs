@@ -67,9 +67,9 @@ export default function DiscountCards({ products, locale }) {
                                         {el.discount > 0 && (
                                             <div className={s.discount__time}>
                                                 <FormattedMessage id="page.home.discount_product_time" />
-                                                {new Date(
+                                                {typeof el.discount_time === 'number' ? new Date(
                                                     el.discount_time - 10800000
-                                                ).toLocaleDateString()}
+                                                ).toLocaleDateString() : el.discount__time.toLocaleDateString()}
                                             </div>
                                         )}
 
