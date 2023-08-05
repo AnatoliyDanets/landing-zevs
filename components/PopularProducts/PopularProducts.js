@@ -20,8 +20,6 @@ export const ConvertToNormalDate = ({ date, locale }) => {
     return String(finishDiscountDate);
 };
 
-
-
 export default function DiscountCards({ products, locale }) {
     return (
         <Section id={"Discount"}>
@@ -75,7 +73,12 @@ export default function DiscountCards({ products, locale }) {
                                         {el.discount > 0 && (
                                             <div className={s.discount__time}>
                                                 <FormattedMessage id="page.home.discount_product_time" />
-                                                {<ConvertToNormalDate date={el.discount_time} locale={locale} />}
+                                                {
+                                                    <ConvertToNormalDate
+                                                        date={el.discount_time}
+                                                        locale={locale}
+                                                    />
+                                                }
                                             </div>
                                         )}
 
