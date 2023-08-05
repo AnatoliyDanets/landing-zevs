@@ -4,6 +4,7 @@ import Image from "next/image";
 import { makeSizeForImage } from "@/services/services";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { Link } from "react-scroll/modules";
+import useFormattedDate from "../hook";
 import Section from "../Section";
 import SectionTitle from "../SectionTitle";
 import Container from "../Container";
@@ -13,6 +14,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import s from "./PopularProducts.module.css";
+
+export const ConvertToNormalDate = ({ date, locale }) => {
+    const finishDiscountDate = useFormattedDate(date, locale);
+    return String(finishDiscountDate);
+};
+
+
 
 export default function DiscountCards({ products, locale }) {
     return (
@@ -67,11 +75,7 @@ export default function DiscountCards({ products, locale }) {
                                         {el.discount > 0 && (
                                             <div className={s.discount__time}>
                                                 <FormattedMessage id="page.home.discount_product_time" />
-                                                {typeof el.discount_time === "number"
-                                                    ? new Date(
-                                                        el.discount_time - 10800000
-                                                    ).toLocaleDateString()
-                                                    : el.discount__time.toLocaleDateString()}
+                                                {<ConvertToNormalDate date={el.discount_time} locale={locale} />}
                                             </div>
                                         )}
 
