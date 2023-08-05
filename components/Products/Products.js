@@ -37,7 +37,7 @@ export default function Products({ products, locale }) {
             clearInterval(timer);
         };
     }, []);
-    const changeDiscountProduct = useCallback(
+    const changeDiscountProduct =
         async (data, id) => {
             try {
                 const res = await axios.patch(
@@ -50,9 +50,8 @@ export default function Products({ products, locale }) {
             } catch (error) {
                 console.log(error.message);
             }
-        },
-        [router.asPath, router]
-    );
+        }
+
 
     useEffect(() => {
         const dataDiscount = {
@@ -69,7 +68,7 @@ export default function Products({ products, locale }) {
                 }
                 return;
             });
-    }, [currentDate, products]);
+    }, [currentDate, products, router, router.asPath]);
 
     const quantityInCart = items
         ?.reduce(

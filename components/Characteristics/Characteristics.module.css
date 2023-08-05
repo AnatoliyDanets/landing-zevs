@@ -32,11 +32,11 @@
   align-items: center;
 }
 
-.character__table_sel:nth-child(even) {
+.character__table_sel:nth-child(2n) {
   background-color: transparent;
   color: var(--secondary-color);
 }
-.character__table_sel:nth-child(odd) {
+.character__table_sel:nth-child(2n + 1) {
   background-color: var(--secondary-bcg-color);
   color: var(--additional-color);
 }
