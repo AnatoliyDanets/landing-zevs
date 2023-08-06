@@ -46,7 +46,6 @@
   screen and (min-resolution: 192dpi) and (min-width: 768px),
   screen and (min-resolution: 2dppx) and (min-width: 768px) {
   .hero__container {
-    background-attachment: fixed;
     background-image: url(../../image/Hero/hero__tablet/hero@2x.jpg);
   }
 }
@@ -56,6 +55,7 @@
   screen and (min-resolution: 192dpi) and (min-width: 1200px),
   screen and (min-resolution: 2dppx) and (min-width: 1200px) {
   .hero__container {
+    background-attachment: fixed;
     background-image: url(../../image/Hero/hero__desk/hero@2x.jpg);
   }
 }
