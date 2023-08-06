@@ -26,12 +26,10 @@ export default function DeliveryAndPay() {
                     </ul>
                     <div className={s.delivery__btns}>
                         <Link
-
                             className={s.delivery__btn}
                             target="_blank"
                             rel="noopener noreferrer"
                             href={"https://novaposhta.ua/basic_tariffs"}
-
                         >
                             <FormattedMessage id="page.home.delivery_mail_one_item_btn" />
                         </Link>
@@ -49,12 +47,10 @@ export default function DeliveryAndPay() {
                     </ul>
                     <div className={s.delivery__btns}>
                         <Link
-
                             className={s.delivery__btn}
                             target="_blank"
                             rel="noopener noreferrer"
                             href={"https://www.ukrposhta.ua/ua/taryfy-ukrposhta-standart"}
-
                         >
                             <FormattedMessage id="page.home.delivery_mail_two_item_btn" />
                         </Link>
