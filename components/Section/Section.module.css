@@ -1,6 +1,7 @@
 .section {
   padding: 60px 0px;
   background-image: url(../../image/background2.jpg);
+  background-attachment: fixed;
   background-repeat: repeat;
   border-bottom-style: solid;
   border-bottom-width: 5px;

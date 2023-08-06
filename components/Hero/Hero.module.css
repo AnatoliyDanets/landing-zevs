@@ -18,6 +18,7 @@
 
 @media screen and (min-width: 768px) {
   .hero__container {
+    background-attachment: fixed;
     background-image: url(../../image/Hero/hero__tablet/hero@1x.jpg);
   }
 }
@@ -42,6 +43,7 @@
   screen and (min-resolution: 192dpi) and (min-width: 768px),
   screen and (min-resolution: 2dppx) and (min-width: 768px) {
   .hero__container {
+    background-attachment: fixed;
     background-image: url(../../image/Hero/hero__tablet/hero@2x.jpg);
   }
 }
@@ -105,7 +107,6 @@
   border-radius: 40px;
   font-weight: 500;
   font-size: 18px;
-
   width: 150px;
   line-height: 1.16;
   text-align: center;
