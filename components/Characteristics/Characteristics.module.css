@@ -30,6 +30,8 @@
   height: 43px;
   display: flex;
   align-items: center;
+  overflow: hidden;
+  width: auto;
 }
 
 .character__table_sel:nth-child(2n) {
@@ -43,8 +45,6 @@
 
 @media screen and (min-width: 480px) {
   .character__table_sel {
-    text-align: start;
-    padding: 5px;
     font-weight: 700;
     font-size: 16px;
     line-height: 22px;

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import ReactDOM from "react-dom";
 import { Nunito } from "@next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
-import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { useState, useEffect } from "react";
 import Close from "../svgs/close.svg";
 import s from "./Modal.module.css";
-
-
 
 const nunito = Nunito({
     subsets: ["latin"],
@@ -15,8 +13,6 @@ const nunito = Nunito({
     display: "swap",
     variable: "--font-nunito",
 });
-
-
 
 const backdropVariant = {
     hidden: {
@@ -70,7 +66,6 @@ const Modal = ({ show, onClose, children, style }) => {
     };
 
     const modalContent = show ? (
-
         <motion.div
             variants={backdropVariant}
             initial="hidden"
@@ -79,7 +74,11 @@ const Modal = ({ show, onClose, children, style }) => {
             className={s.modal__backdrop}
             onClick={handleCloseClick}
         >
-            <motion.div style={style} className={classNames(`${nunito.className} `, s.modal)} variants={modalVariant}>
+            <motion.div
+                style={style}
+                className={classNames(`${nunito.className} `, s.modal)}
+                variants={modalVariant}
+            >
                 <button
                     type="button"
                     className={s.modal__close}
@@ -104,9 +103,8 @@ const Modal = ({ show, onClose, children, style }) => {
 
 export default Modal;
 
-
 Modal.propTypes = {
     show: PropTypes.bool,
     onClose: PropTypes.func,
-    children: PropTypes.node
-}
+    children: PropTypes.node,
+};
