@@ -19,16 +19,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: "res.cloudinary.com",
+        pathname: "/dleesb43b/image/upload/**"
       },
     ],
     domains: [
       "res.cloudinary.com",
       "localhost",
       "i.ibb.co",
-      "2.gravatar.com",
-      "0.gravatar.com",
-      "secure.gravatar.com",
-      "placekitten.com"
+
     ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

@@ -104,7 +104,8 @@ export default function ProductSlider({ cardImg }) {
                                 alt="Picture of the author"
                                 width={460}
                                 height={460}
-                                priority
+                                loading="lazy"
+                                // priority
                                 className={s.image}
                             />
                         </div>
@@ -118,7 +119,7 @@ export default function ProductSlider({ cardImg }) {
                 >
                     {cardImg.length > 0 &&
                         cardImg.map((img, i) => (
-                            <div key={img.public_id} className={s.slider__wr}>
+                            <div key={img.public_id} className={s.slider__wr} >
                                 <Image
                                     src={makeSizeForImage(cardImg[0 + i].url, 70, 70)}
                                     alt="Picture of the author"
@@ -127,6 +128,7 @@ export default function ProductSlider({ cardImg }) {
                                     className={s.image__dot}
                                     blurDataURL="data:..."
                                     placeholder="blur"
+                                    loading="lazy"
                                 />
                             </div>
                         ))}
