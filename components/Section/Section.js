@@ -1,10 +1,11 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
+import Container from "../Container/Container";
 import s from "./Section.module.css";
 
 export default function Section({ children, id, style }) {
     return (
         <section id={id} style={style} className={s.section}>
-            {children}
+            <Container>{children}</Container>
         </section>
     );
 }
@@ -12,5 +13,5 @@ export default function Section({ children, id, style }) {
 Section.propTypes = {
     id: PropTypes.string,
     style: PropTypes.object,
-    children: PropTypes.node
-}
+    children: PropTypes.node,
+};

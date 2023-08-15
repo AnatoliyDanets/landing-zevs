@@ -2,13 +2,38 @@
   position: relative;
   padding-top: 270px;
   padding-bottom: 200px;
-  -webkit-box-shadow: 2px 10px 11px -4px rgba(210, 186, 64, 0.75);
+  border-bottom-style: solid;
+  border-bottom-width: 5px;
+  border-image: linear-gradient(
+      45deg,
+      var(--additional-color),
+      rgb(250, 224, 66)
+    )
+    0 0 5 0 round;
+  -moz-border-image: -moz-linear-gradient(
+      45deg,
+      var(--additional-color),
+      rgb(250, 224, 66)
+    )
+    0 0 5 0 round;
+  -webkit-border-image: -webkit-linear-gradient(
+      45deg,
+      var(--additional-color),
+      rgb(250, 224, 66)
+    )
+    0 0 5 0 round;
+  border-image: linear-gradient(
+      45deg,
+      var(--additional-color),
+      rgb(250, 224, 66)
+    )
+    0 0 5 0 round;
+  /* -webkit-box-shadow: 2px 10px 11px -4px rgba(210, 186, 64, 0.75);
   -moz-box-shadow: 2px 10px 11px -4px rgba(210, 186, 64, 0.75);
-  box-shadow: 2px 10px 11px -4px rgba(210, 186, 64, 0.75);
+  box-shadow: 2px 10px 11px -4px rgba(210, 186, 64, 0.75); */
 }
 
 .hero__content {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +81,10 @@
   color: var(--secondary-color);
   cursor: pointer;
   pointer-events: all;
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 2px 2px rgba(0, 0, 0, 0.12);
   transition: font-weight 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: font-weight 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero__btn:focus,
 .hero__btn:hover {
@@ -65,24 +93,13 @@
 
 @media screen and (min-width: 768px) {
   .hero {
-    padding-top: 270px;
-    padding-bottom: 300px;
+    padding-top: 250px;
+    padding-bottom: 350px;
   }
   .hero__title {
     width: 700px;
     font-size: 40px;
     line-height: 75px;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .hero__wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
   }
 }
 
@@ -91,5 +108,10 @@
     width: 700px;
     font-size: 40px;
     line-height: 75px;
+  }
+}
+@media screen and (min-width: 1360px) {
+  .hero {
+    border-bottom-width: 10px;
   }
 }

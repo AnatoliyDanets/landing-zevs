@@ -37,21 +37,16 @@ export default function Products({ products, locale }) {
             clearInterval(timer);
         };
     }, []);
-    const changeDiscountProduct =
-        async (data, id) => {
-            try {
-                const res = await axios.patch(
-                    `${process.env.API_PRODUCTS}/${id}`,
-                    data
-                );
-                if (res.status === 200) {
-                    console.log("Discount :0");
-                }
-            } catch (error) {
-                console.log(error.message);
+    const changeDiscountProduct = async (data, id) => {
+        try {
+            const res = await axios.patch(`${process.env.API_PRODUCTS}/${id}`, data);
+            if (res.status === 200) {
+                console.log("Discount :0");
             }
+        } catch (error) {
+            console.log(error.message);
         }
-
+    };
 
     useEffect(() => {
         const dataDiscount = {
@@ -139,6 +134,12 @@ export default function Products({ products, locale }) {
 
     useEffect(() => {
         if (items?.length > 0) {
+            const updateRemovedProductofDb = items?.filter((item) => {
+                return item?._id === products.find((el) => el._id == item._id)?._id;
+            });
+
+            setItems([...updateRemovedProductofDb]);
+        } else {
             const updateCart = items?.map((el) =>
                 [products?.find((val) => val._id === el._id)].reduce((acc, item) => {
                     acc._id = item._id;

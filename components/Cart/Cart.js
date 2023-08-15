@@ -164,7 +164,7 @@ export default function Cart({
                 </h2>
                 {showIsMobile ? (
                     <ul className={s.mobile__cart}>
-                        {uniqueCartProducts.map((el, i) => (
+                        {uniqueCartProducts?.map((el, i) => (
                             <li key={el.cards.public_id} className={s.mobile__cartItem}>
                                 <div className={s.mobile__cartWrap}>
                                     <Image
@@ -232,13 +232,13 @@ export default function Cart({
                             </tr>
                         </thead>
                         <tbody className={s.tableCart__body}>
-                            {uniqueCartProducts.map((el) => (
-                                <tr className={s.tableCart__body_row} key={el.cards.public_id}>
+                            {uniqueCartProducts?.map((el) => (
+                                <tr className={s.tableCart__body_row} key={el.cards?.public_id}>
                                     <>
                                         <td className={s.tableCart__body_sel}>
                                             {
                                                 <Image
-                                                    src={el.cards.url}
+                                                    src={el.cards?.url}
                                                     alt={el.model}
                                                     width={70}
                                                     height={70}
@@ -266,7 +266,7 @@ export default function Cart({
                                                         (+el.price - (el.discount / 100) * +el.price) *
                                                         el.count
                                                     ).toFixed(2)
-                                                    : +el.count * +el.price.toFixed(2)}
+                                                    : +el.count * +el.price?.toFixed(2)}
                                                 грн
                                             </span>
                                         </td>

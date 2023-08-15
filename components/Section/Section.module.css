@@ -1,7 +1,5 @@
 .section {
   padding: 60px 0px;
-  background-image: url(../../image/background2.jpg);
-  background-repeat: repeat;
   border-bottom-style: solid;
   border-bottom-width: 5px;
   border-image: linear-gradient(
@@ -28,12 +26,6 @@
       rgb(250, 224, 66)
     )
     0 0 5 0 round;
-}
-
-@media screen and (min-width: 1200px) {
-  .section {
-    background-attachment: fixed;
-  }
 }
 
 @media screen and (min-width: 1360px) {

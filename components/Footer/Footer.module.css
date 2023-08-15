@@ -1,7 +1,5 @@
 .footer {
   padding: 30px 0px;
-  background-image: url(../../image/background2.jpg);
-  background-repeat: repeat;
 }
 .footer__list {
   text-align: center;
@@ -14,10 +12,4 @@
 .footer__copy {
   color: var(--secondary-color);
   text-align: center;
-}
-
-@media screen and (min-width: 1200px) {
-  .footer {
-    background-attachment: fixed;
-  }
 }

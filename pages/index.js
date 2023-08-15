@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { useIntl } from "react-intl";
 import { Suspense } from "react";
+import Background from "@/components/Background/Background";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "slick-carousel/slick/slick.css";
@@ -44,18 +45,20 @@ export default function Home({ products }) {
           hrefLang="ru"
         />
       </Head>
-      <Header locales={locales} />
-      <Hero />
-      <Suspense fallback={<div>Loading...</div>}>
-        <PopularProducts products={products} locale={locale} />
-        <Products products={products} locale={locale} />
-      </Suspense>
-      <Features />
-      <Feedback />
-      <HowOrder />
-      <DeliveryAndPay />
-      <Contacts />
-      <Footer />
+      <Background>
+        <Header locales={locales} />
+        <Hero />
+        <Suspense fallback={<div>Loading...</div>}>
+          <PopularProducts products={products} locale={locale} />
+          <Products products={products} locale={locale} />
+        </Suspense>
+        <Features />
+        <Feedback />
+        <HowOrder />
+        <DeliveryAndPay />
+        <Contacts />
+        <Footer />
+      </Background>
       <Script
         src="https://www.google-analytics.com/analytics.js"
         strategy="lazyOnload"

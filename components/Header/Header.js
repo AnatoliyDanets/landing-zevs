@@ -7,7 +7,7 @@ import Image from "next/image";
 import Container from "../Container";
 import HeaderLangBox from "./HeaderLangBox";
 import Navigation from "../Navigation";
-import logo from "../../image/Hero/Zevs.png";
+import logo from "../../image/Logo/Zevs.png";
 import Burger from "../svgs/burger.svg";
 import s from "./Header.module.css";
 

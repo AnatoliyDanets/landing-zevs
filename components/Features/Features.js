@@ -1,5 +1,4 @@
 import { FormattedMessage } from "react-intl";
-import Container from "../Container";
 import Section from "../Section";
 import SectionTitle from "../SectionTitle";
 import Star from "../svgs/star.svg";
@@ -13,79 +12,77 @@ import s from "./Features.module.css";
 export default function Features() {
     return (
         <Section id={"Features"}>
-            <Container>
-                <SectionTitle
-                    name={<FormattedMessage id="page.home.features_title" />}
-                />
-                <ul className={s.features}>
-                    <li className={s.features__item}>
-                        <article>
-                            <Star className={s.features__icon} />
-                            <h3 className={s.features__title}>
-                                <FormattedMessage id="page.home.features_title_one" />
-                            </h3>
-                            <p className={s.features__text}>
-                                <FormattedMessage id="page.home.features_item_one" />
-                            </p>
-                        </article>
-                    </li>
-                    <li className={s.features__item}>
-                        <article>
-                            <Clients className={s.features__icon} />
-                            <h3 className={s.features__title}>
-                                <FormattedMessage id="page.home.features_title_two" />
-                            </h3>
-                            <p className={s.features__text}>
-                                <FormattedMessage id="page.home.features_item_two" />
-                            </p>
-                        </article>
-                    </li>
-                    <li className={s.features__item}>
-                        <article>
-                            <Internet className={s.features__icon} />
-                            <h3 className={s.features__title}>
-                                <FormattedMessage id="page.home.features_title_three" />
-                            </h3>
-                            <p className={s.features__text}>
-                                <FormattedMessage id="page.home.features_item_three" />
-                            </p>
-                        </article>
-                    </li>
-                    <li className={s.features__item}>
-                        <article>
-                            <Problem className={s.features__icon} />
-                            <h3 className={s.features__title}>
-                                <FormattedMessage id="page.home.features_title_four" />
-                            </h3>
-                            <p className={s.features__text}>
-                                <FormattedMessage id="page.home.features_item_four" />
-                            </p>
-                        </article>
-                    </li>
-                    <li className={s.features__item}>
-                        <article>
-                            <Product className={s.features__icon} />
-                            <h3 className={s.features__title}>
-                                <FormattedMessage id="page.home.features_title_five" />
-                            </h3>
-                            <p className={s.features__text}>
-                                <FormattedMessage id="page.home.features_item_five" />
-                            </p>
-                        </article>
-                    </li>
-                    <li className={s.features__item}>
-                        <article>
-                            <Discount className={s.features__icon} />
-                            <h3 className={s.features__title}>
-                                <FormattedMessage id="page.home.features_title_six" />
-                            </h3>
-                            <p className={s.features__text}>
-                                <FormattedMessage id="page.home.features_item_six" />
-                            </p>
-                        </article>
-                    </li>
-                </ul>
-            </Container>
+            <SectionTitle
+                name={<FormattedMessage id="page.home.features_title" />}
+            />
+            <ul className={s.features}>
+                <li className={s.features__item}>
+                    <article>
+                        <Star className={s.features__icon} />
+                        <h3 className={s.features__title}>
+                            <FormattedMessage id="page.home.features_title_one" />
+                        </h3>
+                        <p className={s.features__text}>
+                            <FormattedMessage id="page.home.features_item_one" />
+                        </p>
+                    </article>
+                </li>
+                <li className={s.features__item}>
+                    <article>
+                        <Clients className={s.features__icon} />
+                        <h3 className={s.features__title}>
+                            <FormattedMessage id="page.home.features_title_two" />
+                        </h3>
+                        <p className={s.features__text}>
+                            <FormattedMessage id="page.home.features_item_two" />
+                        </p>
+                    </article>
+                </li>
+                <li className={s.features__item}>
+                    <article>
+                        <Internet className={s.features__icon} />
+                        <h3 className={s.features__title}>
+                            <FormattedMessage id="page.home.features_title_three" />
+                        </h3>
+                        <p className={s.features__text}>
+                            <FormattedMessage id="page.home.features_item_three" />
+                        </p>
+                    </article>
+                </li>
+                <li className={s.features__item}>
+                    <article>
+                        <Problem className={s.features__icon} />
+                        <h3 className={s.features__title}>
+                            <FormattedMessage id="page.home.features_title_four" />
+                        </h3>
+                        <p className={s.features__text}>
+                            <FormattedMessage id="page.home.features_item_four" />
+                        </p>
+                    </article>
+                </li>
+                <li className={s.features__item}>
+                    <article>
+                        <Product className={s.features__icon} />
+                        <h3 className={s.features__title}>
+                            <FormattedMessage id="page.home.features_title_five" />
+                        </h3>
+                        <p className={s.features__text}>
+                            <FormattedMessage id="page.home.features_item_five" />
+                        </p>
+                    </article>
+                </li>
+                <li className={s.features__item}>
+                    <article>
+                        <Discount className={s.features__icon} />
+                        <h3 className={s.features__title}>
+                            <FormattedMessage id="page.home.features_title_six" />
+                        </h3>
+                        <p className={s.features__text}>
+                            <FormattedMessage id="page.home.features_item_six" />
+                        </p>
+                    </article>
+                </li>
+            </ul>
         </Section>
     );
 }

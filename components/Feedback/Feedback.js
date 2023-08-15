@@ -8,7 +8,6 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import Image from "next/image";
 import Section from "../Section";
-import Container from "../Container";
 import SectionTitle from "../SectionTitle";
 import s from "./Feedback.module.css";
 
@@ -27,46 +26,44 @@ export default function Feedback() {
     ];
     return (
         <Section id={"Feedback"}>
-            <Container>
-                <SectionTitle
-                    name={<FormattedMessage id="page.home.feedback_title" />}
-                />
-                <div className={s.feedback}>
-                    <Swiper
-                        slidesPerView={1}
-                        breakpoints={{
-                            768: {
-                                slidesPerView: 2,
-                            },
-                            1024: {
-                                slidesPerView: 3,
-                            },
-                        }}
-                        spaceBetween={10}
-                        pagination={{
-                            clickable: true,
-                        }}
-                        navigation
-                        modules={[Pagination, Navigation]}
-                        className="mySwiper"
-                    >
-                        {feedbackPeople.map((el, i) => (
-                            <SwiperSlide key={i}>
-                                <Image
-                                    src={el}
-                                    alt="feedback"
-                                    width="258"
-                                    height="120"
-                                    className={s.feedback__img}
-                                    // priority
-                                    blurDataURL="data:..."
-                                    placeholder="blur"
-                                />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </div>
-            </Container>
+            <SectionTitle
+                name={<FormattedMessage id="page.home.feedback_title" />}
+            />
+            <div className={s.feedback}>
+                <Swiper
+                    slidesPerView={1}
+                    breakpoints={{
+                        768: {
+                            slidesPerView: 2,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                        },
+                    }}
+                    spaceBetween={10}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    navigation
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                >
+                    {feedbackPeople.map((el, i) => (
+                        <SwiperSlide key={i}>
+                            <Image
+                                src={el}
+                                alt="feedback"
+                                width="258"
+                                height="120"
+                                className={s.feedback__img}
+                                // priority
+                                blurDataURL="data:..."
+                                placeholder="blur"
+                            />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
         </Section>
     );
 }
