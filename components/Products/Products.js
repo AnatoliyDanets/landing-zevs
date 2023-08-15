@@ -142,14 +142,14 @@ export default function Products({ products, locale }) {
         } else {
             const updateCart = items?.map((el) =>
                 [products?.find((val) => val._id === el._id)].reduce((acc, item) => {
-                    acc._id = item._id;
-                    acc.model = item.model[locale];
-                    acc.size = item.size;
+                    acc._id = item?._id;
+                    acc.model = item?.model[locale];
+                    acc.size = item?.size;
                     acc.count = el.count;
-                    acc.discount = item.discount;
-                    acc.cards = item.cards;
-                    acc.price = item.price;
-                    acc.height = item.height;
+                    acc.discount = item?.discount;
+                    acc.cards = item?.cards;
+                    acc.price = item?.price;
+                    acc.height = item?.height;
                     acc.totalPrice = el.totalPrice;
                     return acc;
                 }, {})
