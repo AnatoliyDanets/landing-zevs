@@ -134,28 +134,32 @@ export default function Products({ products, locale }) {
 
     useEffect(() => {
         if (items?.length > 0) {
-            const updateRemovedProductofDb = items?.filter((item) => {
-                return item?._id === products.find((el) => el._id == item._id)?._id;
-            });
+            const updateCart = items
+                ?.filter((item) => {
+                    return item?._id === products.find((el) => el._id == item._id)?._id;
+                })
+                .map((el) =>
+                    [products?.find((val) => val._id === el._id)].reduce((acc, item) => {
+                        acc._id = item?._id;
+                        acc.model = item?.model[locale];
+                        acc.size = item?.size;
+                        acc.count = el.count;
+                        acc.discount = item?.discount;
+                        acc.cards = item?.cards;
+                        acc.price = item?.price;
+                        acc.height = item?.height;
+                        acc.totalPrice =
+                            item?.discount > 0
+                                ? +(
+                                    (+item?.price - (+item.discount / 100) * +item.price) *
+                                    +el.count
+                                ).toFixed(2)
+                                : +el.count * +item.price?.toFixed(2);
+                        return acc;
+                    }, {})
+                );
 
-            setItems([...updateRemovedProductofDb]);
-        } else {
-            const updateCart = items?.map((el) =>
-                [products?.find((val) => val._id === el._id)].reduce((acc, item) => {
-                    acc._id = item?._id;
-                    acc.model = item?.model[locale];
-                    acc.size = item?.size;
-                    acc.count = el.count;
-                    acc.discount = item?.discount;
-                    acc.cards = item?.cards;
-                    acc.price = item?.price;
-                    acc.height = item?.height;
-                    acc.totalPrice = el.totalPrice;
-                    return acc;
-                }, {})
-            );
-
-            setItems(updateCart);
+            setItems([...updateCart]);
         }
     }, [products, items?.length]);
 
