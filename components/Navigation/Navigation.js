@@ -1,7 +1,7 @@
 import { Link } from "react-scroll";
 import { FormattedMessage } from "react-intl";
 import Image from "next/image";
-import logo from "../../image/Logo/Zevs_desk.png";
+import logo from "../../public/Logo/Zevs_desk.png";
 import s from "./Navigation.module.css";
 
 export default function Navigation() {

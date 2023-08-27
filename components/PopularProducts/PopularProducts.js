@@ -34,7 +34,7 @@ export default function DiscountCards({ products, locale }) {
                             slidesPerView: 2,
                         },
                         1024: {
-                            slidesPerView: 4,
+                            slidesPerView: 3,
                         },
                     }}
                     loop={true}

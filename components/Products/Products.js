@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState} from "react";
 import { FormattedMessage } from "react-intl";
 import ProductBlankets from "../ProductBlankets/ProductList";
 import { useRouter } from "next/router";

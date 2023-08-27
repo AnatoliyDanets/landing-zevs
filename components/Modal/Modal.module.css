@@ -16,8 +16,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: url(../../image/background2.jpg);
-  background-repeat: repeat;
   border-radius: 3px;
 }
 

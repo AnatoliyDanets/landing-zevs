@@ -13,8 +13,12 @@ const nextConfig = {
     localeDetection: false
 
   },
-  swcMinify: true,
+
+  experimental: {
+    nextScriptWorkers: true,
+  },
   images: {
+    minimumCacheTTL: 60,
     remotePatterns: [
       {
         protocol: 'https',

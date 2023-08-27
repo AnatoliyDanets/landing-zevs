@@ -66,7 +66,7 @@ export default function ProductSlider({ cardImg }) {
     useEffect(() => {
         setNav1(slider1);
         setNav2(slider2);
-    });
+    }, [setNav1, setNav2, slider1, slider2]);
 
     const settingsMain = {
         slidesToShow: 1,
@@ -86,7 +86,7 @@ export default function ProductSlider({ cardImg }) {
         centerMode: true,
         swipeToSlide: true,
         focusOnSelect: true,
-        centerPadding: "2px",
+        centerPadding: "6px",
     };
 
     return (
@@ -105,7 +105,8 @@ export default function ProductSlider({ cardImg }) {
                                 width={460}
                                 height={460}
                                 loading="lazy"
-                                // priority
+                                blurDataURL="data:..."
+                                placeholder="blur"
                                 className={s.image}
                             />
                         </div>
@@ -119,7 +120,7 @@ export default function ProductSlider({ cardImg }) {
                 >
                     {cardImg.length > 0 &&
                         cardImg.map((img, i) => (
-                            <div key={img.public_id} className={s.slider__wr} >
+                            <div key={img.public_id} className={s.slider__thumb} >
                                 <Image
                                     src={makeSizeForImage(cardImg[0 + i].url, 70, 70)}
                                     alt="Picture of the author"

@@ -3,8 +3,10 @@ import { Nunito } from "@next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import Close from "../svgs/close.svg";
+import modalImage from "../../public/background2.jpg"
 import s from "./Modal.module.css";
 
 const nunito = Nunito({
@@ -86,6 +88,19 @@ const Modal = ({ show, onClose, children, style }) => {
                 >
                     <Close className={s.modal__close_icon} />
                 </button>
+
+                <Image
+                    src={modalImage}
+                    priority
+                    alt="bar"
+                    fill
+                    style={{ objectFit: 'cover', zIndex: -1 }}
+                    sizes="100%"
+                    quality={100}
+
+                />
+
+
                 {children}
             </motion.div>
         </motion.div>

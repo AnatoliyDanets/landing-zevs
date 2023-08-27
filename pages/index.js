@@ -26,14 +26,13 @@ export default function Home({ products }) {
   const description = intl.formatMessage({
     id: "page.home.head.meta.description",
   });
-
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
         <link
           rel="alternate"
           href={process.env.NEXT_PUBLIC_CLIENT}
