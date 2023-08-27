@@ -118,6 +118,7 @@ export default function ProductSlider({ cardImg }) {
                     asNavFor={nav1}
                     ref={(slider) => setSlider2(slider)}
                 >
+
                     {cardImg.length > 0 &&
                         cardImg.map((img, i) => (
                             <div key={img.public_id} className={s.slider__thumb} >
