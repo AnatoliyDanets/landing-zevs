@@ -15,6 +15,7 @@
 body {
   font-weight: normal;
   position: relative;
+  background-color: var(--primary-bcg-color);
 }
 
 ul {

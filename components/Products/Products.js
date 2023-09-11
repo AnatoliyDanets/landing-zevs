@@ -1,10 +1,8 @@
 import dynamic from "next/dynamic";
 import PropTypes from "prop-types";
-import axios from "axios";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import ProductBlankets from "../ProductBlankets/ProductList";
-import { useRouter } from "next/router";
 
 const DisplayCart = dynamic(() => import("../DisplayCart"));
 const SuccessOrder = dynamic(() => import("../SuccessOrder"));
@@ -13,9 +11,6 @@ const Cart = dynamic(() => import("../Cart"));
 const Modal = dynamic(() => import("../Modal"));
 
 export default function Products({ products, locale }) {
-    const [currentDate, setCurrentDate] = useState(Date.now());
-    const router = useRouter();
-
     const [showCart, setShowCart] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [showIsSuccessMessage, setShowIsSuccessMessage] = useState(false);
@@ -29,41 +24,6 @@ export default function Products({ products, locale }) {
         }
     });
     const [cartItem, setCartItem] = useState([]);
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentDate(Date.now());
-        }, 1000);
-        return () => {
-            clearInterval(timer);
-        };
-    }, []);
-    const changeDiscountProduct = async (data, id) => {
-        try {
-            const res = await axios.patch(`${process.env.API_PRODUCTS}/${id}`, data);
-            if (res.status === 200) {
-                console.log("Discount :0");
-            }
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
-
-    useEffect(() => {
-        const dataDiscount = {
-            discount: 0,
-            discount_time: 0,
-        };
-
-        products
-            .filter((el) => el.discount > 0)
-            .map((el) => {
-                if (currentDate > el.discount_time) {
-                    changeDiscountProduct(dataDiscount, el._id);
-                    router.replace(router.asPath, undefined, { scroll: false });
-                }
-                return;
-            });
-    }, [currentDate, products, router, router.asPath]);
 
     const quantityInCart = items
         ?.reduce(

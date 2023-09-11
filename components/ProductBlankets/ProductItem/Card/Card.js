@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import Arrow from "../../../svgs/arrow.svg";
@@ -23,8 +25,10 @@ export default function Card({
     arr,
     locale,
 }) {
-
-    const [currentTime, setCurrentTime] = useState(null);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [currentDiscount, setCurrentDiscount] = useState(0);
+    const [isChangeDiscount, setIsChangeDiscount] = useState(false);
+    const router = useRouter();
     const [showDisc, setShowDisc] = useState(false);
     const [showAllDisc, setShowAllDisc] = useState(card.discription[locale]);
     const handleShowDisc = () => {
@@ -39,12 +43,44 @@ export default function Card({
     }, [card.discription[locale]]);
 
     useEffect(() => {
+        setCurrentDiscount(card?.discount);
         setCurrentTime(card?.discount_time);
-    }, [card?.discount_time, card?.discount, currentTime]);
+    }, [card?.discount_time, card?.discount, currentTime, currentDiscount]);
+
+    const changeDiscountProduct = async (data, cardId) => {
+        try {
+            const res = await axios.patch(
+                `${process.env.API_PRODUCTS}/${cardId}`,
+                data
+            );
+            if (res.status === 200) {
+                setIsChangeDiscount(false);
+                router.replace(router.asPath, undefined, { scroll: false });
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            if (isChangeDiscount) {
+                const dataDiscount = {
+                    discount_time: 0,
+                    discount: 0,
+                };
+                setCurrentTime(0);
+                setCurrentDiscount(0);
+                changeDiscountProduct(dataDiscount, card._id);
+            }
+        }, 750);
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [isChangeDiscount]);
+
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
-        if (completed) {
-            return;
-        } else {
+        if (!completed) {
             return (
                 <p className={s.card__discount_time}>
                     <FormattedMessage id="page.home.catalog_discount" />{" "}
@@ -56,6 +92,8 @@ export default function Card({
                     </span>
                 </p>
             );
+        } else {
+            return;
         }
     };
 
@@ -74,7 +112,6 @@ export default function Card({
             },
         },
     };
-    // console.log(text)
     return (
         <article className={s.card__article} key={id}>
             <h4 className={s.card__title} id={card.model[locale]}>
@@ -165,9 +202,13 @@ export default function Card({
                             </FormControl>
                         </div>
                         {currentTime > 0 && (
-                            <>
-                                <Countdown date={currentTime} renderer={renderer} />
-                            </>
+                            <Countdown
+                                date={card.discount_time}
+                                renderer={renderer}
+                                onComplete={() => {
+                                    setIsChangeDiscount(true);
+                                }}
+                            />
                         )}
 
                         <p className={s.card__price}>
@@ -207,9 +248,6 @@ export default function Card({
     );
 }
 
-
-
-
 Card.propTypes = {
     id: PropTypes.string,
     card: PropTypes.shape({
@@ -235,6 +273,5 @@ Card.propTypes = {
     currentSize: PropTypes.number,
     model: PropTypes.string,
     arr: PropTypes.array,
-    locale: PropTypes.string
-
+    locale: PropTypes.string,
 };

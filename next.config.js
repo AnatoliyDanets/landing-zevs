@@ -2,7 +2,7 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     API_PRODUCTS: process.env.PRODUCTS_ENDPOINT,
     API_ORDERS: process.env.ORDERS_ENDPOINT,
