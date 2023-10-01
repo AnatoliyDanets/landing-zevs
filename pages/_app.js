@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { IntlProvider } from "react-intl";
-import { Nunito } from "@next/font/google";
+import { Nunito } from "next/font/google";
 import uk from "../lang/uk.json";
 import ru from "../lang/ru.json";
 import Loader from "@/components/Loader";

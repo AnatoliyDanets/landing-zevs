@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { Nunito } from "@next/font/google";
+import { Nunito } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import PropTypes from "prop-types";
 import classNames from "classnames";
