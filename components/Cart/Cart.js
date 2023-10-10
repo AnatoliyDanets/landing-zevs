@@ -13,6 +13,7 @@ export default function Cart({
     cartProduct,
     increment,
     decrement,
+    handleInputChange,
     removeClick,
     set,
     handleShowIsSuccess,
@@ -185,6 +186,7 @@ export default function Cart({
                                     <CartProductCounter
                                         increment={increment}
                                         decrement={decrement}
+                                        handleInputChange={handleInputChange}
                                         count={+el.count}
                                         id={el._id}
                                         cartProduct={cartProduct}
@@ -255,6 +257,7 @@ export default function Cart({
                                             <CartProductCounter
                                                 increment={increment}
                                                 decrement={decrement}
+                                                handleInputChange={handleInputChange}
                                                 count={+el.count}
                                                 id={el._id}
                                             />
@@ -311,6 +314,7 @@ Cart.propTypes = {
     cartProduct: PropTypes.array,
     increment: PropTypes.func,
     decrement: PropTypes.func,
+    handleInputChange: PropTypes.func,
     removeClick: PropTypes.func,
     set: PropTypes.func,
     handleShowIsSuccess: PropTypes.func,

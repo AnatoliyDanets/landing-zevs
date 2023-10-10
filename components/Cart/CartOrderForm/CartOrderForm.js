@@ -175,6 +175,7 @@ export default function CartOrderForm({
                         <span className={s.cart__form_error}>{errors.name.message}</span>
                     )}
                     <input
+                        autoComplete="given-name"
                         className={s.cart__form_input}
                         placeholder={placeholderName}
                         type="text"
@@ -226,6 +227,7 @@ export default function CartOrderForm({
                         control={control}
                         countryCallingCodeEditable={false}
                         limitMaxLength={true}
+                        autoComplete="tel"
                         rules={{
                             required: true,
                             validate: (value) => handleValidate(value),
@@ -249,6 +251,7 @@ export default function CartOrderForm({
                                 className={s.cart__form_checkbox}
                                 checked={showAddInfo}
                                 onChange={handleShowAddInfo}
+                                id="checkbox"
                                 sx={{
                                     color: "#d2ba40",
                                     "&.Mui-checked": {

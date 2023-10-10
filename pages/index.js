@@ -66,11 +66,30 @@ export default function Home({ products }) {
   );
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(process.env.PRODUCTS_ENDPOINT);
-  const products = await res.json();
+export async function getServerSideProps(context) {
+  try {
+    const res = await fetch(process.env.PRODUCTS_ENDPOINT);
 
-  return {
-    props: { products },
-  };
+    if (!res.ok) {
+      console.error(`Request error: ${res.status}`);
+      return {
+        notFound: true,
+      };
+    }
+
+    context.res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=10, stale-while-revalidate=59"
+    );
+    const products = await res.json();
+
+    return {
+      props: { products },
+    };
+  } catch (error) {
+    console.error("Error when executing getServerSideProps:", error);
+    return {
+      notFound: true,
+    };
+  }
 }

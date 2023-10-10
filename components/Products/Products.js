@@ -49,44 +49,57 @@ export default function Products({ products, locale }) {
     };
 
     const handleIncrement = (e) => {
-        const findItems = items.find((el) => el._id === e.target.id);
-        const newItems = [
-            ...items,
-            {
-                ...findItems,
-                ...(findItems.count += 1),
-                ...(findItems.totalPrice =
-                    Number(
-                        +findItems.discount > 0
-                            ? +findItems.price -
-                            (+findItems.discount / 100) * +findItems.price
-                            : +findItems.price
-                    ) * Number(findItems.count)),
-            },
-        ];
-        setItems([...newItems]);
-    };
-    const handleDecrement = (e) => {
-        const findItems = items.find((el) => el._id === e.target.id);
-        const newItems = [
-            ...items,
-            {
-                ...findItems,
-                ...(findItems.count <= 1
-                    ? (findItems.count = 1)
-                    : (findItems.count -= 1)),
-                ...(findItems.totalPrice =
-                    Number(
-                        +findItems.discount > 0
-                            ? +findItems.price -
-                            (+findItems.discount / 100) * +findItems.price
-                            : +findItems.price
-                    ) * Number(findItems.count)),
-            },
-        ];
-        setItems([...newItems]);
+        const updatedItems = items.map((el) =>
+            el._id === e.target.id
+                ? {
+                    ...el,
+                    count: el.count >= 1000 ? el.count = 1000 : el.count + 1,
+                    totalPrice: calculateTotalPrice(el, el.count + 1),
+                }
+                : el
+        );
+        setItems(updatedItems);
     };
 
+    const handleDecrement = (e) => {
+        const updatedItems = items.map((el) =>
+            el._id === e.target.id
+                ? {
+                    ...el,
+                    count: el.count > 1 ? el.count - 1 : 1,
+                    totalPrice: calculateTotalPrice(el, el.count > 1 ? el.count - 1 : 1),
+                }
+                : el
+        );
+        setItems(updatedItems);
+    };
+    const handleInputChange = (itemId, value) => {
+
+
+        const inputValue = parseInt(value, 10);
+
+        setItems((prevItems) =>
+            prevItems.map((item) =>
+                item._id === itemId
+                    ? {
+                        ...item,
+                        count: isNaN(inputValue) || inputValue <= 0 ? 1 : inputValue,
+                        totalPrice: calculateTotalPrice(item, inputValue),
+                    }
+                    : item
+            )
+        );
+    };
+
+    const calculateTotalPrice = (item, count) => {
+        return (
+            Number(
+                +item.discount > 0
+                    ? +item.price - (+item.discount / 100) * +item.price
+                    : +item.price
+            ) * Number(count)
+        );
+    };
     const handleRemoveProduct = (id) => {
         const findItems = items?.filter((el) => el._id !== id);
         setItems([...findItems]);
@@ -214,6 +227,7 @@ export default function Products({ products, locale }) {
                         cartProduct={items}
                         increment={handleIncrement}
                         decrement={handleDecrement}
+                        handleInputChange={handleInputChange}
                         removeClick={handleRemoveProduct}
                         set={setItems}
                         handleShowIsSuccess={setShowSuccess}

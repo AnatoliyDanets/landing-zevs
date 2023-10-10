@@ -37,3 +37,25 @@
   align-items: center;
   color: var(--secondary-color);
 }
+
+.basket__input::-webkit-inner-spin-button,
+.basket__input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.basket__input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  border: none;
+  outline: none;
+  background-color: var(--primary-bcg-color);
+  color: var(--secondary-color);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.basket__input:hover,
+.basket__input:focus {
+  border: var(--border);
+}

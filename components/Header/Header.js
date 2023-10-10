@@ -82,7 +82,7 @@ export default function Header({ locales }) {
                                 className={s.header__list}
                                 style={
                                     showMobileMenu
-                                        ? { transform: "translateX(-102%) translateX(0%)" }
+                                        ? { transform: "translateX(-100vw) translateX(0%)" }
                                         : { transform: null }
                                 }
                             >
