@@ -242,7 +242,7 @@ export default function CartOrderForm({
                     />
                 </div>
                 <div className={s.cart__form_checkboxWrap}>
-                    <p className={s.cart__form_checkLabel} >
+                    <p className={s.cart__form_checkLabel}>
                         <FormattedMessage id="page.home.modal_ordering_is_call" />
                     </p>
                     <FormControlLabel
@@ -250,8 +250,8 @@ export default function CartOrderForm({
                             <Checkbox
                                 className={s.cart__form_checkbox}
                                 checked={showAddInfo}
-                                onChange={handleShowAddInfo}
                                 id="checkbox"
+                                onChange={handleShowAddInfo}
                                 sx={{
                                     color: "#d2ba40",
                                     "&.Mui-checked": {
@@ -264,7 +264,7 @@ export default function CartOrderForm({
                 </div>
                 {showAddInfo && (
                     <>
-                        <p className={s.cart__form_label} >
+                        <p className={s.cart__form_label}>
                             <FormattedMessage id="page.home.modal_ordering_mail" />
                         </p>
                         <div className={s.cart__form_radioWrap}>
@@ -550,5 +550,5 @@ CartOrderForm.propTypes = {
     showAddInfo: PropTypes.bool,
     setShowAddInfo: PropTypes.func,
     selectMail: PropTypes.bool,
-    setSelectMail: PropTypes.func
-}
+    setSelectMail: PropTypes.func,
+};
