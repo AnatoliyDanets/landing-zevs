@@ -7,10 +7,7 @@ import s from "./DeliveryAndPay.module.css";
 export default function DeliveryAndPay() {
     return (
         <Section id={"Delivery"}>
-
-            <SectionTitle
-                name={<FormattedMessage id="page.home.delivery_title" />}
-            />
+            <SectionTitle name={<FormattedMessage id="page.home.delivery_title" />} />
             <div className={s.delivery}>
                 <h3 className={s.delivery__title}>
                     <FormattedMessage id="page.home.delivery_title_one" />

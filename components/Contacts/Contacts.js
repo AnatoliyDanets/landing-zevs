@@ -1,12 +1,12 @@
 import { useMediaQuery } from "react-responsive";
 import { FormattedMessage } from "react-intl";
+import { useState, useEffect } from "react";
 import Section from "../Section";
 import SectionTitle from "../SectionTitle";
 import Phone from "../svgs/phone.svg";
 import Location from "../svgs/location.svg";
 import Clock from "../svgs/clock.svg";
 import s from "./Contacts.module.css";
-import { useState, useEffect } from "react";
 
 export default function Contacts() {
     const [showIsMobileContacts, setShowIsMobileContacts] = useState(false);

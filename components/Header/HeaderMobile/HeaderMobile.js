@@ -1,23 +1,19 @@
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import HeaderLangBox from "../HeaderLangBox";
 import { Link } from "react-scroll";
 import Close from "../../svgs/close.svg";
 import Container from "../../Container";
+import HeaderLangBox from "../HeaderLangBox";
 import s from "./HeaderMobile.module.css";
 
-export default function HeaderMobile({
-    show,
-    onClick,
-    locales
-}) {
+export default function HeaderMobile({ show, onClick, locales }) {
     return (
         <div
             className={s.mobileMenu}
             style={
                 show
-                    ? { transform: "translateY(0) translateX(-50%)" }
-                    : { transform: "translateX(100%) translateX(-50%)" }
+                    ? { transform: " translateX(-50%)" }
+                    : { transform: "translateX(100%)" }
             }
         >
             <Container>
@@ -36,14 +32,13 @@ export default function HeaderMobile({
                                 <HeaderLangBox locales={locales} />
                             </li>
 
-
                             <li className={s.mobileMenu__nav_item}>
                                 <Link
                                     activeClass="active"
                                     to="Discount"
                                     spy={true}
                                     smooth={true}
-                                    offset={-100}
+                                    offset={-50}
                                     duration={500}
                                     href={"#Discount"}
                                     onClick={onClick}
@@ -59,7 +54,7 @@ export default function HeaderMobile({
                                     href={"#Blankets"}
                                     spy={true}
                                     smooth={true}
-                                    offset={-50}
+                                    offset={-100}
                                     duration={500}
                                     onClick={onClick}
                                 >
@@ -74,7 +69,7 @@ export default function HeaderMobile({
                                     href={"#Pillows"}
                                     spy={true}
                                     smooth={true}
-                                    offset={-50}
+                                    offset={-100}
                                     duration={500}
                                     onClick={onClick}
                                 >
@@ -88,7 +83,7 @@ export default function HeaderMobile({
                                     href={"#Features"}
                                     spy={true}
                                     smooth={true}
-                                    offset={-100}
+                                    offset={-50}
                                     duration={500}
                                     onClick={onClick}
                                 >
@@ -162,5 +157,5 @@ export default function HeaderMobile({
 HeaderMobile.propTypes = {
     show: PropTypes.bool,
     onClick: PropTypes.func,
-    locales: PropTypes.array
+    locales: PropTypes.array,
 };

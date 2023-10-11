@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { Link } from "react-scroll/modules";
 import { FormattedMessage } from "react-intl";
 import Container from "../Container";
@@ -6,7 +5,7 @@ import s from "./Hero.module.css";
 
 export default function Hero() {
     return (
-        <section id="Hero" className={classNames(s.hero, s.hero__container)}>
+        <section id="Hero" className={s.hero}>
             <Container>
                 <div className={s.hero__content}>
                     <h1 className={s.hero__title}>

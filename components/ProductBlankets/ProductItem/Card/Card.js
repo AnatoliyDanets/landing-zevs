@@ -1,16 +1,16 @@
 import axios from "axios";
+import Countdown, { zeroPad } from "react-countdown";
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
-import PropTypes from "prop-types";
 import Arrow from "../../../svgs/arrow.svg";
-import Button from "../../../Button/Button";
-import Characteristics from "../../../Characteristics";
-import ProductSlider from "../../../ProductSlider/ProductSlider";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
-import Countdown, { zeroPad } from "react-countdown";
+import Button from "../../../Button/Button";
+import Characteristics from "../../../Characteristics";
+import ProductSlider from "../../../ProductSlider/ProductSlider";
 import s from "./Card.module.css";
 
 export default function Card({

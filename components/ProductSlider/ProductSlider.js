@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { makeSizeForImage } from "@/services/services";

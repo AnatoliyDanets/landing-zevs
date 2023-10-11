@@ -27,7 +27,7 @@ export default function Navigation() {
                         to="Discount"
                         spy={true}
                         smooth={true}
-                        offset={-100}
+                        offset={-50}
                         duration={500}
                         href={"#Discount"}
                         className={s.nav__link}
@@ -43,7 +43,7 @@ export default function Navigation() {
                         href={"#Blankets"}
                         spy={true}
                         smooth={true}
-                        offset={-120}
+                        offset={-110}
                         duration={500}
                         className={s.nav__link}
                     >
@@ -58,7 +58,7 @@ export default function Navigation() {
                         href={"#Pillows"}
                         spy={true}
                         smooth={true}
-                        offset={-120}
+                        offset={-110}
                         duration={500}
                         className={s.nav__link}
                     >
@@ -71,7 +71,7 @@ export default function Navigation() {
                         to="Features"
                         spy={true}
                         smooth={true}
-                        offset={-100}
+                        offset={-50}
                         duration={500}
                         href={"#Features"}
                         className={s.nav__link}
