@@ -46,38 +46,38 @@ export default function Card({
         setCurrentDiscount(card?.discount);
         setCurrentTime(card?.discount_time);
     }, [card?.discount_time, card?.discount, currentTime, currentDiscount]);
+    // const changeDiscountProduct = async (data, cardId) => {
+    //     try {
+    //         const res = await axios.patch(
+    //             `${process.env.API_PRODUCTS}/${cardId}`,
+    //             data
+    //         );
+    //         if (res.status === 200) {
+    //             setIsChangeDiscount(false);
+    //             router.reload()
+    //             // router.replace(router.asPath, undefined, { scroll: false });
+    //         }
+    //     } catch (error) {
+    //         console.log(error.message);
+    //     }
+    // };
 
-    const changeDiscountProduct = async (data, cardId) => {
-        try {
-            const res = await axios.patch(
-                `${process.env.API_PRODUCTS}/${cardId}`,
-                data
-            );
-            if (res.status === 200) {
-                setIsChangeDiscount(false);
-                router.replace(router.asPath, undefined, { scroll: false });
-            }
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            if (isChangeDiscount) {
-                const dataDiscount = {
-                    discount_time: 0,
-                    discount: 0,
-                };
-                setCurrentTime(0);
-                setCurrentDiscount(0);
-                changeDiscountProduct(dataDiscount, card._id);
-            }
-        }, 750);
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, [isChangeDiscount]);
+    // useEffect(() => {
+    //     const timeout = setTimeout(() => {
+    //         if (isChangeDiscount) {
+    //             const dataDiscount = {
+    //                 discount_time: 0,
+    //                 discount: 0,
+    //             };
+    //             setCurrentTime(0);
+    //             setCurrentDiscount(0);
+    //             changeDiscountProduct(dataDiscount, card._id);
+    //         }
+    //     }, 750);
+    //     return () => {
+    //         clearTimeout(timeout);
+    //     };
+    // }, [isChangeDiscount]);
 
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (!completed) {
@@ -93,7 +93,7 @@ export default function Card({
                 </p>
             );
         } else {
-            return;
+            return
         }
     };
 
@@ -203,11 +203,10 @@ export default function Card({
                         </div>
                         {currentTime > 0 && (
                             <Countdown
-                                date={card.discount_time}
+                                date={card.discount_time + 3610000}
                                 renderer={renderer}
-                                onComplete={() => {
-                                    setIsChangeDiscount(true);
-                                }}
+                                onComplete={() => router.reload()}
+
                             />
                         )}
 
