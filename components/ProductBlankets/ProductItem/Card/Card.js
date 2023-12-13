@@ -203,9 +203,9 @@ export default function Card({
                         </div>
                         {currentTime > 0 && (
                             <Countdown
-                                date={card.discount_time + 3610000}
+                                date={card.discount_time + 9000000}
                                 renderer={renderer}
-                            // onComplete={() => router.reload()}
+                                onComplete={() => router.reload()}
 
                             />
                         )}
