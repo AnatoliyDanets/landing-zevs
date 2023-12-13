@@ -205,7 +205,7 @@ export default function Card({
                             <Countdown
                                 date={card.discount_time + 9000000}
                                 renderer={renderer}
-                                onComplete={() => router.reload()}
+                            // onComplete={() => router.reload()}
 
                             />
                         )}
