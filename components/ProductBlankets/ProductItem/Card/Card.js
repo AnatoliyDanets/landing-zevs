@@ -1,4 +1,3 @@
-import axios from "axios";
 import Countdown, { zeroPad } from "react-countdown";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
@@ -27,7 +26,6 @@ export default function Card({
 }) {
     const [currentTime, setCurrentTime] = useState(0);
     const [currentDiscount, setCurrentDiscount] = useState(0);
-    const [isChangeDiscount, setIsChangeDiscount] = useState(false);
     const router = useRouter();
     const [showDisc, setShowDisc] = useState(false);
     const [showAllDisc, setShowAllDisc] = useState(card.discription[locale]);
@@ -46,38 +44,6 @@ export default function Card({
         setCurrentDiscount(card?.discount);
         setCurrentTime(card?.discount_time);
     }, [card?.discount_time, card?.discount, currentTime, currentDiscount]);
-    // const changeDiscountProduct = async (data, cardId) => {
-    //     try {
-    //         const res = await axios.patch(
-    //             `${process.env.API_PRODUCTS}/${cardId}`,
-    //             data
-    //         );
-    //         if (res.status === 200) {
-    //             setIsChangeDiscount(false);
-    //             router.reload()
-    //             // router.replace(router.asPath, undefined, { scroll: false });
-    //         }
-    //     } catch (error) {
-    //         console.log(error.message);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     const timeout = setTimeout(() => {
-    //         if (isChangeDiscount) {
-    //             const dataDiscount = {
-    //                 discount_time: 0,
-    //                 discount: 0,
-    //             };
-    //             setCurrentTime(0);
-    //             setCurrentDiscount(0);
-    //             changeDiscountProduct(dataDiscount, card._id);
-    //         }
-    //     }, 750);
-    //     return () => {
-    //         clearTimeout(timeout);
-    //     };
-    // }, [isChangeDiscount]);
 
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (!completed) {
@@ -93,7 +59,7 @@ export default function Card({
                 </p>
             );
         } else {
-            return
+            return;
         }
     };
 
@@ -203,10 +169,9 @@ export default function Card({
                         </div>
                         {currentTime > 0 && (
                             <Countdown
-                                date={card.discount_time + 20000}
+                                date={card.discount_time + 300000}
                                 renderer={renderer}
                                 onComplete={() => router.reload()}
-
                             />
                         )}
 
