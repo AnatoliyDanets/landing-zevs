@@ -14,6 +14,7 @@ const nunito = Nunito({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
+  adjustFontFallback: false,
   variable: "--font-nunito",
 });
 const messages = {
