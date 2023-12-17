@@ -17,11 +17,7 @@
 }
 
 .error__link {
-  background: linear-gradient(
-    45deg,
-    rgba(134, 106, 26, 1) 55%,
-    rgba(210, 186, 64, 1) 75%
-  );
+  background: var(--btn-bcg-color);
   border: none;
   text-shadow: 1px 0 1px var(--additional-color),
     0 1px 1px var(--additional-color), -1px 0 1px var(--additional-color),
