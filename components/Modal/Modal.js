@@ -1,21 +1,14 @@
 import ReactDOM from "react-dom";
-import { Nunito } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { nunito } from "../../pages/_app"
 import Close from "../svgs/close.svg";
 import modalImage from "../../public/background2.jpg"
 import s from "./Modal.module.css";
 
-const nunito = Nunito({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    display: "swap",
-    adjustFontFallback: false,
-    variable: "--font-nunito",
-});
 
 const backdropVariant = {
     hidden: {
@@ -93,7 +86,7 @@ const Modal = ({ show, onClose, children, style }) => {
                 <Image
                     src={modalImage}
                     priority
-                    alt="bar"
+                    alt="basket image"
                     fill
                     style={{ objectFit: 'cover', zIndex: -1 }}
                     sizes="100%"

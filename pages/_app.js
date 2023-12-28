@@ -10,7 +10,7 @@ import Loader from "@/components/Loader";
 import "normalize.css/normalize.css";
 import "../styles/globals.css";
 
-const nunito = Nunito({
+export const nunito = Nunito({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
