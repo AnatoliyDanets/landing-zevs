@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FormattedMessage } from "react-intl";
-import Container from "../Container";
+import Container from "../UI/Container";
 import s from "./Footer.module.css";
 
 export default function Footer() {

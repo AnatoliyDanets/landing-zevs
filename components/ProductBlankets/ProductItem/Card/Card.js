@@ -7,13 +7,13 @@ import Arrow from "../../../svgs/arrow.svg";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
-import Button from "../../../Button/Button";
+import Article from "@/components/UI/Article/Article";
+import Button from "../../../UI/Button/Button";
 import Characteristics from "../../../Characteristics";
 import ProductSlider from "../../../ProductSlider/ProductSlider";
 import s from "./Card.module.css";
 
 export default function Card({
-    id,
     card,
     onClick,
     disabled,
@@ -33,7 +33,7 @@ export default function Card({
         setShowDisc((prev) => !prev);
     };
     useEffect(() => {
-        if (card.discription[locale].length > 450) {
+        if (card.discription[locale]?.length > 450) {
             setShowDisc(false);
             const showText = card.discription[locale].slice(0, 450);
             setShowAllDisc(showText);
@@ -79,7 +79,7 @@ export default function Card({
         },
     };
     return (
-        <article className={s.card__article} key={id}>
+        <Article classname={s.card__article} >
             <h4 className={s.card__title} id={card.model[locale]}>
                 {card.model[locale]}
             </h4>
@@ -153,7 +153,7 @@ export default function Card({
                                             ? "blanket"
                                             : "pillow"
                                     }
-                                    inputProps={{ MenuProps: { disableScrollLock: true } }}
+                                    inputProps={{ MenuProps: { disableScrollLock: false } }}
                                     className={s.card__select}
                                 >
                                     {arr
@@ -208,7 +208,7 @@ export default function Card({
                 type={card.category[locale]}
                 property={Object.values(card.characteristics)}
             />
-        </article>
+        </Article>
     );
 }
 
@@ -239,3 +239,4 @@ Card.propTypes = {
     arr: PropTypes.array,
     locale: PropTypes.string,
 };
+

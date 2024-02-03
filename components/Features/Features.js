@@ -1,6 +1,6 @@
 import { FormattedMessage } from "react-intl";
-import Section from "../Section";
-import SectionTitle from "../SectionTitle";
+import Section from "../UI/Section";
+import SectionTitle from "../UI/SectionTitle";
 import Star from "../svgs/star.svg";
 import Clients from "../svgs/clients.svg";
 import Internet from "../svgs/internet.svg";

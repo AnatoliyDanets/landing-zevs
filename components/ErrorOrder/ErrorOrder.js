@@ -1,6 +1,6 @@
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import Button from "../Button/Button";
+import Button from "../UI/Button/Button";
 import s from "./ErrorOrder.module.css"
 
 export default function ErrorOrder({ onClick }) {

@@ -69,7 +69,10 @@ export default function ProductItem({ arr, text, set, items, locale }) {
                         (el.size === +currentSizePillow ? +currentSizePillow : 70))
             )
             .sort((a, b) => a.size - b.size);
-        if (findNewProduct[0]?.category[locale] === "Одеяла" || findNewProduct[0]?.category[locale] === "Ковдри") {
+        if (
+            findNewProduct[0]?.category[locale] === "Одеяла" ||
+            findNewProduct[0]?.category[locale] === "Ковдри"
+        ) {
             setCurrentSizeBlanket(findNewProduct[0]?.size);
         } else {
             setCurrentSizePillow(findNewProduct[0]?.size);
@@ -89,18 +92,18 @@ export default function ProductItem({ arr, text, set, items, locale }) {
             locale={locale}
             handleChange={handleChange}
             currentSize={
-                (el.category[locale] === "Ковдри" || el.category[locale] === "Одеяла")
-                    ? currentSizeBlanket : currentSizePillow
+                el.category[locale] === "Ковдри" || el.category[locale] === "Одеяла"
+                    ? currentSizeBlanket
+                    : currentSizePillow
             }
         />
     ));
 }
-
 ProductItem.propTypes = {
     id: PropTypes.string,
     arr: PropTypes.array,
     set: PropTypes.func,
     items: PropTypes.array,
     text: PropTypes.string,
-    locale: PropTypes.string
+    locale: PropTypes.string,
 };

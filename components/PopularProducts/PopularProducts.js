@@ -1,17 +1,14 @@
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
+import { SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { makeSizeForImage } from "@/services/services";
-import { Autoplay, Pagination, Navigation } from "swiper";
 import { Link } from "react-scroll/modules";
 import useFormattedDate from "../hook";
-import Section from "../Section";
-import SectionTitle from "../SectionTitle";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "swiper/css/autoplay";
+import SliderSection from "../UI/SliderSection/SliderSection";
+import Section from "../UI/Section";
+import SectionTitle from "../UI/SectionTitle";
+import Article from "../UI/Article/Article";
 import s from "./PopularProducts.module.css";
 
 export const ConvertToNormalDate = ({ date, locale }) => {
@@ -19,32 +16,14 @@ export const ConvertToNormalDate = ({ date, locale }) => {
     return String(finishDiscountDate);
 };
 
-export default function DiscountCards({ products, locale }) {
+export default function PopularProducts({ products, locale }) {
     return (
         <Section id={"Discount"}>
             <SectionTitle
                 name={<FormattedMessage id="page.home.discount_title" />}
             />
             <div className={s.discount}>
-                <Swiper
-                    slidesPerView={1}
-                    spaceBetween={10}
-                    breakpoints={{
-                        768: {
-                            slidesPerView: 2,
-                        },
-                        1024: {
-                            slidesPerView: 3,
-                        },
-                    }}
-                    loop={true}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    navigation={true}
-                    modules={[Autoplay, Pagination, Navigation]}
-                    className={s.slider}
-                >
+                <SliderSection classname={s.slider}>
                     {products
                         .reduce(
                             (acc, el) => (
@@ -64,9 +43,10 @@ export default function DiscountCards({ products, locale }) {
                                         width="450"
                                         height="450"
                                         className={s.discount__img}
-                                        // priority
                                         blurDataURL="data:..."
                                         placeholder="blur"
+                                    // priority={true}
+
                                     />
                                     {el.discount > 0 && (
                                         <div className={s.discount__time}>
@@ -80,7 +60,7 @@ export default function DiscountCards({ products, locale }) {
                                         </div>
                                     )}
 
-                                    <article className={s.discount__info}>
+                                    <Article classname={s.discount__info}>
                                         <h3 className={s.discount__title}>{el.model[locale]}</h3>
                                         <div className={s.popular__price}>
                                             <p className={s.discount__price}>
@@ -124,17 +104,17 @@ export default function DiscountCards({ products, locale }) {
                                         >
                                             <FormattedMessage id="page.home.discount_product_link" />
                                         </Link>
-                                    </article>
+                                    </Article>
                                 </div>
                             </SwiperSlide>
                         ))}
-                </Swiper>
+                </SliderSection>
             </div>
         </Section>
     );
 }
 
-DiscountCards.propTypes = {
+PopularProducts.propTypes = {
     locale: PropTypes.string,
     products: PropTypes.array,
 };

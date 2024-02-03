@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Button from "../Button";
+import Button from "../UI/Button";
 import s from "./SuccessOrder.module.css";
 
 export default function SuccessOrder({ onClick, message }) {

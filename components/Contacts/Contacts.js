@@ -1,8 +1,8 @@
 import { useMediaQuery } from "react-responsive";
 import { FormattedMessage } from "react-intl";
 import { useState, useEffect } from "react";
-import Section from "../Section";
-import SectionTitle from "../SectionTitle";
+import Section from "../UI/Section";
+import SectionTitle from "../UI/SectionTitle";
 import Phone from "../svgs/phone.svg";
 import Location from "../svgs/location.svg";
 import Clock from "../svgs/clock.svg";

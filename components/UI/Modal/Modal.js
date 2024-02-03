@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { nunito } from "../../pages/_app"
-import Close from "../svgs/close.svg";
-import modalImage from "../../public/background2.jpg"
+import { nunito } from "../../../pages/_app"
+import Close from "../../svgs/close.svg";
+import modalImage from "../../../public/background2.jpg"
 import s from "./Modal.module.css";
 
 

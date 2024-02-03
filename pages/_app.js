@@ -6,7 +6,7 @@ import { IntlProvider } from "react-intl";
 import { Nunito } from "next/font/google";
 import uk from "../lang/uk.json";
 import ru from "../lang/ru.json";
-import Loader from "@/components/Loader";
+import Loader from "@/components/UI/Loader";
 import "normalize.css/normalize.css";
 import "../styles/globals.css";
 

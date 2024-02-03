@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
 import Del from "../svgs/del.svg";
-import Loader from "../Loader";
+import Loader from "../UI/Loader";
 import CartProductCounter from "./CartProductCounter";
 import CartOrderForm from "./CartOrderForm";
 import s from "./Cart.module.css";

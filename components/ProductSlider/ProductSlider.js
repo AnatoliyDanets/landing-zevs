@@ -103,7 +103,7 @@ export default function ProductSlider({ cardImg }) {
                                 alt="Picture of the author"
                                 width={460}
                                 height={460}
-                                loading="lazy"
+                                // loading="lazy"
                                 blurDataURL="data:..."
                                 placeholder="blur"
                                 className={s.image}
@@ -129,7 +129,7 @@ export default function ProductSlider({ cardImg }) {
                                     className={s.image__dot}
                                     blurDataURL="data:..."
                                     placeholder="blur"
-                                    loading="lazy"
+                                // loading="lazy"
                                 />
                             </div>
                         ))}

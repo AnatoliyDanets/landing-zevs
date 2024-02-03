@@ -1,9 +1,10 @@
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
-import Section from "../Section";
+import Section from "../UI/Section";
 import ProductItem from "./ProductItem/ProductItem";
-import SectionTitle from "../SectionTitle";
+import SectionTitle from "../UI/SectionTitle";
 import s from "./ProductList.module.css";
+import { memo } from 'react';
 
 
 
@@ -17,6 +18,17 @@ export default function ProductList({ products, set, items, locale }) {
     ru: "Подушки",
   };
 
+  const findProductCategory = (products, category) => products
+    .filter((el) => el.category[locale] === category[locale])
+
+    .reduce(
+      (acc, el) => (
+        acc.find(({ model }) => el.model[locale] === model[locale]) ||
+        acc.push(el),
+        acc
+      ),
+      []
+    )
 
   return (
     <Section id={"Products"}>
@@ -25,17 +37,7 @@ export default function ProductList({ products, set, items, locale }) {
       />
       <h3 id={"Blankets"} className={s.products__title}><FormattedMessage id="page.home.catalog_title_one" /></h3>
       <ul className={s.products}>
-        {products
-          .filter((el) => el.category[locale] === blanket[locale])
-
-          .reduce(
-            (acc, el) => (
-              acc.find(({ model }) => el.model[locale] === model[locale]) ||
-              acc.push(el),
-              acc
-            ),
-            []
-          )
+        {findProductCategory(products, blanket)
           .map(({ _id, model }) => (
             <li key={_id} className={s.products__item}>
               <ProductItem
@@ -52,17 +54,7 @@ export default function ProductList({ products, set, items, locale }) {
       </ul>
       <h3 id="Pillows" className={s.products__title}> <FormattedMessage id="page.home.catalog_title_two" /></h3>
       <ul className={s.products}>
-        {products
-          .filter((el) => el.category[locale] === pillow[locale])
-
-          .reduce(
-            (acc, el) => (
-              acc.find(({ model }) => el.model[locale] === model[locale]) ||
-              acc.push(el),
-              acc
-            ),
-            []
-          )
+        {findProductCategory(products, pillow)
           .map(({ _id, model }) => (
             <li key={_id} className={s.products__item}>
               <ProductItem

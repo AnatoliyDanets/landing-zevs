@@ -5,8 +5,8 @@ import {
 import { FormattedMessage } from "react-intl";
 import { useMediaQuery } from "react-responsive";
 import { useEffect, useState } from "react";
-import Section from "../Section";
-import SectionTitle from "../SectionTitle";
+import Section from "../UI/Section";
+import SectionTitle from "../UI/SectionTitle";
 import OrderWrite from "../svgs/orderWrite.svg";
 import Callback from "../svgs/callback.svg";
 import Delivery from "../svgs/delivery.svg";

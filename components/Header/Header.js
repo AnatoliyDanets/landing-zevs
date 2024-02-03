@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-scroll/modules";
 import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
-import Container from "../Container";
+import Container from "../UI/Container";
 import HeaderLangBox from "./HeaderLangBox";
 import Navigation from "../Navigation";
 import logo from "../../public/Logo/Zevs.png";
@@ -101,7 +101,8 @@ export default function Header({ locales }) {
                                             alt="Logo"
                                             width={112}
                                             height={40}
-                                            priority="true"
+                                            priority={true}
+
                                         />
                                     </Link>
                                 </li>

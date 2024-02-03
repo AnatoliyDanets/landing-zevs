@@ -1,7 +1,7 @@
 import { FormattedMessage } from "react-intl";
 import Link from "next/link";
-import Section from "../Section/Section";
-import SectionTitle from "../SectionTitle/SectionTitle";
+import Section from "../UI/Section/Section";
+import SectionTitle from "../UI/SectionTitle/SectionTitle";
 import s from "./DeliveryAndPay.module.css";
 
 export default function DeliveryAndPay() {

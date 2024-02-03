@@ -2,7 +2,7 @@ import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 import Close from "../../svgs/close.svg";
-import Container from "../../Container";
+import Container from "../../UI/Container";
 import HeaderLangBox from "../HeaderLangBox";
 import s from "./HeaderMobile.module.css";
 

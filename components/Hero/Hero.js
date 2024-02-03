@@ -1,6 +1,6 @@
 import { Link } from "react-scroll/modules";
 import { FormattedMessage } from "react-intl";
-import Container from "../Container";
+import Container from "../UI/Container";
 import s from "./Hero.module.css";
 
 export default function Hero() {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Container from "../Container/Container";
+import Container from "../UI/Container/Container";
 import s from "./ErrorBox.module.css";
 
 export default function ErrorBox() {

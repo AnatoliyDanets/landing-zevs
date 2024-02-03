@@ -8,7 +8,7 @@ const DisplayCart = dynamic(() => import("../DisplayCart"));
 const SuccessOrder = dynamic(() => import("../SuccessOrder"));
 const ErrorOrder = dynamic(() => import("../ErrorOrder"));
 const Cart = dynamic(() => import("../Cart"));
-const Modal = dynamic(() => import("../Modal"));
+const Modal = dynamic(() => import("../UI/Modal"));
 
 export default function Products({ products, locale }) {
     const [showCart, setShowCart] = useState(false);

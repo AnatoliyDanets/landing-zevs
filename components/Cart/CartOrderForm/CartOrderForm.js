@@ -15,7 +15,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import Button from "../../Button";
+import Button from "../../UI/Button";
 import NovaPoshta from "../../svgs/nova_poshta.svg";
 import UkrPoshta from "../../svgs/ukrposhta.svg";
 import s from "./CartOrderForm.module.css";
